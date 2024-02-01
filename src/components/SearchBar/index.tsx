@@ -6,7 +6,7 @@ export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
   const suggestions = useNaverAutocomplete(searchTerm);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchTerm(e.target.value);
   };
 

@@ -1,31 +1,39 @@
+// useNaverAutocomplete.ts
 import { useState, useEffect } from 'react';
 
-const useNaverAutocomplete = (searchTerm) => {
-    const [suggestions, setSuggestions] = useState([]);
+interface Suggestion {
+    id: string; // 각 제안의 고유 식별자
+    title: string;
+    // 다른 필드...
+}
+
+const useNaverAutocomplete = (searchTerm: string) => {
+    const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
 
     useEffect(() => {
         const fetchSuggestions = async () => {
-            if (!searchTerm) {
-                setSuggestions([]);
-                return;
+        if (!searchTerm.trim()) {
+            setSuggestions([]);
+            return;
+        }
+        try {
+
+            const response = await fetch(`https://cafevery-clipper-1st-fe.vercel.app/api/search?query=${encodeURIComponent(searchTerm)}`);
+            if (!response.ok) {
+            throw new Error(`Error from serverless API: ${response.statusText}`);
             }
-            try {
-                const response = await fetch(`https://openapi.naver.com/v1/search/local.json?query=${searchTerm}`, {
-                headers: {
-                    'X-Naver-Client-Id': import.meta.env.VITE_APP_NAVER_CLIENT_ID,
-                    'X-Naver-Client-Secret': import.meta.env.VITE_APP_NAVER_CLIENT_SECRET,
-                },
-                });
-                const data = await response.json();
-                setSuggestions(data.items);
-            } catch (error) {
-                console.error('Error fetching suggestions:', error);
-                setSuggestions([]);
-            }
-        };
+            const data = await response.json();
+            setSuggestions(
+            data.items.map((item, index) => ({ ...item, id: `suggestion-${index}` }))
+            );
+        } catch (error) {
+            console.error(error);
+            setSuggestions([]);
+        }
+    };
 
         fetchSuggestions();
-    }, [searchTerm]);
+    }, [searchTerm]);   
 
     return suggestions;
 };
