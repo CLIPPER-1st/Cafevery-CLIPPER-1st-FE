@@ -5,8 +5,8 @@ import MyMarkerImg from '@/assets/Markers/MyMarker.png'
 export function MyMap() {
     const navermaps = useNavermaps();
     const { loaded, coordinates, heading } = useGeolocation();
-    const markerWidth = 40; // 예시로 30px을 사용합니다.
-    const markerHeight = 45; // 예시로 30px을 사용합니다.
+    const markerWidth = 40;
+    const markerHeight = 45;
 
     console.log(heading)
     return (

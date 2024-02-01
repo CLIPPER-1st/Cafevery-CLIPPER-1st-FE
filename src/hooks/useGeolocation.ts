@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-interface locationType {
+interface LocationType {
   loaded: boolean;
   coordinates?: { lat: number; lng: number };
   heading?: number | null;
@@ -8,40 +8,38 @@ interface locationType {
 }
 
 const useGeolocationWithHeading = () => {
-  const [location, setLocation] = useState<locationType>({
+  const [location, setLocation] = useState<LocationType>({
     loaded: false,
     coordinates: { lat: 0, lng: 0 },
     heading: null,
   });
 
-  // 성공에 대한 로직
-  const onSuccess = (position: {
-    coords: { latitude: number; longitude: number; heading: number | null };
-  }) => {
-    setLocation({
+  const onSuccess = (position: GeolocationPosition) => {
+    setLocation((currentLocation) => ({
+      ...currentLocation,
       loaded: true,
       coordinates: {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       },
       heading: position.coords.heading,
-    });
+    }));
   };
 
-  // 에러에 대한 로직
-  const onError = (error: { code: number; message: string }) => {
-    setLocation({
+  const onError = (error: GeolocationPositionError) => {
+    setLocation((currentLocation) => ({
+      ...currentLocation,
       loaded: true,
-      error,
-    });
+      error: {
+        code: error.code,
+        message: error.message,
+      },
+    }));
   };
 
   useEffect(() => {
     if (!('geolocation' in navigator)) {
-      onError({
-        code: 0,
-        message: 'Geolocation not supported',
-      });
+      onError(new GeolocationPositionError());
       return;
     }
 
@@ -49,8 +47,22 @@ const useGeolocationWithHeading = () => {
       enableHighAccuracy: true,
     });
 
-    // 위치 추적을 중단할 때 watcherId를 사용하여 clearWatch를 호출합니다.
-    return () => navigator.geolocation.clearWatch(watcherId);
+    const handleOrientationEvent = (event: DeviceOrientationEvent) => {
+      // Ensure alpha is not null before updating state
+      if (event.alpha !== null) {
+        setLocation((currentLocation) => ({
+          ...currentLocation,
+          heading: event.alpha, // Use event.alpha for the heading
+        }));
+      }
+    };
+
+    window.addEventListener('deviceorientation', handleOrientationEvent);
+
+    return () => {
+      navigator.geolocation.clearWatch(watcherId);
+      window.removeEventListener('deviceorientation', handleOrientationEvent);
+    };
   }, []);
 
   return location;
