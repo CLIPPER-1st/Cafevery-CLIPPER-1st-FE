@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes, useNavigate} from 'react-router-dom';
-import Home from './pages/Home/Home';
+import Home from './pages/Home';
 export default function Router() {
   return (
       <Routes>
