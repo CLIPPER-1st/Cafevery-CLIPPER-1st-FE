@@ -8,8 +8,8 @@ export default async (req: VercelRequest, res: VercelResponse): Promise<void> =>
     return;
   }
 
-  const clientId = process.env.NAVER_CLIENT_ID;
-  const clientSecret = process.env.NAVER_CLIENT_SECRET;
+  const clientId = process.env.VITE_APP_NAVER_CLIENT_ID;
+  const clientSecret = process.env.VITE_APP_NAVER_CLIENT_SECRET;
 
   // 환경 변수의 존재를 확인합니다.
   if (!clientId || !clientSecret) {
