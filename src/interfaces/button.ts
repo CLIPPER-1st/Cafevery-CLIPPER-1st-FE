@@ -16,5 +16,11 @@ export interface ButtonProps {
     borderRadius?: string;
   }
   
-  export interface LongButtonProps extends Partial<ButtonProps> {
+  export interface LikePageButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface MyPageButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface HomePageButtonProps extends Partial<ButtonProps> {
   }
