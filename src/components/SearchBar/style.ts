@@ -25,7 +25,6 @@ export const SearchInput = styled.input`
   }
 `;
 
-
 export const IconContainer = styled.span`
   display: flex;
   align-items: center;
@@ -39,25 +38,26 @@ export const SuggestionsList = styled.ul`
   padding: 0;
   background-color: white;
   position: absolute;
-  top: 52px;
-  width: 100%;
+  top: 50px;
+  left: 0;
+  width: 335px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 15px 15px;
   max-height: 300px;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const SuggestionItem = styled.li`
   padding: 10px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #D9D9D9;
 
   &:last-child {
     border-bottom: none;
   }
 
   &:hover {
-    background-color: #f8f8f8;
+    background-color: #D9D9D9;
   }
 `;
 

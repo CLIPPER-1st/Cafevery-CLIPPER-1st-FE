@@ -24,3 +24,12 @@ export interface ButtonProps {
 
   export interface HomePageButtonProps extends Partial<ButtonProps> {
   }
+
+  export interface CloseButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface GoToMyLocationButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface GetCafeLocationButtonProps extends Partial<ButtonProps> {
+  }
