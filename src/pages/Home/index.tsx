@@ -10,9 +10,7 @@ import useGeolocation from '@/hooks/useGeolocation';
 
 export default function Home() {
   const [, setMyLocation] = useRecoilState(myLocationState);
-
   const { coordinates } = useGeolocation();
-
 
   const handleMyLocationButtonClicked = () => {
     setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });

@@ -1,9 +1,8 @@
-// MyMap.tsx
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
 import { useRecoilState } from 'recoil';
 import { locationState, myLocationState } from '@/atoms/location';
-import useGeolocation from '@/hooks/useGeolocation'; // useGeolocation Hook import 필요
+import useGeolocation from '@/hooks/useGeolocation';
 import MyMarkerImg from '@/assets/Markers/MyMarker.png'
 
 export function MyMap() {
