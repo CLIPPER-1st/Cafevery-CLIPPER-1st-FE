@@ -18,8 +18,8 @@ export default async (req: VercelRequest, res: VercelResponse): Promise<void> =>
   }
 
   try {
-    const naverApiUrl = `https://openapi.naver.com/v1/search/local.json?query=${encodeURIComponent(query)}`;
-    const naverResponse = await fetch(naverApiUrl, {
+    const naverApiUrl = `https://openapi.naver.com/v1/search/local.json?query=${query}`;
+    const naverResponse = await fetch(naverApiUrl, {    
       headers: {
         'X-Naver-Client-Id': clientId,
         'X-Naver-Client-Secret': clientSecret,
