@@ -30,7 +30,7 @@ export const Title = styled.div`
   background-color: transparent;
   top: 30px;
   color: ${theme.colors.textMain};
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;

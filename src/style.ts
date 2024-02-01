@@ -1,13 +1,13 @@
 import {createGlobalStyle} from 'styled-components';
-//import Pretendard from './static/font/Pretendard-Medium.woff2';
+import NanumSquareRound from './static/fonts/NanumSquareRound.woff2';
 
 export const GlobalStyle = createGlobalStyle`
-  /* @font-face {
-    font-family: 'Pretendard';
-    src: url(${Pretendard}) format('woff2');
+  @font-face {
+    font-family: 'NanumSquareRound';
+    src: url(${NanumSquareRound}) format('woff2');
     font-weight: normal;
     font-style: normal;
-  } */
+  } 
 
   html {
     font-size: 16px;
@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body, html {
-    //font-family: 'Pretendard';
+    font-family: 'NanumSquareRound';
     font-weight: 400;
     margin: 0;
     font-size: 16px;

@@ -4,10 +4,9 @@ import { Container as MapDiv } from 'react-naver-maps'
 
 const NaverMapContainer = () => {
     return (
-        <MapDiv style={{ width: '100vw', height: '100vh', margin:'0px' }}>
+        <MapDiv style={{ width: '430px', height: '932px'}}>
             <MyMap />
         </MapDiv>
-
     )
 }
 
