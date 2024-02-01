@@ -21,6 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
 
+  body {
+    background-color: #fefee7;
+  }
+
   #content {
     position: relative;
     height: 100%;
