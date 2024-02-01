@@ -18,7 +18,7 @@ const useNaverAutocomplete = (searchTerm: string) => {
         }
         try {
 
-            const response = await fetch(`https://cafevery-clipper-1st-fe.vercel.app/api/search?query=${searchTerm}`);
+            const response = await fetch(`https://cafevery-clipper-1st-fe.vercel.app/api/search?query=${encodeURIComponent(searchTerm)}`);
             if (!response.ok) {
             throw new Error(`Error from serverless API: ${response.statusText}`);
             }
