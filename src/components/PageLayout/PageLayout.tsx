@@ -17,8 +17,8 @@ export default function PageLayout({ children, title }: Props) {
             {title}
           </S.Title>
           {children}
+          <NavBar />
         </S.Wrapper>
-        <NavBar />
       </S.Layout>
     </>
 

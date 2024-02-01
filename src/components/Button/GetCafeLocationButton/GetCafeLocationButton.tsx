@@ -5,7 +5,7 @@ import GetCafeLocationButtonImg from '@/assets/Buttons/GetCafeLocationButton.png
 export default function GetCafeLocationButton(props: GetCafeLocationButtonProps) {
 
   return (
-    <Button width={131} height={27} background={GetCafeLocationButtonImg} {...props}>
+    <Button width={180} height={44} background={GetCafeLocationButtonImg} {...props}>
       {props.children}
     </Button>
   );

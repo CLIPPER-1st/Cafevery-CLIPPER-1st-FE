@@ -8,7 +8,7 @@ export const Container = styled.div`
     height: 80px;
     background-color: ${theme.colors.white};
     bottom: 0;
-    position: fixed;
+    position: absolute;
     box-shadow: 0px -6px 6px -1px rgba(0, 0, 0, 0.1), 0px -2px 4px -1px rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: space-around;
