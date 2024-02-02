@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    bottom: 100px;
+    position: fixed;
+    bottom: 72px;
     width: 100%;
     max-width: 315px;
     z-index: 1;

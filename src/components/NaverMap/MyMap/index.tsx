@@ -13,10 +13,11 @@ export function MyMap() {
 
     useEffect(() => {
         if (loaded && coordinates) {
-        setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
-        setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+            setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+            setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
         }
     }, [loaded, coordinates, setLocation]);
+    
 
     return (
         <>

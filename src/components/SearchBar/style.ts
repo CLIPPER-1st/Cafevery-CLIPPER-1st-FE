@@ -4,14 +4,14 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   position: fixed;
   z-index: 1;
   top: 100px;
   width: 315px;
-  height: 42px;
+  height: 36px;
 `;
 
 export const SearchInput = styled.input`
@@ -38,7 +38,7 @@ export const SuggestionsList = styled.ul`
   padding: 0;
   background-color: white;
   position: absolute;
-  top: 50px;
+  top: 47px;
   left: 0;
   width: 335px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
