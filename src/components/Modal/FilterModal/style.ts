@@ -1,4 +1,5 @@
 import {styled} from 'styled-components';
+import TimeFilterImg from '@/assets/FilterModalContents/TimeFilter.png';
 
 export const ModalInnerWrapper = styled.div`
   display: flex;
@@ -6,31 +7,47 @@ export const ModalInnerWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  margin-top: 68px;
 `;
 
-export const GuestBookContent = styled.div`
-  width: 217px;
-  height: 138px;
-  background: rgba(87, 46, 22, 0.15);
+export const SectionTitle = styled.div`
+  width: 100%;
+  height: 24px;
+  font-size: 24px;
+  margin: 14px;
+`;
+
+export const SectionText = styled.div`
+  width: 100%;
+  height: 24px;
+  font-size: 16px;
+  margin: 14px 0 6px 14px;
+`;
+
+export const Line = styled.div`
+  width: 290px;
+  height: 2px;
+  background-color: #A97953;
+  margin-top: 20px;
+`;
+
+export const TimeFilter = styled.div`
+  background-image: url(${TimeFilterImg});
+  width: 275px;
+  height: 60px;
+  background-size: 275px 60px;
+  margin-bottom: 10px;
+`;
+
+export const DistanceFilter = styled.div`
+  background-color: #FEFFE7;
+  width: 275px;
+  height: 180px;
+  background-size: 275px 180px;
   border-radius: 10px;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  overflow: auto;
+  margin-bottom: 10px;
+
 `;
 
-export const AuthorName = styled.div`
-  background-size: 50px 21px;
-  width: 50px;
-  height: 21px;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 600;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 14px;
+export const SingleSlider = styled.input.attrs({ type: 'range' })`
+  /* 슬라이더의 스타일링 */
 `;

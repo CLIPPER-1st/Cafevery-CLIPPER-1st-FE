@@ -78,13 +78,13 @@ export const ModalContent = styled.div<ModalContentProps>`
   transform: translate(-50%, -50%);
   color: ${theme.colors.white};
   font-size: 20px;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 export const ModalInnerContent = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 export const ModalTitle = styled.div`
