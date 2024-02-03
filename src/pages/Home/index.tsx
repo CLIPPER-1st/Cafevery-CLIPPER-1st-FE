@@ -5,15 +5,15 @@ import GoToMyLocationButton from '@/components/Button/GoToMyLocationButton/GoToM
 import GetCafeLocationButton from '@/components/Button/GetCafeLocationButton/GetCafeLocationButton';
 import * as Styled from './style';
 import { useRecoilState } from 'recoil';
-import { myLocationState } from '@/atoms/location';
+import { locationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 
 export default function Home() {
-  const [, setMyLocation] = useRecoilState(myLocationState);
+  const [, setLocation] = useRecoilState(locationState);
   const { coordinates } = useGeolocation();
 
   const handleMyLocationButtonClicked = () => {
-    setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+    setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
   };
   return (
     <PageLayout>
