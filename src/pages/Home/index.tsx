@@ -9,17 +9,26 @@ import { locationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import { Toggle } from '@/components/Toggle/Toggle';
 import FilterButton from '@/components/Button/FilterButton/FilterButton';
+import useModal from '@/hooks/useModal';
+import FilterModal from '@/components/Modal/FilterModal/FilterModal';
 
 export default function Home() {
   const [, setLocation] = useRecoilState(locationState);
   const { coordinates } = useGeolocation();
+  const {isOpen, openModal, closeModal} = useModal();
 
   const handleMyLocationButtonClicked = () => {
     setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
   };
+
+  const handleFilterModalOpen= () => {
+    openModal();
+  };
+
   return (
+    <>
     <PageLayout>
-      <FilterButton />
+      <FilterButton onClick={() => handleFilterModalOpen()} />
       <Toggle />
       <SearchBar />
       <Styled.ButtonContainer>
@@ -30,5 +39,13 @@ export default function Home() {
       </Styled.ButtonContainer>
       <NaverMap />
     </PageLayout>
+
+    {isOpen && (
+          <FilterModal 
+            isOpen={isOpen}
+            onClose={closeModal}
+          />
+      )}
+    </>
   );
 }
