@@ -7,7 +7,7 @@ import * as Styled from './style';
 import { useRecoilState } from 'recoil';
 import { locationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
-import { ToggleButton } from '@/components/ToggleButton/ToggleButton';
+import { Toggle } from '@/components/Toggle/Toggle';
 import FilterButton from '@/components/Button/FilterButton/FilterButton';
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <PageLayout>
       <FilterButton />
-      <ToggleButton />
+      <Toggle />
       <SearchBar />
       <Styled.ButtonContainer>
         <GoToMyLocationButton onClick={() => handleMyLocationButtonClicked()} />

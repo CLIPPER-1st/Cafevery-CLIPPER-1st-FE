@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import * as Styled from './style'
 
-export function ToggleButton() {
+export function Toggle() {
     const [isOn, setIsOn] = useRecoilState(toggleState);
 
     const toggle = () => setIsOn(!isOn);
