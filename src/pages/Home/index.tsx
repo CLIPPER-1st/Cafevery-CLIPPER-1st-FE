@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import { locationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import { ToggleButton } from '@/components/ToggleButton/ToggleButton';
+import FilterButton from '@/components/Button/FilterButton/FilterButton';
 
 export default function Home() {
   const [, setLocation] = useRecoilState(locationState);
@@ -18,6 +19,7 @@ export default function Home() {
   };
   return (
     <PageLayout>
+      <FilterButton />
       <ToggleButton />
       <SearchBar />
       <Styled.ButtonContainer>

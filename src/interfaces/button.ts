@@ -33,3 +33,6 @@ export interface ButtonProps {
 
   export interface GetCafeLocationButtonProps extends Partial<ButtonProps> {
   }
+
+  export interface FilterButtonProps extends Partial<ButtonProps> {
+  }
