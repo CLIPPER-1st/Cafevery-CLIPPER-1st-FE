@@ -1,9 +1,28 @@
+import {useRecoilState} from 'recoil';
 import * as Styled from './style';
 
-export default function NameCard() {
+interface Props {
+  name: string;
+  address: string;
+  business: string;
+  likes: number;
+  distance: number;
+}
+
+export default function NameCard({
+  name,
+  address,
+  business,
+  likes,
+  distance,
+}: Props) {
   return (
     <Styled.Container>
-      <h1>hello</h1>
+      <text>{name}</text>
+      <text>{address}</text>
+      <text>{business}</text>
+      <text>{likes}</text>
+      <text>{distance}m</text>
     </Styled.Container>
   );
 }
