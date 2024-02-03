@@ -1,6 +1,5 @@
 import { NaverMap } from '@/components/NaverMap';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import SearchBar from '@/components/SearchBar';
 import GoToMyLocationButton from '@/components/Button/GoToMyLocationButton/GoToMyLocationButton';
 import GetCafeLocationButton from '@/components/Button/GetCafeLocationButton/GetCafeLocationButton';
 import * as Styled from './style';
@@ -10,15 +9,19 @@ import useGeolocation from '@/hooks/useGeolocation';
 import { Toggle } from '@/components/Toggle/Toggle';
 import FilterButton from '@/components/Button/FilterButton/FilterButton';
 import useModal from '@/hooks/useModal';
-import FilterModal from '@/components/Modal/FilterModal/FilterModal';
+import FilterModal from '@/components/Modal/FilterModal';
+import useInput from '@/hooks/useInput';
+import LocationSearchBar from '@/components/LocationSearchBar';
 
 export default function Home() {
   const [, setLocation] = useRecoilState(locationState);
   const { coordinates } = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
+  const { setValue: setSearchTerm } = useInput();
 
   const handleMyLocationButtonClicked = () => {
     setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+    setSearchTerm('')
   };
 
   const handleFilterModalOpen= () => {
@@ -30,7 +33,7 @@ export default function Home() {
     <PageLayout>
       <FilterButton onClick={() => handleFilterModalOpen()} />
       <Toggle />
-      <SearchBar />
+      <LocationSearchBar />
       <Styled.ButtonContainer>
         <GoToMyLocationButton onClick={() => handleMyLocationButtonClicked()} />
         <Styled.CenteredButton>

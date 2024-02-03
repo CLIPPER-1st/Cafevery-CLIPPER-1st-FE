@@ -1,9 +1,11 @@
+import { inputState } from '@/atoms/input';
 import {useState} from 'react';
+import { useRecoilState } from 'recoil';
 
 export default function useInput<
   T extends HTMLInputElement | HTMLTextAreaElement,
 >() {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useRecoilState(inputState);
 
   const reset = () => {
     setValue('');

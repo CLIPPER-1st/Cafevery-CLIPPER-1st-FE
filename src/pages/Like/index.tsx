@@ -1,7 +1,7 @@
 import FilterButton from '@/components/Button/FilterButton/FilterButton';
 import {LikeList} from '@/components/Like/LikeList';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import SearchBar from '@/components/SearchBar';
+import LocationSearchBar from '@/components/LocationSearchBar';
 import {Toggle} from '@/components/Toggle/Toggle';
 import {Likes} from '@/interfaces/likes';
 import {useEffect, useState} from 'react';
@@ -21,7 +21,7 @@ export default function Like() {
     <PageLayout>
       <FilterButton />
       <Toggle />
-      <SearchBar />
+      <LocationSearchBar />
       <LikeList likes={likes} />
     </PageLayout>
   );

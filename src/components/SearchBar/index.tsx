@@ -1,14 +1,18 @@
-import { useAutocomplete } from '@/hooks/useAutocomplete';
-import * as Styled from './style';
+import React from 'react';
 import useInput from '@/hooks/useInput';
-import useModal from '@/hooks/useModal';
-import { ChangeEvent } from 'react';
+import * as Styled from './style';
 import CloseButton from '@/components/Button/CloseButton/CloseButton';
+import { SearchBarProps } from '@/interfaces/searchBar';
 
-export default function SearchBar() {
-  const { value: searchTerm, handleChange: handleSearchChange, setValue: setSearchTerm, reset } = useInput<HTMLInputElement>();
-  const { suggestions, handleSuggestionClick } = useAutocomplete(searchTerm);
-  const { isOpen, openModal, closeModal } = useModal(false);
+export function SearchBar({ children, isOpen, openModal, closeModal }: SearchBarProps) {
+  const { value: searchTerm, handleChange: handleSearchChange, reset } = useInput();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearchChange(e);
+    if (!isOpen) {
+      openModal();
+    }
+  };
 
   return (
     <Styled.Container>
@@ -16,33 +20,12 @@ export default function SearchBar() {
         type="text"
         placeholder="위치를 검색하세요."
         value={searchTerm}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleSearchChange(e);
-          openModal();
-        }}
+        onChange={handleChange}
       />
-      {searchTerm && <CloseButton onClick={() => reset()} />}
-      {isOpen && (
-        <Styled.SuggestionsList
-          onBlur={() => {
-            closeModal();
-          }}
-        >
-          {suggestions &&
-            suggestions.map((suggestion) => (
-              <Styled.SuggestionItem
-                key={suggestion.id}
-                onClick={() => {
-                  handleSuggestionClick(suggestion);
-                  setSearchTerm(suggestion.title);
-                  closeModal();
-                }}
-              >
-                {suggestion.title}
-              </Styled.SuggestionItem>
-            ))}
-        </Styled.SuggestionsList>
-      )}
+      {searchTerm && <CloseButton onClick={() => { reset(); closeModal(); }} />}
+      {isOpen && children}
     </Styled.Container>
   );
-}
+};
+
+export default SearchBar;
