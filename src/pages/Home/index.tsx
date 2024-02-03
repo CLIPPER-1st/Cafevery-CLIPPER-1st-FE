@@ -7,6 +7,7 @@ import * as Styled from './style';
 import { useRecoilState } from 'recoil';
 import { locationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
+import { ToggleButton } from '@/components/ToggleButton/ToggleButton';
 
 export default function Home() {
   const [, setLocation] = useRecoilState(locationState);
@@ -17,6 +18,7 @@ export default function Home() {
   };
   return (
     <PageLayout>
+      <ToggleButton />
       <SearchBar />
       <Styled.ButtonContainer>
         <GoToMyLocationButton onClick={() => handleMyLocationButtonClicked()} />
