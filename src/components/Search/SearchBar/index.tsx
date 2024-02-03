@@ -1,10 +1,16 @@
 import React from 'react';
 import useInput from '@/hooks/useInput';
 import * as Styled from './style';
-import CloseButton from '@/components/Button/CloseButton/CloseButton';
+import CloseButton from '@/components/Button/CloseButton';
 import { SearchBarProps } from '@/interfaces/searchBar';
 
-export function SearchBar({ children, isOpen, openModal, closeModal }: SearchBarProps) {
+export function SearchBar({ 
+  children, 
+  isOpen, 
+  openModal, 
+  closeModal, 
+  placeholder 
+}: SearchBarProps) {
   const { value: searchTerm, handleChange: handleSearchChange, reset } = useInput();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +24,7 @@ export function SearchBar({ children, isOpen, openModal, closeModal }: SearchBar
     <Styled.Container>
       <Styled.SearchInput
         type="text"
-        placeholder="위치를 검색하세요."
+        placeholder={placeholder}
         value={searchTerm}
         onChange={handleChange}
       />

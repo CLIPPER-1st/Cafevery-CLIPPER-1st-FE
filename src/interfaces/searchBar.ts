@@ -3,4 +3,5 @@ export interface SearchBarProps {
     isOpen: boolean;
     openModal: () => void;
     closeModal: () => void;
+    placeholder?: string;
   }

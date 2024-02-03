@@ -1,7 +1,7 @@
-import FilterButton from '@/components/Button/FilterButton/FilterButton';
+import FilterButton from '@/components/Button/FilterButton';
 import {LikeList} from '@/components/Like/LikeList';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import LocationSearchBar from '@/components/LocationSearchBar';
+import LocationSearchBar from '@/components/Search/LocationSearchBar';
 import {Toggle} from '@/components/Toggle/Toggle';
 import {Likes} from '@/interfaces/likes';
 import {useEffect, useState} from 'react';
