@@ -31,7 +31,7 @@ const getModalSize = (
     case 'SmallModal':
       return {width: '300px', height: '300px', backgroundSize: '300px 300px'};
     case 'Modal':
-      return {width: '300px', height: '600px', backgroundSize: '300px 600px'};
+      return {width: '315px', height: '600px', backgroundSize: '315px 600px'};
     default:
       return {width: '300px', height: '600px', backgroundSize: '300px 600px'}; // 기본값
   }
@@ -76,7 +76,7 @@ export const ModalContent = styled.div<ModalContentProps>`
   }}
   bottom: 50%;
   transform: translate(-50%, -50%);
-  color: ${theme.colors.textMain};
+  color: ${theme.colors.white};
   font-size: 20px;
   overflow-y: auto;
 `;
