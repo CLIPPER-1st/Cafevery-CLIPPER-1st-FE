@@ -1,9 +1,13 @@
 import PageLayout from '@/components/PageLayout/PageLayout';
+import Default from '@/assets/Images/default.png';
+import * as Styled from './style';
 
 export default function MyPage() {
   return (
     <PageLayout>
-      <h1>MyPage</h1>
+      <Styled.Container>
+        <Styled.Image src={Default} />
+      </Styled.Container>
     </PageLayout>
   );
 }
