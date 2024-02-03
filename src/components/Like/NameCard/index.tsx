@@ -1,5 +1,5 @@
-import {useRecoilState} from 'recoil';
 import * as Styled from './style';
+import Likebutton from '../LikeButton';
 
 interface Props {
   name: string;
@@ -7,6 +7,7 @@ interface Props {
   business: string;
   likes: number;
   distance: number;
+  liked: boolean;
 }
 
 export default function NameCard({
@@ -15,14 +16,22 @@ export default function NameCard({
   business,
   likes,
   distance,
+  liked,
 }: Props) {
   return (
     <Styled.Container>
-      <text>{name}</text>
-      <text>{address}</text>
-      <text>{business}</text>
-      <text>{likes}</text>
-      <text>{distance}m</text>
+      <Styled.Wrapper>
+        <Styled.Address>{address}</Styled.Address>
+        <Styled.Name>{name}</Styled.Name>
+      </Styled.Wrapper>
+      <Styled.Info>
+        <Styled.Business>{business}</Styled.Business>
+        <Styled.State>
+          <Styled.Likes>{likes}</Styled.Likes>
+          <Styled.Distance>{distance}m</Styled.Distance>
+        </Styled.State>
+      </Styled.Info>
+      <Likebutton liked={liked} />
     </Styled.Container>
   );
 }

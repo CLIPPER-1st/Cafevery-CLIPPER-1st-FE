@@ -1,16 +1,17 @@
 import {Likes} from '@/interfaces/likes';
 import * as Styled from './style';
 import NameCard from '../NameCard';
-import {useRecoilState} from 'recoil';
-import {locationState} from '@/atoms/location';
 import useDistance from '@/hooks/useDistance';
+import useTimeConverter from '@/hooks/useTimeConverter';
+import useGeolocation from '@/hooks/useGeolocation';
 
 interface Props {
   likes: Likes[];
 }
 
 export function LikeList({likes}: Props) {
-  const [location] = useRecoilState(locationState);
+  const {coordinates} = useGeolocation();
+
   return (
     <Styled.Container>
       {likes.map((like) => {
@@ -19,14 +20,15 @@ export function LikeList({likes}: Props) {
             <NameCard
               name={like.name}
               address={like.address}
-              business={`${like.start_time} ~ ${like.end_time}`}
+              business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
               likes={like.likes}
               distance={useDistance({
-                currentLat: location.latitude,
-                currentLng: location.longitude,
-                targetLat: like.latitude,
-                targetLng: like.longitude,
+                currentLatitude: coordinates.lat,
+                currentLongitude: coordinates.lng,
+                targetLatitude: like.latitude,
+                targetLongitude: like.longitude,
               })}
+              liked={like.liked}
             />
           </Styled.Wrapper>
         );
