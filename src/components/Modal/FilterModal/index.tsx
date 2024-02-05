@@ -7,6 +7,7 @@ import { timeFilterState } from '@/atoms/timeFilter';
 import { DistanceFilterSliderrMemoized } from '@/components/Filter/DistanceFilterSlider';
 import { distanceState } from '@/atoms/distanceFilter';
 import DistanceFilter from '@/components/Filter/DistanceFilter';
+import CheckButton from '@/components/Button/CheckButton';
 
 export default function FilterModal({onClose, isOpen}) {
   const [timeFilter, ] = useRecoilState(timeFilterState);
@@ -20,6 +21,10 @@ export default function FilterModal({onClose, isOpen}) {
     const rightGrayWidth = useMemo(() => {
       return (1 - (timeFilter.maxValue) / 24) * 100; // 시간 비율을 백분율로 계산
     }, [timeFilter.maxValue]);
+
+    const handleCheckbuttonClick = () => {
+      onClose();
+    }
   
   return (
     <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={'#32281F'}>
@@ -39,6 +44,9 @@ export default function FilterModal({onClose, isOpen}) {
           <DistanceFilter />
           <DistanceFilterSliderrMemoized />
         </Styled.ModalInnerWrapper>
+        <Styled.CheckButtonWrapper>
+          <CheckButton onClick={() => handleCheckbuttonClick()}/>
+        </Styled.CheckButtonWrapper>
     </Modal>
   );
 }

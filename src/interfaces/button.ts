@@ -36,3 +36,8 @@ export interface ButtonProps {
 
   export interface FilterButtonProps extends Partial<ButtonProps> {
   }
+
+  export interface CheckButtonProps extends Partial<ButtonProps> {
+  }
+
+  

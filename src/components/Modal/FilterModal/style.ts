@@ -64,3 +64,9 @@ export const TimeFilterGrayRight = styled.div<TimeFilterGrayAreaProps>`
   border-radius: 0 9px 9px 0 ;
 `;
 
+export const CheckButtonWrapper = styled.div`
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+`;
+
