@@ -8,10 +8,10 @@ export default function DistanceFilter() {
     return (
         <Styled.DistanceFilter>
             <Styled.MyMarker />
-            {Array.from({ length: Math.round((distance - 0.5) / 0.5) }, (_, index) => (
+            {Array.from({ length: Math.round((distance) / 0.5) }, (_, index) => (
                 <Styled.Circle
                     key={index}
-                    size={70 + index * 70}
+                    size={70 + index * 50}
                 />
             ))}
         </Styled.DistanceFilter>

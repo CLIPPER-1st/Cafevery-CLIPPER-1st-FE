@@ -3,7 +3,7 @@ import { CircleProps } from "@/interfaces/distanceFilter";
 import { styled } from "styled-components";
 
 export const Circle = styled.div<CircleProps>`
-    background: rgba(169, 121, 83, 0.3);
+    background: rgba(169, 121, 83, 0.35);
     width: ${props => `${props.size}px`};
     height: ${props => `${props.size}px`};
     border-radius: 50%;
