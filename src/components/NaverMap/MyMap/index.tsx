@@ -39,7 +39,7 @@ export function MyMap() {
                 icon={{
                 content: `
                     <div style="width: 40px; height: 40px;">
-                    <img src="${MyMarkerImg}" style="width: 40px; height: 40px;" />
+                    <img src="${MyMarkerImg}" style="width: 30px; height: 30px;" />
                     </div>
                 `,
                 anchor: new navermaps.Point(20, 40),

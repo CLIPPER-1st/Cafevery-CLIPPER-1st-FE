@@ -38,6 +38,32 @@ export const TimeFilter = styled.div`
   margin-bottom: 10px;
 `;
 
+interface TimeFilterGrayAreaProps {
+  widthPercent: number;
+}
+
+export const TimeFilterGrayLeft = styled.div<TimeFilterGrayAreaProps>`
+  background: rgba(0, 0, 0, 0.6);
+  margin-top: 3.5px;
+  width: ${props => props.widthPercent}%;
+  height: 53px;
+  background-size: 275px 60px;
+  position: absolute;
+  left: 23.5px;
+  border-radius: 9px 0 0 9px;
+`;
+
+export const TimeFilterGrayRight = styled.div<TimeFilterGrayAreaProps>`
+  background: rgba(0, 0, 0, 0.6);
+  margin-top: 3.5px;
+  width: ${props => props.widthPercent}%;
+  height: 53px;
+  background-size: 275px 60px;
+  position: absolute;
+  right: 23.5px;
+  border-radius: 0 9px 9px 0 ;
+`;
+
 export const DistanceFilter = styled.div`
   background-color: #FEFFE7;
   width: 275px;
