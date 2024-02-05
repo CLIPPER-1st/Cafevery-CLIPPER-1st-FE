@@ -9,7 +9,8 @@ declare module 'styled-components' {
     | 'textBlue'
     | 'follow'
     | 'unFollow'
-    | 'brown';
+    | 'brown'
+    | 'lightBrown';
 
   export interface DefaultTheme {
     colors: {
@@ -21,11 +22,12 @@ declare module 'styled-components' {
 const colors = {
   white: '#ffffff',
   black: '#000000',
-  textMain: '#4F5861',
+  textMain: '#FEFFE7',
   textBlue: '#3181F4',
   follow: '#3181F4',
   unFollow: '#7E9ECC',
   brown: '#32281F',
+  lightBrown: '#A97953',
 };
 const theme: DefaultTheme = {
   colors,

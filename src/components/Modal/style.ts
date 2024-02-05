@@ -76,7 +76,7 @@ export const ModalContent = styled.div<ModalContentProps>`
   }}
   bottom: 50%;
   transform: translate(-50%, -50%);
-  color: ${theme.colors.white};
+  color: ${theme.colors.textMain};
   font-size: 20px;
   overflow: hidden;
 `;

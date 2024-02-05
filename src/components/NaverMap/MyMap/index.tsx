@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
-import { NaverMap, Marker, useNavermaps } from 'react-naver-maps';
+import { NaverMap } from 'react-naver-maps';
 import { useRecoilState } from 'recoil';
 import { locationState, myLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
-import MyMarkerImg from '@/assets/Markers/MyMarker.png'
+import CafeMarker from '@/components/Marker/CafeMarker';
+import MyMarker from '@/components/Marker/MyMarker';
+
 
 export function MyMap() {
-    const navermaps = useNavermaps();
     const { loaded, coordinates } = useGeolocation();
     const [location, setLocation] = useRecoilState(locationState);
     const [myLocation, setMyLocation] = useRecoilState(myLocationState);
@@ -15,10 +16,10 @@ export function MyMap() {
         if (loaded && coordinates) {
             setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
             setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+            console.log(coordinates)
         }
     }, [loaded, coordinates, setLocation]);
     
-
     return (
         <>
         {location.latitude !== 0 && location.longitude !== 0 && (
@@ -31,20 +32,8 @@ export function MyMap() {
                 minZoom={12}
                 maxZoom={19}
             >
-            <Marker
-                position={{
-                lat: myLocation.latitude,
-                lng: myLocation.longitude,
-                }}
-                icon={{
-                content: `
-                    <div style="width: 40px; height: 40px;">
-                    <img src="${MyMarkerImg}" style="width: 30px; height: 30px;" />
-                    </div>
-                `,
-                anchor: new navermaps.Point(20, 40),
-                }}
-            />
+            <MyMarker />
+            <CafeMarker />
             </NaverMap>
         )}
         </>
