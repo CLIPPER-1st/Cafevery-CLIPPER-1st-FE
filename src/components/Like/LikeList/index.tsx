@@ -18,6 +18,7 @@ export function LikeList({likes}: Props) {
         return (
           <Styled.Wrapper key={like.id}>
             <NameCard
+              id={like.id}
               name={like.name}
               address={like.address}
               business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}

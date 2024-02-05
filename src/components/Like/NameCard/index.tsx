@@ -2,6 +2,7 @@ import * as Styled from './style';
 import Likebutton from '../LikeButton';
 
 interface Props {
+  id: number;
   name: string;
   address: string;
   business: string;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export default function NameCard({
+  id,
   name,
   address,
   business,
@@ -31,7 +33,7 @@ export default function NameCard({
           <Styled.Distance>{distance}m</Styled.Distance>
         </Styled.State>
       </Styled.Info>
-      <Likebutton liked={liked} />
+      <Likebutton id={id} liked={liked} />
     </Styled.Container>
   );
 }
