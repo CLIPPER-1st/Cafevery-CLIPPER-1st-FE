@@ -64,12 +64,3 @@ export const TimeFilterGrayRight = styled.div<TimeFilterGrayAreaProps>`
   border-radius: 0 9px 9px 0 ;
 `;
 
-export const DistanceFilter = styled.div`
-  background-color: #FEFFE7;
-  width: 270px;
-  height: 180px;
-  background-size: 275px 180px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-`;
-

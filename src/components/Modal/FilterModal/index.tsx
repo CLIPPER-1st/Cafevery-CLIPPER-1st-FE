@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { timeFilterState } from '@/atoms/timeFilter';
 import { DistanceFilterSliderrMemoized } from '@/components/Filter/DistanceFilterSlider';
 import { distanceState } from '@/atoms/distanceFilter';
+import DistanceFilter from '@/components/Filter/DistanceFilter';
 
 export default function FilterModal({onClose, isOpen}) {
   const [timeFilter, ] = useRecoilState(timeFilterState);
@@ -35,7 +36,7 @@ export default function FilterModal({onClose, isOpen}) {
         <Styled.SectionTitle>{"거리"}</Styled.SectionTitle>
         <Styled.SectionText>{`반경 ${distance}km`}</Styled.SectionText>
         <Styled.ModalInnerWrapper>
-          <Styled.DistanceFilter />
+          <DistanceFilter />
           <DistanceFilterSliderrMemoized />
         </Styled.ModalInnerWrapper>
     </Modal>

@@ -1,3 +1,8 @@
 export interface FilterDistanceSlideInnerProps {
-    sliderPercentage: number;
-  }
+  sliderPercentage: number;
+}
+
+
+export interface CircleProps {
+  size: number;
+}
