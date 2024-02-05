@@ -1,3 +1,4 @@
+import { FilterTimeSlideInnerProps } from '@/interfaces/timeFilter';
 import styled from 'styled-components';
 
 export const FilterTimeWrap = styled.div`
@@ -11,11 +12,6 @@ export const FilterTimeSlide = styled.div`
     border-radius: 10px;
     background-color: #FEFFE7;
 `;
-
-interface FilterTimeSlideInnerProps {
-    rangeMinPercent: number;
-    rangeMaxPercent: number;
-}
 
 export const FilterTimeSlideInner = styled.div<FilterTimeSlideInnerProps>`
     position: absolute;

@@ -1,13 +1,15 @@
 import * as Styled from './style';
 import Modal from '../Modal';
-import { useEffect, useMemo, useState } from 'react';
-import {TimeFilterSlider, TimeFilterSliderMemoized} from '@/components/TimeFilterSlider';
+import { useMemo } from 'react';
+import { TimeFilterSliderMemoized} from '@/components/Slider/TimeFilterSlider';
 import { useRecoilState } from 'recoil';
 import { timeFilterState } from '@/atoms/timeFilter';
+import { DistanceSliderrMemoized } from '@/components/Slider/DistanceSlider';
+import { distanceState } from '@/atoms/distanceFilter';
 
 export default function FilterModal({onClose, isOpen}) {
-  const [timeFilter, setTimeFilter] = useRecoilState(timeFilterState);
-  const [distance, setDistance] = useState(3);
+  const [timeFilter, ] = useRecoilState(timeFilterState);
+  const [distance, ] = useRecoilState(distanceState);
 
     // minValue와 maxValue를 기반으로 왼쪽과 오른쪽 흑백 영역의 너비를 계산
     const leftGrayWidth = useMemo(() => {
@@ -34,13 +36,7 @@ export default function FilterModal({onClose, isOpen}) {
         <Styled.SectionText>{`반경 ${distance}km`}</Styled.SectionText>
         <Styled.ModalInnerWrapper>
           <Styled.DistanceFilter />
-          <Styled.SingleSlider
-            min="0"
-            max="3"
-            value={distance}
-            onChange={(e) => setDistance(Number(e.target.value))}
-            /* 단일 슬라이더의 나머지 속성들 */
-          />
+          <DistanceSliderrMemoized />
         </Styled.ModalInnerWrapper>
 
     </Modal>
