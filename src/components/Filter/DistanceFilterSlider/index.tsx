@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { distanceState } from '@/atoms/distanceFilter';
 import * as Styled from './style';
 
-export const DistanceSlider = () => {
+export const DistanceFilterSlider = () => {
     const [distance, setDistance] = useRecoilState(distanceState);
     const handleDistanceChange = useCallback((e: { target: { value: string; }; }) => {
         const newDistance = parseFloat(e.target.value);
@@ -29,4 +29,4 @@ export const DistanceSlider = () => {
     );
 };
 
-export const DistanceSliderrMemoized = React.memo(DistanceSlider);
+export const DistanceFilterSliderrMemoized = React.memo(DistanceFilterSlider);

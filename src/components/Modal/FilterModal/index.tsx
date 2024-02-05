@@ -1,10 +1,10 @@
 import * as Styled from './style';
 import Modal from '../Modal';
 import { useMemo } from 'react';
-import { TimeFilterSliderMemoized} from '@/components/Slider/TimeFilterSlider';
+import { TimeFilterSliderMemoized} from '@/components/Filter/TimeFilterSlider';
 import { useRecoilState } from 'recoil';
 import { timeFilterState } from '@/atoms/timeFilter';
-import { DistanceSliderrMemoized } from '@/components/Slider/DistanceSlider';
+import { DistanceFilterSliderrMemoized } from '@/components/Filter/DistanceFilterSlider';
 import { distanceState } from '@/atoms/distanceFilter';
 
 export default function FilterModal({onClose, isOpen}) {
@@ -36,9 +36,8 @@ export default function FilterModal({onClose, isOpen}) {
         <Styled.SectionText>{`반경 ${distance}km`}</Styled.SectionText>
         <Styled.ModalInnerWrapper>
           <Styled.DistanceFilter />
-          <DistanceSliderrMemoized />
+          <DistanceFilterSliderrMemoized />
         </Styled.ModalInnerWrapper>
-
     </Modal>
   );
 }

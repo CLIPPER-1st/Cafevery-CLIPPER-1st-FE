@@ -66,14 +66,10 @@ export const TimeFilterGrayRight = styled.div<TimeFilterGrayAreaProps>`
 
 export const DistanceFilter = styled.div`
   background-color: #FEFFE7;
-  width: 275px;
+  width: 270px;
   height: 180px;
   background-size: 275px 180px;
   border-radius: 10px;
   margin-bottom: 10px;
-
 `;
 
-export const SingleSlider = styled.input.attrs({ type: 'range' })`
-  /* 슬라이더의 스타일링 */
-`;
