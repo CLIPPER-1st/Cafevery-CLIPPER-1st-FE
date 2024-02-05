@@ -45,7 +45,7 @@ interface TimeFilterGrayAreaProps {
 export const TimeFilterGrayLeft = styled.div<TimeFilterGrayAreaProps>`
   background: rgba(0, 0, 0, 0.6);
   margin-top: 3.5px;
-  width: ${props => props.widthPercent}%;
+  width: ${props => (280 * props.widthPercent) / 100}px;
   height: 53px;
   background-size: 275px 60px;
   position: absolute;
@@ -56,7 +56,7 @@ export const TimeFilterGrayLeft = styled.div<TimeFilterGrayAreaProps>`
 export const TimeFilterGrayRight = styled.div<TimeFilterGrayAreaProps>`
   background: rgba(0, 0, 0, 0.6);
   margin-top: 3.5px;
-  width: ${props => props.widthPercent}%;
+  width: ${props => (280 * props.widthPercent) / 100}px;
   height: 53px;
   background-size: 275px 60px;
   position: absolute;
