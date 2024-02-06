@@ -1,0 +1,23 @@
+import styled from 'styled-components';
+import theme from '@/theme';
+
+export const Container = styled.div`
+  width: 100%;
+`;
+
+export const Label = styled.label`
+  left: 27px;
+  font-size: 24px;
+  color: #32281f;
+  position: absolute;
+  top: 127px;
+  left: 27px;
+`;
+
+export const Line = styled.div`
+  width: 390px;
+  height: 2.5px;
+  background-color: ${theme.colors.darkBrown};
+  margin: 191px 0 5px 0;
+  position: relative;
+`;
