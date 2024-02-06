@@ -4,18 +4,14 @@ import NavBar from '@/components/NavBar'
 
 interface Props {
   children: React.ReactNode;
-  title?: string;
 }
 
-export default function PageLayout({ children, title }: Props) {
+export default function PageLayout({ children }: Props) {
 
   return (
     <>
       <S.Layout>
         <S.Wrapper>
-          <S.Title>
-            {title}
-          </S.Title>
           {children}
           <NavBar />
         </S.Wrapper>
