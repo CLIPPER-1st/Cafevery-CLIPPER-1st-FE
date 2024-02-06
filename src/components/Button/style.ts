@@ -27,4 +27,5 @@ export const Button = styled.button<ButtonProps>`
   bottom: ${(props) => `${props.bottom}px`};
   right: ${(props) => `${props.right}px`};
   left: ${(props) => `${props.left}px`};
+  position: ${(props) => `${props.position}`};
 `;
