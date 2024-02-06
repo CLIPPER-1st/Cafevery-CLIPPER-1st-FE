@@ -1,8 +1,11 @@
+import { locationState } from '@/atoms/location';
 import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import Modal from '../Modal'
 import * as Styled from './style';
 
@@ -66,6 +69,14 @@ export default function CafeInfoModal({ onClose, isOpen }) {
     const businessStatus = useBusinessStatus(mockData.data.cafe.in_business);
     const todayHours = useTodayBusinessHours(mockData.data.cafe.business);
     const cafeAddress = useNaverMapsReverseGeocoding(mockData.data.cafe.latitude, mockData.data.cafe.longitude);
+    const navigate = useNavigate();
+    const [, setLocation] = useRecoilState(locationState);
+
+    const handleGoToCafeLocation = (latitude: number, longitude: number) => {
+        navigate('/');
+        setLocation({ latitude: latitude, longitude: longitude });
+        onClose();
+    }
 
     return (
         <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={'#32281F'}>
@@ -87,7 +98,7 @@ export default function CafeInfoModal({ onClose, isOpen }) {
                     <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
                 ))}
                 </Styled.CafeBusinessHoursWrapper>
-                <GoToCafeLocationButton />
+                <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.data.cafe.latitude, mockData.data.cafe.longitude)}/>
             </Styled.ModalInnerWrapper>
         </Modal>
     );

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function GoToCafeLocationButton(props: GoToCafeLocationButtonProps) {
   const location = useLocation();
-
+  
   if (location.pathname !== '/likes') {
     return null;
   }
