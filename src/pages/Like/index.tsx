@@ -1,16 +1,18 @@
 import {likesState} from '@/atoms/likesState';
 import FilterButton from '@/components/Button/FilterButton';
+import * as Styled from './style';
 import {LikeList} from '@/components/Like/LikeList';
+import {LikeSearchBar} from '@/components/Like/LikeSearchBar';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import SearchBar from '@/components/Search/SearchBar';
 import {Toggle} from '@/components/Toggle/Toggle';
 import useModal from '@/hooks/useModal';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useRecoilState} from 'recoil';
 
 export default function Like() {
   const [likes, setLikes] = useRecoilState(likesState);
   const {isOpen, openModal, closeModal} = useModal();
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetch('/test/cafes/likes')
@@ -24,13 +26,17 @@ export default function Like() {
     <PageLayout>
       <FilterButton />
       <Toggle />
-      <SearchBar
+      <LikeSearchBar
         isOpen={isOpen}
         openModal={openModal}
         closeModal={closeModal}
         placeholder="이름으로 검색하기."
-      />
-      <LikeList likes={likes} />
+        setSearchTerm={setSearchTerm}
+        children={''}
+      ></LikeSearchBar>
+      <Styled.Wrapper>
+        <LikeList likes={likes} searchTerm={searchTerm} />
+      </Styled.Wrapper>
     </PageLayout>
   );
 }
