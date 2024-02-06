@@ -1,8 +1,14 @@
 import {SettingCloseButtonProps} from '@/interfaces/button';
 import Button from '../Button';
 import CloseImg from '@/assets/Icons/SettingClose.png';
+import {useNavigate} from 'react-router-dom';
 
 export default function SettingCloseButton(props: SettingCloseButtonProps) {
+  const navigate = useNavigate();
+  const handleClicked = () => {
+    navigate('/mypage');
+  };
+
   return (
     <Button
       width={30}
@@ -11,6 +17,8 @@ export default function SettingCloseButton(props: SettingCloseButtonProps) {
       top={27}
       right={27}
       position={'fixed'}
+      onClick={() => handleClicked()}
+      zIndex={100}
       {...props}
     >
       {props.children}
