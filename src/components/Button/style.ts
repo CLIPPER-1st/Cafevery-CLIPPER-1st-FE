@@ -1,18 +1,8 @@
 import styled from 'styled-components';
 import theme from '@/theme';
+import { ButtonProps } from '@/interfaces/button';
 
-type ButtonStyleProps = {
-  backgroundColor?: string;
-  background?: string;
-  width: number;
-  height: number;
-  margin?: string;
-  dark?: boolean;
-  padding?: string;
-  borderRadius?: string;
-};
-
-export const Button = styled.button<ButtonStyleProps>`
+export const Button = styled.button<ButtonProps>`
   background: ${(props) => props.background && `url(${props.background})`};
   background-color: ${(props) => props.backgroundColor};
   background-size: cover;
@@ -27,9 +17,10 @@ export const Button = styled.button<ButtonStyleProps>`
   height: ${(props) => `${props.height}`};
   outline: none;
   border: none;
-  z-index: 2;
+  z-index: 1;
   box-shadow: none;
-  color: ${theme.colors.textMain};
+  color: ${(props) => `${props.color}`};
+  font-size: ${(props) => `${props.fontSize}px`};
   cursor: ${(props) => (props.disabled || props.dark ? 'cursor' : 'pointer')};
   filter: ${(props) => (props.disabled || props.dark) && 'brightness(0.7)'};
 `;

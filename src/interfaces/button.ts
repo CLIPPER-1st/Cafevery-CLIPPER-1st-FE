@@ -14,6 +14,8 @@ export interface ButtonProps {
     socialType?: string;
     backgroundColor?: string;
     borderRadius?: string;
+    color?: string;
+    fontSize?: number;
   }
   
   export interface LikePageButtonProps extends Partial<ButtonProps> {
@@ -45,4 +47,5 @@ export interface ButtonProps {
     liked: boolean | null;
   }
 
-  
+  export interface GoToCafeLocationButtonProps extends Partial<ButtonProps> {
+  }
