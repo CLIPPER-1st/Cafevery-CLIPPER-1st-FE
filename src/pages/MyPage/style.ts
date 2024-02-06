@@ -42,3 +42,11 @@ export const FullScreenMap = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const DiscriptionText = styled.div`
+  font-size: 12px;
+  position: relative;
+  margin-top: 30px;
+  height: 20px;
+  color: ${theme.colors.gray};
+`;

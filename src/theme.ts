@@ -9,6 +9,7 @@ declare module 'styled-components' {
     | 'brown'
     | 'lightBrown'
     | 'darkBrown'
+    | 'gray';
 
   export interface DefaultTheme {
     colors: {
@@ -23,7 +24,8 @@ const colors = {
   textMain: '#FEFFE7',
   brown: '#32281F',
   lightBrown: '#A97953',
-  darkBrown: '#32281F'
+  darkBrown: '#32281F',
+  gray: '#8B8B8B'
 };
 const theme: DefaultTheme = {
   colors,

@@ -35,6 +35,9 @@ export default function MyPage() {
             {"자주 가는 장소 ➕"}
           </TextButton>
           <FavoritePlaceList />
+          <Styled.DiscriptionText>
+            최대 5개까지 등록 가능
+          </Styled.DiscriptionText>
         </>
       ) : (
         <AddFavoritePlaceMap />
