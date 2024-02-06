@@ -15,7 +15,7 @@ interface Props {
 export function LikeList({likes, searchTerm}: Props) {
   const {coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
-  const hadnleCafeInfoModalOpen = () => {
+  const handleCafeInfoModalOpen = () => {
     openModal();
   };
   return (
@@ -29,7 +29,7 @@ export function LikeList({likes, searchTerm}: Props) {
             return (
               <Styled.Wrapper 
                 key={like.id} 
-                onClick={hadnleCafeInfoModalOpen}
+                onClick={() => handleCafeInfoModalOpen()}
               >
                 <NameCard
                   id={like.id}
