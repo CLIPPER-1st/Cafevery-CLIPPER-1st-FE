@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { locationState } from '@/atoms/location';
+import { searchedLocationState } from '@/atoms/location';
 
 interface Suggestion {
-  id: string;
-  title: string;
+    id: string;
+    title: string;
 }
 
 export function useAutocomplete(searchTerm: string) {
     const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-    const [, setLocation] = useRecoilState(locationState);
+    const [, setSearchedLocation] = useRecoilState(searchedLocationState);
 
     useEffect(() => {
         if (!window.google || !searchTerm.trim()) {
@@ -46,11 +46,7 @@ export function useAutocomplete(searchTerm: string) {
             const latitude = locationData.lat();
             const longitude = locationData.lng();
 
-            // 위치 정보를 출력하여 확인
-            console.log('Latitude:', latitude);
-            console.log('Longitude:', longitude);
-
-            setLocation({ latitude, longitude });
+            setSearchedLocation({ latitude, longitude });
         }
         });
     };

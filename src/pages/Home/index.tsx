@@ -4,7 +4,7 @@ import GoToMyLocationButton from '@/components/Button/GoToMyLocationButton';
 import GetCafeLocationButton from '@/components/Button/GetCafeLocationButton';
 import * as Styled from './style';
 import { useRecoilState } from 'recoil';
-import { locationState } from '@/atoms/location';
+import { myLocationState, searchedLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import { Toggle } from '@/components/Toggle/Toggle';
 import FilterButton from '@/components/Button/FilterButton';
@@ -14,16 +14,19 @@ import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
 
 export default function Home() {
-  const [, setLocation] = useRecoilState(locationState);
   const { coordinates } = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const { setValue: setSearchTerm } = useInput();
+  const [myLocation, ] = useRecoilState(myLocationState);
+  const [, setSearchedLocation] = useRecoilState(searchedLocationState);
 
   const handleMyLocationButtonClicked = () => {
-    setLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
-    setSearchTerm('')
+    if (coordinates.lat && coordinates.lng) {
+      setSearchedLocation({ latitude: myLocation.latitude, longitude: myLocation.longitude });
+      setSearchTerm('');
+    }
   };
-
+  
   const handleFilterModalOpen= () => {
     openModal();
   };

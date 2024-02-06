@@ -16,3 +16,11 @@ export const myLocationState = atom<Location>({
     longitude: 0,
   },
 });
+
+export const searchedLocationState = atom<Location>({
+  key: 'searchedLocationState',
+  default: {
+    latitude: 0,
+    longitude: 0,
+  },
+});

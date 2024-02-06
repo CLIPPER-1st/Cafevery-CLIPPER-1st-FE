@@ -1,48 +1,51 @@
+import { LocationType } from '@/interfaces/location';
 import { useState, useEffect } from 'react';
 
-interface locationType {
-  loaded: boolean;
-  coordinates?: { lat: number; lng: number };
-  error?: { code: number; message: string };
-}
-
 const useGeolocation = () => {
-  const [location, setLocation] = useState<locationType>({
+  const [location, setLocation] = useState<LocationType>({
     loaded: false,
     coordinates: { lat: 0, lng: 0 },
   });
 
-  // 성공에 대한 로직
-  const onSuccess = (location: {
-    coords: { latitude: number; longitude: number };
-  }) => {
-    setLocation({
-      loaded: true,
-      coordinates: {
-        lat: location.coords.latitude,
-        lng: location.coords.longitude,
-      },
-    });
-  };
-
-  // 에러에 대한 로직
-  const onError = (error: { code: number; message: string }) => {
-    setLocation({
-      loaded: true,
-      error,
-    });
-  };
-
   useEffect(() => {
-    // navigator 객체 안에 geolocation이 없다면
-    // 위치 정보가 없는 것.
     if (!('geolocation' in navigator)) {
-      onError({
-        code: 0,
-        message: 'Geolocation not supported',
+      setLocation({
+        loaded: true,
+        error: {
+          code: 0,
+          message: 'Geolocation not supported',
+        },
       });
+      return;
     }
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    const watcherId = navigator.geolocation.watchPosition(
+      (position) => {
+        setLocation({
+          loaded: true,
+          coordinates: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+        });
+      },
+      (error) => {
+        setLocation({
+          loaded: true,
+          error: {
+            code: error.code,
+            message: error.message,
+          },
+        });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      }
+    );
+
+    return () => navigator.geolocation.clearWatch(watcherId);
   }, []);
 
   return location;
