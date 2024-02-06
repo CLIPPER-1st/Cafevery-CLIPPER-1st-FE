@@ -1,22 +1,22 @@
+import { userInfoState } from '@/atoms/userInfoState';
+import NameCard from '@/components/FavoritePlace/NameCard';
+import { useRecoilState } from 'recoil';
 import * as Styled from './style';
-import useGeolocation from '@/hooks/useGeolocation';
-import useModal from '@/hooks/useModal';
 
 export function FavoritePlaceList() {
-  const {coordinates} = useGeolocation();
-  const {isOpen, openModal, closeModal} = useModal();
-  const handleCafeInfoModalOpen = () => {
-    openModal();
-  };
+  const [userInfo, ] = useRecoilState(userInfoState);
   
   return (
-    <>
       <Styled.Container>
-        <Styled.Wrapper>
-  
-        </Styled.Wrapper>
+          {userInfo.data.infos.locations.map((location) => (
+              <NameCard 
+                key={location.id} 
+                name={location.name}
+                id={location.id}
+                latitude={location.latitude}
+                longitude={location.longitude}
+              />
+          ))}
       </Styled.Container>
-
-    </>
   );
 }
