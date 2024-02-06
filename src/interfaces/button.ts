@@ -59,3 +59,5 @@ export interface SettingButtonProps extends Partial<ButtonProps> {}
 
 export interface DeleteFavoritePlaceButtonProps extends Partial<ButtonProps> {}
 
+export interface RegisterButtonProps extends Partial<ButtonProps> {}
+

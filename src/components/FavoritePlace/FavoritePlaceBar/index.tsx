@@ -3,17 +3,22 @@ import SearchBar from '@/components/Search/SearchBar';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { FavoritePlaceBarProps } from '@/interfaces/searchBar';
-import React, {useState} from 'react';
 
 export function FavoritePlaceBar({
   children,
-  placeholder,
 }: FavoritePlaceBarProps) {
   const { isOpen, openModal, closeModal } = useModal(false);
   const { value, setValue, reset } = useInput();
 
   const handleClear = () => {
     setValue('');
+  };
+  
+  const handleInputChange = (e: { target: { value: any; }; }) => {
+    const inputValue = e.target.value;
+    if (inputValue.length <= 8) {
+      setValue(inputValue);
+    }
   };
 
   return (
@@ -23,10 +28,10 @@ export function FavoritePlaceBar({
       closeModal={closeModal}
       placeholder={"이름"}
       width={250}
-      position={"absolute"}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={handleInputChange}
       value={value}
       reset={reset}
+      left={0}
     >
       {value && <CloseButton onClick={handleClear} />}
       {isOpen && children}
