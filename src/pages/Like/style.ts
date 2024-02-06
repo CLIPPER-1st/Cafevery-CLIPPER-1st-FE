@@ -9,3 +9,12 @@ export const Wrapper = styled.div`
   align-items: center;
   overflow-y: auto;
 `;
+
+export const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 335px;
+    z-index: 1;
+`;

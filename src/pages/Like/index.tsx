@@ -24,8 +24,10 @@ export default function Like() {
 
   return (
     <PageLayout>
-      <FilterButton />
-      <Toggle />
+      <Styled.ButtonsWrapper>
+        <FilterButton />
+        <Toggle />
+      </Styled.ButtonsWrapper>
       <LikeSearchBar
         isOpen={isOpen}
         openModal={openModal}

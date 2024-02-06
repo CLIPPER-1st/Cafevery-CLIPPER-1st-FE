@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { ToggleProps } from '@/interfaces/toggle';
 
 export const ToggleButtonContainer = styled.div<ToggleProps>`
-    position: fixed;
+    position: absolute;
     z-index: 1;
     top: 60px;
-    right: 30px;
+    right: 0px;
     width: 85px;
     height: 30px;
     border-radius: 17px;

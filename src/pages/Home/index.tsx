@@ -31,8 +31,10 @@ export default function Home() {
   return (
     <>
     <PageLayout>
-      <FilterButton onClick={() => handleFilterModalOpen()} />
-      <Toggle />
+      <Styled.ButtonsWrapper>
+        <FilterButton onClick={() => handleFilterModalOpen()} />
+        <Toggle />
+      </Styled.ButtonsWrapper>
       <LocationSearchBar />
       <Styled.ButtonContainer>
         <GoToMyLocationButton onClick={() => handleMyLocationButtonClicked()} />

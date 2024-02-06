@@ -19,3 +19,12 @@ export const CenteredButton = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 `;
+
+export const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 335px;
+    z-index: 1;
+`;
