@@ -17,6 +17,11 @@ export interface ButtonProps {
     color?: string;
     fontSize?: number;
     zIndex?: number;
+    position?: number;
+    top?: number;
+    bottom?: number;
+    right?: number;
+    left?: number;
   }
   
   export interface LikePageButtonProps extends Partial<ButtonProps> {

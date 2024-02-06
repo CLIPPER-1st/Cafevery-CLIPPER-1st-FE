@@ -23,4 +23,8 @@ export const Button = styled.button<ButtonProps>`
   font-size: ${(props) => `${props.fontSize}px`};
   cursor: ${(props) => (props.disabled || props.dark ? 'cursor' : 'pointer')};
   filter: ${(props) => (props.disabled || props.dark) && 'brightness(0.7)'};
+  top: ${(props) => `${props.top}px`};
+  bottom: ${(props) => `${props.bottom}px`};
+  right: ${(props) => `${props.right}px`};
+  left: ${(props) => `${props.left}px`};
 `;

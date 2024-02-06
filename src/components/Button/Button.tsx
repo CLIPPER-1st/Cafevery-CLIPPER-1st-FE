@@ -23,6 +23,11 @@ export default function Button(props: ButtonProps) {
       color={props.color}
       fontSize={props.fontSize}
       zIndex={props.zIndex}
+      position={props.position}
+      top={props.top}
+      bottom={props.bottom}
+      right={props.right}
+      left={props.left}
     >
       {props.children}
     </S.Button>
