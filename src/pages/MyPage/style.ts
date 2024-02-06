@@ -30,3 +30,15 @@ export const Text = styled.div`
   flex-direction: column;
   font-size: 18px;
 `;
+
+export const FullScreenMap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

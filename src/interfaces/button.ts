@@ -59,5 +59,8 @@ export interface ButtonProps {
   export interface TextButtonProps extends Partial<ButtonProps> {
   }
 
+  export interface CloseMapButtonProps extends Partial<ButtonProps> {
+  }
+
 
   
