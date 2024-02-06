@@ -8,16 +8,17 @@ export default function Likebutton(props: LikeButtonProps) {
     return props.liked ? Liked : NonLiked;
   };
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     console.log(`like ${props.id}`);
   };
 
   return (
-    <Button 
-      width={33.06} 
-      height={30} 
-      onClick={handleLike} 
-      background={getImage()} 
+    <Button
+      width={33.06}
+      height={30}
+      onClick={handleLike}
+      background={getImage()}
       zIndex={3}
     />
   );
