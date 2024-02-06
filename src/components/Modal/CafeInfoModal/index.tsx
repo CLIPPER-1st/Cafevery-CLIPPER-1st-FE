@@ -1,3 +1,4 @@
+import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
@@ -86,6 +87,7 @@ export default function CafeInfoModal({ onClose, isOpen }) {
                     <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
                 ))}
                 </Styled.CafeBusinessHoursWrapper>
+                <GoToCafeLocationButton />
             </Styled.ModalInnerWrapper>
         </Modal>
     );
