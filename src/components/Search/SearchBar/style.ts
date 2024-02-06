@@ -1,18 +1,32 @@
+import { SearchBarProps } from '@/interfaces/searchBar';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export interface ContainerProps {
+    width?: number;
+    position?: string;
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+}
+
+export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     background-color: white;
     border-radius: 12px;
     padding: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    position: fixed;
+    position: ${props => props.position || 'fixed'};
     z-index: 1;
-    top: 100px;
-    width: 315px;
+    top: ${props => props.top}px;
+    bottom: ${props => props.bottom}px;
+    left: ${props => props.left}px;
+    right: ${props => props.right}px;
+    width: ${props => props.width || 315}px;
     height: 36px;
 `;
+
 
 export const SearchInput = styled.input`
     border: none;

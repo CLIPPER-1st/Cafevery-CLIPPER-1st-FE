@@ -1,14 +1,15 @@
 import CloseButton from '@/components/Button/CloseButton';
 import SearchBar from '@/components/Search/SearchBar';
 import useInput from '@/hooks/useInput';
-import { LikeSearchBarProps } from '@/interfaces/searchBar';
+import useModal from '@/hooks/useModal';
+import { FavoritePlaceBarProps } from '@/interfaces/searchBar';
+import React, {useState} from 'react';
 
-export function LikeSearchBar({
+export function FavoritePlaceBar({
   children,
-  isOpen,
-  openModal,
-  closeModal,
-}: LikeSearchBarProps) {
+  placeholder,
+}: FavoritePlaceBarProps) {
+  const { isOpen, openModal, closeModal } = useModal(false);
   const { value, setValue, reset } = useInput();
 
   const handleClear = () => {
@@ -17,11 +18,12 @@ export function LikeSearchBar({
 
   return (
     <SearchBar
-      isOpen={isOpen} 
-      openModal={openModal} 
-      closeModal={closeModal} 
-      placeholder={'위치를 검색하세요.'}
-      top={100}
+      isOpen={isOpen}
+      openModal={openModal}
+      closeModal={closeModal}
+      placeholder={"이름"}
+      width={250}
+      position={"absolute"}
       onChange={(e) => setValue(e.target.value)}
       value={value}
       reset={reset}

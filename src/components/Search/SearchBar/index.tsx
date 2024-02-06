@@ -9,26 +9,34 @@ export function SearchBar({
   isOpen, 
   openModal, 
   closeModal, 
-  placeholder 
+  placeholder,
+  width,
+  position,
+  top,
+  bottom,
+  left,
+  right,
+  onChange,
+  value,
+  reset,
 }: SearchBarProps) {
-  const { value: searchTerm, handleChange: handleSearchChange, reset } = useInput();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleSearchChange(e);
-    if (!isOpen) {
-      openModal();
-    }
-  };
 
   return (
-    <Styled.Container>
+    <Styled.Container
+      position={position}
+      top={top}
+      left={left}
+      right={right}
+      bottom={bottom}
+      width={width}
+    >
       <Styled.SearchInput
         type="text"
         placeholder={placeholder}
-        value={searchTerm}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
       />
-      {searchTerm && <CloseButton onClick={() => { reset(); closeModal(); }} />}
+      {value && <CloseButton onClick={() => { reset(); closeModal(); }} />}
       {isOpen && children}
     </Styled.Container>
   );
