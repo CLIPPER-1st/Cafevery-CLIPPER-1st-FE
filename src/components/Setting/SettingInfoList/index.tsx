@@ -3,15 +3,24 @@ import * as Styled from './style';
 
 export default function SettingInfoList() {
   const handleClickedFirst = () => {
-    console.log('1');
+    window.open(
+      'https://docs.google.com/forms/d/16f9z5rdiC7ryqt4cXsmBioecuE6OnsKs2fUuxgdaJnM/edit',
+      '_blank',
+    );
   };
 
   const handleClickedSecond = () => {
-    console.log('2');
+    window.open(
+      'https://cherry-stingray-54b.notion.site/Cafevery-66896ce1df2e4bf3b18be51c49f79263?pvs=74',
+      '_blank',
+    );
   };
 
   const handleClickedThird = () => {
-    console.log('3');
+    window.open(
+      'https://cherry-stingray-54b.notion.site/Cafevery-e67338f1b0354d05837fcdc7cef3e64b',
+      '_blank',
+    );
   };
 
   return (
