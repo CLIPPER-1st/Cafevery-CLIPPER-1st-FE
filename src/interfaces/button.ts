@@ -40,4 +40,9 @@ export interface ButtonProps {
   export interface CheckButtonProps extends Partial<ButtonProps> {
   }
 
+  export interface LikeButtonProps extends Partial<ButtonProps> {
+    id: number;
+    liked: boolean;
+  }
+
   

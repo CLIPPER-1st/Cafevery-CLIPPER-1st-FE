@@ -60,3 +60,9 @@ export const CafeThumb = styled.div`
 export const CafeBusinessHoursWrapper = styled.div`
     margin-top: 20px;
 `;
+
+export const LikeButtonWrapper = styled.div`
+    position: absolute;
+    top: 145px;
+    right: 15px;
+`;

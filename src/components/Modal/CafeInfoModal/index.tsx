@@ -1,3 +1,4 @@
+import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
@@ -9,7 +10,7 @@ const mockData = {
     success: true,
     data: {
         cafe: {
-            id: "1",
+            id: 1,
             name: "모카 카페",
             latitude: 37.5665,
             longitude: 126.9780,
@@ -53,7 +54,7 @@ const mockData = {
             in_business: true,
             phone_number: "02-123-4567",
             likes: 42,
-            liked: null
+            liked: true
         }
     },
     error: null
@@ -75,6 +76,9 @@ export default function CafeInfoModal({ onClose, isOpen }) {
                 <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
                 <Styled.CafeInfo>{`☎️ ${mockData.data.cafe.phone_number}`}</Styled.CafeInfo>
                 <Styled.CafeInfo>{`🤍 ${mockData.data.cafe.likes}`}</Styled.CafeInfo>
+                <Styled.LikeButtonWrapper>
+                    <Likebutton id={mockData.data.cafe.id} liked={mockData.data.cafe.liked} />
+                </Styled.LikeButtonWrapper>
                 <Styled.Line />
                 <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
                 <Styled.CafeBusinessHoursWrapper>

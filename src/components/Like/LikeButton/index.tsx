@@ -1,13 +1,9 @@
 import Liked from '@/assets/Icons/Liked.png';
 import NonLiked from '@/assets/Icons/NonLiked.png';
-import * as Styled from './style';
+import Button from '@/components/Button/Button';
+import {LikeButtonProps} from '@/interfaces/button';
 
-interface Props {
-  id: number;
-  liked: boolean;
-}
-
-export default function Likebutton(props: Props) {
+export default function Likebutton(props: LikeButtonProps) {
   const getImage = () => {
     return props.liked ? Liked : NonLiked;
   };
@@ -17,8 +13,11 @@ export default function Likebutton(props: Props) {
   };
 
   return (
-    <Styled.Button onClick={handleLike}>
-      <Styled.Img src={getImage()} />
-    </Styled.Button>
+    <Button 
+      width={33.06} 
+      height={30} 
+      onClick={handleLike} 
+      background={getImage()} 
+    />
   );
 }
