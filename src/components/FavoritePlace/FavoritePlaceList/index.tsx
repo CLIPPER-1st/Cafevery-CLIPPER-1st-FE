@@ -8,6 +8,7 @@ export function FavoritePlaceList() {
   const handleCafeInfoModalOpen = () => {
     openModal();
   };
+  
   return (
     <>
       <Styled.Container>

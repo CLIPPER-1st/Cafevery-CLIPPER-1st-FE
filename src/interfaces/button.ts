@@ -49,6 +49,8 @@ export interface GoToCafeLocationButtonProps extends Partial<ButtonProps> {}
 
 export interface TextButtonProps extends Partial<ButtonProps> {}
 
+export interface CloseMapButtonProps extends Partial<ButtonProps> {}
+
 export interface SettingCloseButtonProps extends Partial<ButtonProps> {}
 
 export interface SettingInfoButtonProps extends Partial<ButtonProps> {}

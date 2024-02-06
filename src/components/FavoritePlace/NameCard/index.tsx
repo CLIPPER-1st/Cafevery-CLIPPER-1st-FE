@@ -27,10 +27,8 @@ export default function NameCard({
           <Styled.Name length={name.length}>{name}</Styled.Name>
         </Styled.Wrapper>
         <Styled.Info>
-          <Styled.Business>{business}</Styled.Business>
           <Styled.State>
-            <Styled.Likes>{likes}</Styled.Likes>
-            <Styled.Distance>{distance}m</Styled.Distance>
+
           </Styled.State>
         </Styled.Info>
       </Styled.Container>
