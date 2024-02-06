@@ -16,6 +16,7 @@ export interface ButtonProps {
     borderRadius?: string;
     color?: string;
     fontSize?: number;
+    zIndex?: number;
   }
   
   export interface LikePageButtonProps extends Partial<ButtonProps> {

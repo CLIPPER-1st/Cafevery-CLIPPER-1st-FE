@@ -18,6 +18,7 @@ export default function Likebutton(props: LikeButtonProps) {
       height={30} 
       onClick={handleLike} 
       background={getImage()} 
+      zIndex={3}
     />
   );
 }

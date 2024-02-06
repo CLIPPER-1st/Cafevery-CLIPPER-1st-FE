@@ -22,6 +22,7 @@ export default function Button(props: ButtonProps) {
       dark={props.dark ? props.dark : false}
       color={props.color}
       fontSize={props.fontSize}
+      zIndex={props.zIndex}
     >
       {props.children}
     </S.Button>
