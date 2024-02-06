@@ -1,17 +1,50 @@
-// import {filteredLikesState, searchState} from '@/atoms/likesState';
-// import SearchBar from '@/components/Search/SearchBar';
-// import {useRecoilState, useRecoilValue} from 'recoil';
+import CloseButton from '@/components/Button/CloseButton';
+import SearchBar from '@/components/Search/SearchBar';
+import React, {useState} from 'react';
 
-// export default function LikeSearchBar() {
-//   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+interface SearchBarProps {
+  children: React.ReactNode;
+  isOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  placeholder: string;
+  setSearchTerm: (value: string) => void;
+}
 
-//   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setSearchTerm(e.target.value);
-//   };
+export function LikeSearchBar({
+  children,
+  isOpen,
+  openModal,
+  closeModal,
+  placeholder,
+  setSearchTerm,
+}: SearchBarProps) {
+  const [searchTerm, setSearchTermLocal] = useState('');
 
-//   const resetSearch = () => {
-//     setSearchTerm('');
-//   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchTerm = e.target.value;
+    setSearchTerm(newSearchTerm);
+    setSearchTermLocal(newSearchTerm);
 
-//   return <SearchBar />;
-// }
+    if (!isOpen) {
+      openModal();
+    }
+  };
+
+  const handleClear = () => {
+    setSearchTerm('');
+    setSearchTermLocal('');
+  };
+
+  return (
+    <SearchBar
+      isOpen={isOpen}
+      openModal={openModal}
+      closeModal={closeModal}
+      placeholder={placeholder}
+    >
+      {searchTerm && <CloseButton onClick={handleClear} />}
+      {isOpen && children}
+    </SearchBar>
+  );
+}
