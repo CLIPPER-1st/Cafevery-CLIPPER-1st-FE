@@ -3,11 +3,6 @@ import Default from '@/assets/Images/default.png';
 import * as Styled from './style';
 import TextButton from '@/components/Button/TextButton';
 import { FavoritePlaceList } from '@/components/FavoritePlace/FavoritePlaceList';
-import { NaverMap } from '@/components/NaverMap';
-import { MyMap } from '@/components/NaverMap/MyMap';
-import { useState } from 'react';
-import CloseMapButton from '@/components/Button/CloseMapButton';
-import LocationSearchBar from '@/components/Search/LocationSearchBar';
 import { toggleShowMapState } from '@/atoms/toggle';
 import { useRecoilState } from 'recoil';
 import AddFavoritePlaceMap from '@/components/FavoritePlace/AddFavoritePlaceMap';
@@ -24,7 +19,7 @@ export default function MyPage() {
       {!showMap ? (
         <>
           <Styled.ProfileImage src={Default} />
-          <TextButton onClick={() => {/* handleChangeProfileName logic */}}>
+          <TextButton onClick={() => handleChangeProfileName()}>
             {"룰루랄라룰루랄라룰루 🖊️"}
           </TextButton>
           <Styled.Line />
