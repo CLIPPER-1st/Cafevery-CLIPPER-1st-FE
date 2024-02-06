@@ -6,18 +6,26 @@ import { FavoritePlaceList } from '@/components/FavoritePlace/FavoritePlaceList'
 import { toggleShowMapState } from '@/atoms/toggle';
 import { useRecoilState } from 'recoil';
 import AddFavoritePlaceMap from '@/components/FavoritePlace/AddFavoritePlaceMap';
+import SettingButton from '@/components/Button/SettingButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyPage() {
   const [showMap, setShowMap] = useRecoilState(toggleShowMapState);
+  const navigate = useNavigate();
 
   const handleChangeProfileName = () => {
 
+  }
+
+  const handleNavigateToSetting = () => {
+    navigate('/setting')
   }
 
   return (
     <PageLayout>
       {!showMap ? (
         <>
+          <SettingButton onClick={() => handleNavigateToSetting()} />
           <Styled.ProfileImage src={Default} />
           <TextButton onClick={() => handleChangeProfileName()}>
             {"룰루랄라룰루랄라룰루 🖊️"}

@@ -54,3 +54,6 @@ export interface CloseMapButtonProps extends Partial<ButtonProps> {}
 export interface SettingCloseButtonProps extends Partial<ButtonProps> {}
 
 export interface SettingInfoButtonProps extends Partial<ButtonProps> {}
+
+export interface SettingButtonProps extends Partial<ButtonProps> {}
+
