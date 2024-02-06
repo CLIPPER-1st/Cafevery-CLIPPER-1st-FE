@@ -20,7 +20,8 @@ export const ModalWrapper = styled.div<ModalWrapperProps>`
   height: 100%;
   display: ${(props) => (props.show ? 'block' : 'none')};
   z-index: 999;
-  background-color: 'rgba(156, 195, 249, 0.5)';
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 `;
 
 

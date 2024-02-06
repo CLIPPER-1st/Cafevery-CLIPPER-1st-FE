@@ -15,18 +15,6 @@ export const Container = styled.div`
   align-items: center;
   padding: 0 16px;
   color: white;
-  marign: 10px 0;
-`;
-
-export const BlurredBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
 `;
 
 export const Wrapper = styled.div`

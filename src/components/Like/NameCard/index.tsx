@@ -30,7 +30,6 @@ export default function NameCard({
 
   return (
     <>
-      {isOpen && <Styled.BlurredBackground />}
       <Styled.Container onClick={hadnleCafeInfoModalOpen}>
         <Styled.Wrapper>
           <Styled.Address>{address}</Styled.Address>
