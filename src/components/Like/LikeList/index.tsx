@@ -4,6 +4,8 @@ import NameCard from '../NameCard';
 import useDistance from '@/hooks/useDistance';
 import useTimeConverter from '@/hooks/useTimeConverter';
 import useGeolocation from '@/hooks/useGeolocation';
+import useModal from '@/hooks/useModal';
+import CafeInfoModal from '@/components/Modal/CafeInfoModal';
 
 interface Props {
   likes: Likes[];
@@ -12,7 +14,10 @@ interface Props {
 
 export function LikeList({likes, searchTerm}: Props) {
   const {coordinates} = useGeolocation();
-
+  const {isOpen, openModal, closeModal} = useModal();
+  const hadnleCafeInfoModalOpen = () => {
+    openModal();
+  };
   return (
     <>
       <Styled.Container>
@@ -22,7 +27,10 @@ export function LikeList({likes, searchTerm}: Props) {
           )
           .map((like) => {
             return (
-              <Styled.Wrapper key={like.id}>
+              <Styled.Wrapper 
+                key={like.id} 
+                onClick={hadnleCafeInfoModalOpen}
+              >
                 <NameCard
                   id={like.id}
                   name={like.name}
@@ -41,6 +49,8 @@ export function LikeList({likes, searchTerm}: Props) {
             );
           })}
       </Styled.Container>
+
+      {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} />}
     </>
   );
 }

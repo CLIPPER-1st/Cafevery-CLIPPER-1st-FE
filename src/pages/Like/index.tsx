@@ -34,9 +34,7 @@ export default function Like() {
         setSearchTerm={setSearchTerm}
         children={''}
       ></LikeSearchBar>
-      <Styled.Wrapper>
         <LikeList likes={likes} searchTerm={searchTerm} />
-      </Styled.Wrapper>
     </PageLayout>
   );
 }

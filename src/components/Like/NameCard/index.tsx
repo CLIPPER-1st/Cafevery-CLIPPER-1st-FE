@@ -1,8 +1,5 @@
 import * as Styled from './style';
 import Likebutton from '../LikeButton';
-import useModal from '@/hooks/useModal';
-import CafeInfoModal from '@/components/Modal/CafeInfoModal';
-
 interface Props {
   id: number;
   name: string;
@@ -22,15 +19,10 @@ export default function NameCard({
   distance,
   liked,
 }: Props) {
-  const {isOpen, openModal, closeModal} = useModal();
-  const hadnleCafeInfoModalOpen = () => {
-    openModal();
-    document.body.style.overflow = 'hidden';
-  };
 
   return (
     <>
-      <Styled.Container onClick={hadnleCafeInfoModalOpen}>
+      <Styled.Container>
         <Styled.Wrapper>
           <Styled.Address>{address}</Styled.Address>
           <Styled.Name length={name.length}>{name}</Styled.Name>
@@ -44,8 +36,6 @@ export default function NameCard({
         </Styled.Info>
         <Likebutton id={id} liked={liked} />
       </Styled.Container>
-
-      {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} />}
     </>
   );
 }
