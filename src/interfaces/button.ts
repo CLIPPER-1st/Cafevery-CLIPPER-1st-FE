@@ -50,3 +50,9 @@ export interface ButtonProps {
 
   export interface GoToCafeLocationButtonProps extends Partial<ButtonProps> {
   }
+
+  export interface TextButtonProps extends Partial<ButtonProps> {
+  }
+
+
+  

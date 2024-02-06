@@ -1,5 +1,6 @@
 import {styled} from 'styled-components';
 import TimeFilterImg from '@/assets/FilterModalContents/TimeFilter.png';
+import theme from '@/theme';
 
 export const ModalInnerWrapper = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ export const SectionText = styled.div`
 export const Line = styled.div`
   width: 290px;
   height: 2px;
-  background-color: #A97953;
+  background-color: ${theme.colors.lightBrown};
   margin-top: 20px;
 `;
 
