@@ -6,7 +6,7 @@ import useCheckUrl from '@/hooks/useCheckUrl';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyPageButton(props: MyPageButtonProps) {
-  const isMatched = useCheckUrl(['/mypage']);
+  const isMatched = useCheckUrl(['/mypage', '/setting']);
   const navigate = useNavigate();
 
   const getImage = () => {
