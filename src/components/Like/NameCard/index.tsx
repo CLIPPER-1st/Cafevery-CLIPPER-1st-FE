@@ -19,7 +19,6 @@ export default function NameCard({
   distance,
   liked,
 }: Props) {
-
   return (
     <>
       <Styled.Container>
@@ -30,8 +29,8 @@ export default function NameCard({
         <Styled.Info>
           <Styled.Business>{business}</Styled.Business>
           <Styled.State>
-            <Styled.Likes>{likes}</Styled.Likes>
-            <Styled.Distance>{distance}m</Styled.Distance>
+            <Styled.Likes>♥ {likes}</Styled.Likes>
+            <Styled.Distance>⚑ {distance}m</Styled.Distance>
           </Styled.State>
         </Styled.Info>
         <Likebutton id={id} liked={liked} />
