@@ -17,6 +17,5 @@ export default function PageLayout({ children }: Props) {
         </S.Wrapper>
       </S.Layout>
     </>
-
   );
 }

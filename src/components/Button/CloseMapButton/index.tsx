@@ -13,7 +13,7 @@ export default function CloseMapButton(props: CloseMapButtonProps) {
       {...props}
       position={"absolute"}
       top={20}
-      right={20}
+      right={30}
       zIndex={100}
     >
       {props.children}
