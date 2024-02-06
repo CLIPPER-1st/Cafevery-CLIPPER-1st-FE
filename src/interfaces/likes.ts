@@ -7,5 +7,5 @@ export interface Likes {
   start_time: string;
   end_time: string;
   likes: number;
-  liked: boolean;
+  liked: boolean | null;
 }
