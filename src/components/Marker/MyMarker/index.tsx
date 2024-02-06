@@ -1,12 +1,20 @@
 import { myLocationState } from '@/atoms/location';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 import { Marker, useNavermaps } from 'react-naver-maps';
 import MyMarkerImg from '@/assets/Markers/MyMarker.png'
+import useGeolocation from '@/hooks/useGeolocation';
 
 export default function MyMarker() {
-    const [myLocation] = useRecoilState(myLocationState);
     const navermaps = useNavermaps();
+    const { loaded, coordinates } = useGeolocation();
+    const [myLocation, setMyLocation] = useRecoilState(myLocationState);
+
+    useEffect(() => {
+        if (loaded && coordinates) {
+            setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+        }
+    }, [loaded, coordinates, setMyLocation]);
 
     return (
         <>            
