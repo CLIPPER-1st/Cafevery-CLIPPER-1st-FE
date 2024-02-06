@@ -1,13 +1,17 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import theme from '@/theme';
 
+interface Props {
+  length: number;
+}
+
 export const Container = styled.div`
-  width: 315px;
+  width: 310px;
   height: 62px;
   background-color: ${theme.colors.brown};
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 16px;
   color: white;
@@ -24,10 +28,27 @@ export const Address = styled.p`
   margin: 0;
 `;
 
-export const Name = styled.p`
+export const Name = styled.p<Props>`
   font-size: 18px;
   color: #feffe7;
   margin: 0;
+
+  ${(props) =>
+    props.length > 10
+      ? css`
+          font-size: 11px;
+        `
+      : props.length > 8
+        ? css`
+            font-size: 13px;
+          `
+        : props.length > 6
+          ? css`
+              font-size: 16px;
+            `
+          : css`
+              font-size: 18px;
+            `}
 `;
 
 export const Info = styled.div`

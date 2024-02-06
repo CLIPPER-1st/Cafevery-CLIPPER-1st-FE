@@ -24,7 +24,7 @@ export default function NameCard({
     <Styled.Container>
       <Styled.Wrapper>
         <Styled.Address>{address}</Styled.Address>
-        <Styled.Name>{name}</Styled.Name>
+        <Styled.Name length={name.length}>{name}</Styled.Name>
       </Styled.Wrapper>
       <Styled.Info>
         <Styled.Business>{business}</Styled.Business>
