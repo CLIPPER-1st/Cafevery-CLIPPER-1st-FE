@@ -30,7 +30,7 @@ export default function NameCard({
           <Styled.Business>{business}</Styled.Business>
           <Styled.State>
             <Styled.Likes>♥ {likes}</Styled.Likes>
-            <Styled.Distance>⚑ {distance}m</Styled.Distance>
+            <Styled.Distance>⚑ {distance}km</Styled.Distance>
           </Styled.State>
         </Styled.Info>
         <Likebutton id={id} liked={liked} />

@@ -33,6 +33,7 @@ export default function useDistance({
       Math.sin(deltaLongitude / 2);
 
   const centralAngle = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = EARTH_RADIUS * centralAngle;
-  return Math.round(distance);
+  const distance = ((EARTH_RADIUS * centralAngle) / 1000).toFixed(1);
+
+  return parseFloat(distance);
 }
