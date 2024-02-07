@@ -2,9 +2,11 @@ import React, { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { distanceState } from '@/atoms/distanceFilter';
 import * as Styled from './style';
+import { useLocation } from 'react-router-dom';
 
 export const DistanceFilterSlider = () => {
-    const [distance, setDistance] = useRecoilState(distanceState);
+    const nowUrl = useLocation();
+    const [distance, setDistance] = useRecoilState(distanceState(nowUrl.pathname));
     const handleDistanceChange = useCallback((e: { target: { value: string; }; }) => {
         const newDistance = parseFloat(e.target.value);
         setDistance(newDistance);

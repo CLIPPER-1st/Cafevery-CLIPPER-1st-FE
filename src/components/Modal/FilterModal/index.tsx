@@ -8,12 +8,14 @@ import { DistanceFilterSliderrMemoized } from '@/components/Filter/DistanceFilte
 import { distanceState } from '@/atoms/distanceFilter';
 import DistanceFilter from '@/components/Filter/DistanceFilter';
 import CheckButton from '@/components/Button/CheckButton';
+import { useLocation } from 'react-router-dom';
 
 export default function FilterModal({onClose, isOpen}) {
-  const [timeFilter, ] = useRecoilState(timeFilterState);
-  const [distance, ] = useRecoilState(distanceState);
+  const nowUrl = useLocation();
+  const [timeFilter, ] = useRecoilState(timeFilterState(nowUrl.pathname));
+  const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
 
-    // minValue와 maxValue를 기반으로 왼쪽과 오른쪽 흑백 영역의 너비를 계산
+    /* minValue와 maxValue를 기반으로 왼쪽과 오른쪽 흑백 영역의 너비를 계산 */
     const leftGrayWidth = useMemo(() => {
       return ((timeFilter.minValue) / 24) * 100; // 시간 비율을 백분율로 계산
     }, [timeFilter.minValue]);

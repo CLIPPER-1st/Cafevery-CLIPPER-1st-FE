@@ -3,9 +3,11 @@ import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { timeFilterState } from '@/atoms/timeFilter';
 import * as Styled from './style';
+import { useLocation } from 'react-router-dom';
 
 export function TimeFilterSlider() {
-    const [{ minValue, maxValue }, setTimeFilter] = useRecoilState(timeFilterState);
+    const nowUrl = useLocation();
+    const [{ minValue, maxValue }, setTimeFilter] = useRecoilState(timeFilterState(nowUrl.pathname));
 
     const minGap = 3; 
 

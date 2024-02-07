@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
-export const distanceState = atom<number>({
-  key: 'distanceState',
-  default: 0.5,
+export const distanceState = atomFamily<number, string>({
+  key: 'timeFilterState',
+  default: (page) => ( 0.5 ),
 });
