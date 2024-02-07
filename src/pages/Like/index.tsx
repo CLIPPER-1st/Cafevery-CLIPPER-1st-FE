@@ -6,12 +6,11 @@ import {LikeSearchBar} from '@/components/Like/LikeSearchBar';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import {Toggle} from '@/components/Toggle/Toggle';
 import useModal from '@/hooks/useModal';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
 import SearchBar from '@/components/Search/SearchBar';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
-import TempModal from '@/components/Modal/TempModal';
 
 export default function Like() {
   const [likes, setLikes] = useRecoilState(likesState);
@@ -48,7 +47,7 @@ export default function Like() {
         <LikeList likes={likes} searchTerm={searchTerm} />
       </PageLayout>
 
-      {isOpen && <TempModal isOpen={isOpen} onClose={closeModal} />}
+      {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}
     </>
   );
 }

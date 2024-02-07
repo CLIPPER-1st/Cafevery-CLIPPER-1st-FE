@@ -1,10 +1,11 @@
 import { useRecoilState } from 'recoil';
 import { distanceState } from '@/atoms/distanceFilter';
 import * as Styled from './style';
+import { useLocation } from 'react-router-dom';
 
 export default function DistanceFilter() {
-    const [distance] = useRecoilState(distanceState);
-
+    const nowUrl = useLocation();
+    const [distance] = useRecoilState(distanceState(nowUrl.pathname));
     return (
         <Styled.DistanceFilter>
             <Styled.MyMarker />

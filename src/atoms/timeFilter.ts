@@ -3,5 +3,8 @@ import { atomFamily } from 'recoil';
 
 export const timeFilterState = atomFamily<TimeFilterState, string>({
   key: 'timeFilterState',
-  default: (page) => ({ minValue: 0, maxValue: 24 }),
+  default: (page) => {
+    console.log(`Initializing time filter state for page: ${page}`);
+    return { minValue: 0, maxValue: 24 };
+  },
 });

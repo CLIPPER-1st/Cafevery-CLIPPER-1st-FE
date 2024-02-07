@@ -12,17 +12,19 @@ import { useLocation } from 'react-router-dom';
 
 export default function FilterModal({onClose, isOpen}) {
   const nowUrl = useLocation();
-  const [timeFilter, ] = useRecoilState(timeFilterState(nowUrl.pathname));
+  const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
+  console.log(minValue)
+  console.log(nowUrl.pathname)
 
     /* minValue와 maxValue를 기반으로 왼쪽과 오른쪽 흑백 영역의 너비를 계산 */
     const leftGrayWidth = useMemo(() => {
-      return ((timeFilter.minValue) / 24) * 100; // 시간 비율을 백분율로 계산
-    }, [timeFilter.minValue]);
+      return ((minValue) / 24) * 100; // 시간 비율을 백분율로 계산
+    }, [minValue]);
   
     const rightGrayWidth = useMemo(() => {
-      return (1 - (timeFilter.maxValue) / 24) * 100; // 시간 비율을 백분율로 계산
-    }, [timeFilter.maxValue]);
+      return (1 - (maxValue) / 24) * 100; // 시간 비율을 백분율로 계산
+    }, [maxValue]);
 
     const handleCheckbuttonClick = () => {
       onClose();
@@ -31,7 +33,7 @@ export default function FilterModal({onClose, isOpen}) {
   return (
     <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={'#32281F'}>
         <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
-        <Styled.SectionText>{`${timeFilter.minValue}:00 - ${timeFilter.maxValue}:00`}</Styled.SectionText>
+        <Styled.SectionText>{`${minValue}:00 - ${maxValue}:00`}</Styled.SectionText>
         <Styled.ModalInnerWrapper>
           <Styled.TimeFilter>
             <Styled.TimeFilterGrayLeft widthPercent={leftGrayWidth}/>

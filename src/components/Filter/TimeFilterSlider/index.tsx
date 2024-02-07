@@ -1,5 +1,5 @@
 // TimeFilterSlider.tsx
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { timeFilterState } from '@/atoms/timeFilter';
 import * as Styled from './style';
@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 export function TimeFilterSlider() {
     const nowUrl = useLocation();
     const [{ minValue, maxValue }, setTimeFilter] = useRecoilState(timeFilterState(nowUrl.pathname));
+    //const [timeFilter, setTimeFilter] = useState({ minValue: 0, maxValue: 24 });
 
     const minGap = 3; 
 
@@ -17,7 +18,7 @@ export function TimeFilterSlider() {
             setTimeFilter(current => ({ ...current, minValue: inputTime }));
         }
     }, [maxValue, setTimeFilter]);
-    
+
     const handleMaxTimeChange = useCallback((e) => {
         const inputTime = Number(e.target.value);
         if (inputTime > minValue + minGap) {
