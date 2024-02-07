@@ -1,11 +1,11 @@
 import { toggleState } from '@/atoms/toggle';
-import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import * as Styled from './style'
 
 export function Toggle() {
-    const [isOn, setIsOn] = useRecoilState(toggleState);
-
+    const nowUrl = useLocation();
+    const [isOn, setIsOn] = useRecoilState(toggleState((nowUrl.pathname)));
     const toggle = () => setIsOn(!isOn);
 
     return (

@@ -1,11 +1,8 @@
-import { atom } from 'recoil';
+import { atomFamily } from 'recoil';
 
-export const toggleState = atom<boolean>({
+export const toggleState = atomFamily<boolean, string>({
   key: 'toggleState',
-  default: true,
-});
-
-export const toggleShowMapState = atom<boolean>({
-  key: 'toggleShowMapState',
-  default: false,
+  default: (page) => {
+    return true;
+  },
 });

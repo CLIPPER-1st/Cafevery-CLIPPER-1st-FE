@@ -14,8 +14,6 @@ export default function FilterModal({onClose, isOpen}) {
   const nowUrl = useLocation();
   const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
-  console.log(minValue)
-  console.log(nowUrl.pathname)
 
     /* minValue와 maxValue를 기반으로 왼쪽과 오른쪽 흑백 영역의 너비를 계산 */
     const leftGrayWidth = useMemo(() => {

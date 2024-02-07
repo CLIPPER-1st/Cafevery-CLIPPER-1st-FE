@@ -13,7 +13,6 @@ export const useNaverMapsReverseGeocoding = (latitude: number, longitude: number
             orders: [navermaps.Service.OrderType.ROAD_ADDR],
         }, (status: number, response: { v2: { address: { roadAddress: string; }; }; }) => {
             const result = response.v2.address.roadAddress;
-            console.log(response.v2.address.roadAddress)
             setAddress(result);
         });
     }, [latitude, longitude]);

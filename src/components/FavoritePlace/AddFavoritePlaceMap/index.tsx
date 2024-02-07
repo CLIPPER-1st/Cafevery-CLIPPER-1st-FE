@@ -1,4 +1,4 @@
-import { toggleShowMapState } from '@/atoms/toggle';
+import { toggleState } from '@/atoms/toggle';
 import CloseMapButton from '@/components/Button/CloseMapButton'
 import RegisterButton from '@/components/Button/RegisterButton';
 import { NaverMap } from '@/components/NaverMap';
@@ -8,6 +8,7 @@ import { FavoritePlaceBar } from '../FavoritePlaceBar';
 import * as Styled from './style'
 import FavoritePlaceSelectButton from '@/components/Button/FavoritePlaceSelectButton';
 import { selectedPlaceNameState } from '@/atoms/input';
+import { useLocation } from 'react-router-dom';
 
 const placeTypes = [
     { key: 'home', name: '🏠 집' },
@@ -16,8 +17,9 @@ const placeTypes = [
 ];
 
 export default function AddFavoritePlaceMap() {
-    const [showMap, setShowMap] = useRecoilState(toggleShowMapState);
-    const [selectedPlaceName, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
+    const nowUrl = useLocation();
+    const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
+    const [, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
 
     const handleSelectFavoritePlace = (name: string) => {
         setSelectedPlaceName(name);
