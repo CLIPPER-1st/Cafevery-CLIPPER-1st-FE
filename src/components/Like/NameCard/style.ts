@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-right: 40px;
+  margin-right: 20px;
 `;
 
 export const Address = styled.p`
@@ -52,6 +52,7 @@ export const Name = styled.p<Props>`
 
 export const Info = styled.div`
   align-items: center;
+  margin-right: 20px;
 `;
 
 export const Business = styled.p`

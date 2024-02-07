@@ -6,6 +6,7 @@ import useTimeConverter from '@/hooks/useTimeConverter';
 import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
+import EmptyMessage from '../EmptyMessage';
 
 interface Props {
   likes: Likes[];
@@ -21,33 +22,37 @@ export function LikeList({likes, searchTerm}: Props) {
   return (
     <>
       <Styled.Container>
-        {likes
-          .filter((like) =>
-            like.name.toLowerCase().includes(searchTerm.toLowerCase()),
-          )
-          .map((like) => {
-            return (
-              <Styled.Wrapper 
-                key={like.id} 
-                onClick={() => handleCafeInfoModalOpen()}
-              >
-                <NameCard
-                  id={like.id}
-                  name={like.name}
-                  address={like.address}
-                  business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
-                  likes={like.likes}
-                  distance={useDistance({
-                    currentLatitude: coordinates.lat,
-                    currentLongitude: coordinates.lng,
-                    targetLatitude: like.latitude,
-                    targetLongitude: like.longitude,
-                  })}
-                  liked={like.liked}
-                />
-              </Styled.Wrapper>
-            );
-          })}
+        {likes.length === 0 ? (
+          <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
+        ) : (
+          likes
+            .filter((like) =>
+              like.name.toLowerCase().includes(searchTerm.toLowerCase()),
+            )
+            .map((like) => {
+              return (
+                <Styled.Wrapper
+                  key={like.id}
+                  onClick={() => handleCafeInfoModalOpen()}
+                >
+                  <NameCard
+                    id={like.id}
+                    name={like.name}
+                    address={like.address}
+                    business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
+                    likes={like.likes}
+                    distance={useDistance({
+                      currentLatitude: coordinates.lat,
+                      currentLongitude: coordinates.lng,
+                      targetLatitude: like.latitude,
+                      targetLongitude: like.longitude,
+                    })}
+                    liked={like.liked}
+                  />
+                </Styled.Wrapper>
+              );
+            })
+        )}
       </Styled.Container>
 
       {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} />}
