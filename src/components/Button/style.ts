@@ -28,4 +28,5 @@ export const Button = styled.button<ButtonProps>`
   right: ${(props) => `${props.right}px`};
   left: ${(props) => `${props.left}px`};
   position: ${(props) => `${props.position}`};
+  box-shadow: ${(props) => props.boxShadow || 'none'};
 `;

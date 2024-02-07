@@ -28,6 +28,7 @@ export default function Button(props: ButtonProps) {
       bottom={props.bottom}
       right={props.right}
       left={props.left}
+      boxShadow={props.boxShadow}
     >
       {props.children}
     </S.Button>

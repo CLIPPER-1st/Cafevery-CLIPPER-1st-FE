@@ -22,6 +22,7 @@ export interface ButtonProps {
   bottom?: number;
   right?: number;
   left?: number;
+  boxShadow?: string;
 }
 
 export interface LikePageButtonProps extends Partial<ButtonProps> {}
@@ -61,3 +62,4 @@ export interface DeleteFavoritePlaceButtonProps extends Partial<ButtonProps> {}
 
 export interface RegisterButtonProps extends Partial<ButtonProps> {}
 
+export interface FavoritePlaceSelectButtonProps extends Partial<ButtonProps> {}
