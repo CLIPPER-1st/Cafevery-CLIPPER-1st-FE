@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import { FavoritePlaceBar } from '../FavoritePlaceBar';
 import * as Styled from './style'
 import FavoritePlaceSelectButton from '@/components/Button/FavoritePlaceSelectButton';
+import { selectedPlaceNameState } from '@/atoms/input';
 
 const placeTypes = [
     { key: 'home', name: '🏠 집' },
@@ -16,8 +17,10 @@ const placeTypes = [
 
 export default function AddFavoritePlaceMap() {
     const [showMap, setShowMap] = useRecoilState(toggleShowMapState);
-    const handleSelectFavoritePlace = (name: string) => {
+    const [selectedPlaceName, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
 
+    const handleSelectFavoritePlace = (name: string) => {
+        setSelectedPlaceName(name);
     }
 
     const handleRegisterFavoritePlace = () => {

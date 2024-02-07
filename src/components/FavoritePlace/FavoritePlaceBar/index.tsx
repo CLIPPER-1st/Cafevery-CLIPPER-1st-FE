@@ -1,23 +1,24 @@
+import { selectedPlaceNameState } from '@/atoms/input';
 import CloseButton from '@/components/Button/CloseButton';
 import SearchBar from '@/components/Search/SearchBar';
-import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { FavoritePlaceBarProps } from '@/interfaces/searchBar';
+import { useRecoilState } from 'recoil';
 
 export function FavoritePlaceBar({
   children,
 }: FavoritePlaceBarProps) {
   const { isOpen, openModal, closeModal } = useModal(false);
-  const { value, setValue, reset } = useInput();
+  const [selectedPlaceName, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
 
   const handleClear = () => {
-    setValue('');
+    setSelectedPlaceName('');
   };
   
   const handleInputChange = (e: { target: { value: any; }; }) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 8) {
-      setValue(inputValue);
+      setSelectedPlaceName(inputValue);
     }
   };
 
@@ -29,11 +30,11 @@ export function FavoritePlaceBar({
       placeholder={"이름"}
       width={250}
       onChange={handleInputChange}
-      value={value}
-      reset={reset}
+      value={selectedPlaceName}
+      reset={handleClear}
       left={0}
     >
-      {value && <CloseButton onClick={handleClear} />}
+      {selectedPlaceName && <CloseButton />}
       {isOpen && children}
     </SearchBar>
   );
