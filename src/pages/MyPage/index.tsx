@@ -3,14 +3,15 @@ import Default from '@/assets/Images/default.png';
 import * as Styled from './style';
 import TextButton from '@/components/Button/TextButton';
 import { FavoritePlaceList } from '@/components/FavoritePlace/FavoritePlaceList';
-import { toggleShowMapState } from '@/atoms/toggle';
+import { toggleState } from '@/atoms/toggle';
 import { useRecoilState } from 'recoil';
 import AddFavoritePlaceMap from '@/components/FavoritePlace/AddFavoritePlaceMap';
 import SettingButton from '@/components/Button/SettingButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function MyPage() {
-  const [showMap, setShowMap] = useRecoilState(toggleShowMapState);
+  const nowUrl = useLocation();
+  const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
 
   const handleChangeProfileName = () => {
