@@ -13,7 +13,6 @@ import AlertModal from '@/components/Modal/AlertModal';
 import useModal from '@/hooks/useModal';
 import { alertModalState } from '@/atoms/modalState';
 import ProfileNameButton from '@/components/Button/ProfileNameButton';
-import { useState } from 'react';
 
 export default function MyPage() {
   const nowUrl = useLocation();
@@ -55,7 +54,7 @@ export default function MyPage() {
             </ProfileNameButton>
             <Styled.Line />
             <TextButton onClick={() => handleToggleMapVisibility()}>
-              {"자주 가는 장소 ➕"}
+              자주 가는 장소 ➕
             </TextButton>
             <FavoritePlaceList />
             <Styled.DiscriptionText>
