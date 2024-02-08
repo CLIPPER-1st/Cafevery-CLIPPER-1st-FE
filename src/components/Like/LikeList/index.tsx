@@ -7,6 +7,7 @@ import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
+import { useState } from 'react';
 
 interface Props {
   likes: Likes[];
@@ -16,9 +17,13 @@ interface Props {
 export function LikeList({likes, searchTerm}: Props) {
   const {coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
-  const handleCafeInfoModalOpen = () => {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  const handleCafeInfoModalOpen = (id: number) => {
+    setSelectedId(id)
     openModal();
   };
+
   return (
     <>
       <Styled.Container>
@@ -33,7 +38,7 @@ export function LikeList({likes, searchTerm}: Props) {
               return (
                 <Styled.Wrapper
                   key={like.id}
-                  onClick={() => handleCafeInfoModalOpen()}
+                  onClick={() => handleCafeInfoModalOpen(like.id)}
                 >
                   <NameCard
                     id={like.id}
@@ -55,7 +60,7 @@ export function LikeList({likes, searchTerm}: Props) {
         )}
       </Styled.Container>
 
-      {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} />}
+      {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={selectedId} />}
     </>
   );
 }
