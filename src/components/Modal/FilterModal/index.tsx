@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import Modal from '../Modal';
+import Modal from '@/components/Modal';
 import { useMemo } from 'react';
 import { TimeFilterSliderMemoized} from '@/components/Filter/TimeFilterSlider';
 import { useRecoilState } from 'recoil';

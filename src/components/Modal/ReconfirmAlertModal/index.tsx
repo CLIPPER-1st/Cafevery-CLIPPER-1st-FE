@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/components/Modal';
 import theme from '@/theme';
 import * as Styled from './style';
 import SmallButton from '@/components/Button/SmallButton';
 import useModal from '@/hooks/useModal';
 import { useRecoilState } from 'recoil';
 import { alertModalState } from '@/atoms/modalState';
-import AlertModal from '../AlertModal';
+import AlertModal from '@/components/Modal/AlertModal';
 
 export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props}) {
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);

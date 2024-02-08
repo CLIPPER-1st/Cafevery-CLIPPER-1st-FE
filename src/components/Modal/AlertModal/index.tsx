@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/components/Modal';
 import theme from '@/theme';
 import * as Styled from './style';
 import { useRecoilState } from 'recoil';

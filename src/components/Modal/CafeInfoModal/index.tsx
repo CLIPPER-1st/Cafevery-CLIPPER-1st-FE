@@ -8,7 +8,7 @@ import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
 import theme from '@/theme';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import Modal from '../Modal'
+import Modal from '@/components/Modal'
 import * as Styled from './style';
 
 export default function CafeInfoModal({ onClose, isOpen, id }) {
