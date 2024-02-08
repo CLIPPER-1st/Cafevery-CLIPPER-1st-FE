@@ -15,10 +15,12 @@ export default function GoToCafeLocationButton(props: GoToCafeLocationButtonProp
       width={132} 
       height={42} 
       backgroundColor={theme.colors.textMain} 
-      margin={"0 0 0 140px"}
       borderRadius={'12px'}
       color={theme.colors.brown}
       fontSize={16}
+      position={"absolute"}
+      bottom={20}
+      right={20}
       {...props}
     >
       {props.children}
