@@ -8,8 +8,8 @@ export const cafeInfoState = atom<CafeList | null>({
         cafes: [
             {
             id: "1",
-            latitude: 37.5665,
-            longitude: 126.9780,
+            latitude: 37.5605,
+            longitude: 126.9940,
             liked: true,
             start_time: "2023-01-01T08:00:00",
             end_time: "2023-01-01T22:00:00",
@@ -17,8 +17,8 @@ export const cafeInfoState = atom<CafeList | null>({
             },
             {
             id: "2",
-            latitude: 37.5655,
-            longitude: 126.9770,
+            latitude: 37.5600,
+            longitude: 126.9940,
             liked: null,
             start_time: "2023-01-01T09:00:00",
             end_time: "2023-01-01T23:00:00",
@@ -26,8 +26,8 @@ export const cafeInfoState = atom<CafeList | null>({
             },
             {
             id: "3",
-            latitude: 37.5645,
-            longitude: 126.9760,
+            latitude: 37.5595,
+            longitude: 126.9940,
             liked: false,
             start_time: "2023-01-01T07:30:00",
             end_time: "2023-01-01T20:00:00",

@@ -5,13 +5,16 @@ import { myLocationState, searchedLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
+import { cafeInfoState } from '@/atoms/CafeInfoState';
+import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 
 
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
     const [searchedLocation, setSearchedLocation] = useRecoilState(searchedLocationState);
-    const [myLocation, setMyLocation] = useRecoilState(myLocationState);
-
+    const [cafeInfoList] = useRecoilState(cafeInfoState); //TODO: 임시 
+    //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
+    
     useEffect(() => {
         if (loaded && coordinates) {
             setSearchedLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
@@ -30,8 +33,10 @@ export function MyMap() {
                 minZoom={12}
                 maxZoom={19}
             >
-            <MyMarker />
-            <CafeMarker />
+                <MyMarker />
+                {cafeInfoList?.cafes.map((cafe) => (
+                    <CafeMarker key={cafe.id} cafe={cafe} />
+                ))}
             </NaverMap>
         )}
         </>
