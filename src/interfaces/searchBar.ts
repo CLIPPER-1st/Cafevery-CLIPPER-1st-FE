@@ -14,6 +14,9 @@ export interface SearchBarProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   reset: () => void;
   value?: string;
+  margin?: string;
+  maxLength?: number;
+  defaultValue?: string;
 }
 
 export interface LikeSearchBarProps extends Partial<SearchBarProps> {

@@ -35,12 +35,6 @@ export const userInfoState = atom<UserInfoState>({
                         latitude: 37.5651,
                         longitude: 126.9895,
                     },
-                    {
-                        id: '5',
-                        name: 'Favorite Place 1',
-                        latitude: 37.5665,
-                        longitude: 126.9780,
-                    },
                 ]
             }
         },

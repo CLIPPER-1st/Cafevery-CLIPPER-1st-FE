@@ -3,20 +3,29 @@ import Default from '@/assets/Images/default.png';
 import * as Styled from './style';
 import TextButton from '@/components/Button/TextButton';
 import { FavoritePlaceList } from '@/components/FavoritePlace/FavoritePlaceList';
-import { toggleState } from '@/atoms/toggle';
+import { showSearchBarState, toggleState } from '@/atoms/toggle';
 import { useRecoilState } from 'recoil';
 import AddFavoritePlaceMap from '@/components/FavoritePlace/AddFavoritePlaceMap';
 import SettingButton from '@/components/Button/SettingButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { userInfoState } from '@/atoms/userInfoState';
+import AlertModal from '@/components/Modal/AlertModal';
+import useModal from '@/hooks/useModal';
+import { alertModalState } from '@/atoms/modalState';
+import ProfileNameButton from '@/components/Button/ProfileNameButton';
+import { useState } from 'react';
 
 export default function MyPage() {
   const nowUrl = useLocation();
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
   const [userInfo, ] = useRecoilState(userInfoState);
-
+  const {isOpen, openModal, closeModal} = useModal();
+  const [alertModal, setAlertModal] = useRecoilState(alertModalState);
+  const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
+  
   const handleChangeProfileName = () => {
+    setShowSearchBar(!showSearchBar);
   }
 
   const handleNavigateToSetting = () => {
@@ -25,7 +34,10 @@ export default function MyPage() {
 
   const handleToggleMapVisibility = () => {
     if (userInfo?.data?.infos?.locations?.length >= 5) {
-      alert("최대 5개까지만 등록 가능합니다.");
+      openModal();
+      setAlertModal({
+        message: '5개까지 등록 가능해요.',
+      });
     } else {
       setShowMap(!showMap);
     }
@@ -38,9 +50,9 @@ export default function MyPage() {
           <>
             <SettingButton onClick={() => handleNavigateToSetting()} />
             <Styled.ProfileImage src={Default} /> {/* recoil말고 커스텀훅에서 바로 */}
-            <TextButton onClick={() => handleChangeProfileName()}>
-              {"recoil말고 커스텀훅에서 바로 🖊️"}
-            </TextButton>
+            <ProfileNameButton onClick={() => handleChangeProfileName()}>
+              {`${"recoil말고 커스텀훅에서 바로"} 🖊️`}
+            </ProfileNameButton>
             <Styled.Line />
             <TextButton onClick={() => handleToggleMapVisibility()}>
               {"자주 가는 장소 ➕"}
@@ -54,6 +66,16 @@ export default function MyPage() {
           <AddFavoritePlaceMap />
         )}
       </PageLayout>
+
+      {isOpen && (
+        <AlertModal
+          isOpen={isOpen}
+          onClose={closeModal}
+          modalTitle={"닉네임 변경"}
+        >
+          {alertModal.message}
+        </AlertModal>
+      )}
     </>
   );
 }

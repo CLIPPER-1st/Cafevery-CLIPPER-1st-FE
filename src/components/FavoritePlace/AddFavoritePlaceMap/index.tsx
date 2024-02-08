@@ -41,7 +41,10 @@ export default function AddFavoritePlaceMap() {
                         {place.name}
                     </FavoritePlaceSelectButton>
                 ))}
-                <RegisterButton onClick={() => handleRegisterFavoritePlace()}/>
+                <RegisterButton 
+                    position={'absolute'}
+                    onClick={() => handleRegisterFavoritePlace()}
+                />
             </Styled.ButtonContainer>
         </>
     )

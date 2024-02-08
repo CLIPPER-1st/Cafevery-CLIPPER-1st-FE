@@ -60,6 +60,8 @@ export interface SettingButtonProps extends Partial<ButtonProps> {}
 
 export interface DeleteFavoritePlaceButtonProps extends Partial<ButtonProps> {}
 
-export interface RegisterButtonProps extends Partial<ButtonProps> {}
+export interface RegisterButtonProps extends Partial<ButtonProps> {
+  position: string;
+}
 
 export interface FavoritePlaceSelectButtonProps extends Partial<ButtonProps> {}

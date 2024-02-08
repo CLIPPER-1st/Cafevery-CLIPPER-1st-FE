@@ -19,6 +19,9 @@ export function SearchBar({
   onChange,
   value,
   reset,
+  margin,
+  maxLength,
+  defaultValue
 }: SearchBarProps) {
 
   return (
@@ -29,12 +32,15 @@ export function SearchBar({
       right={right}
       bottom={bottom}
       width={width}
+      margin={margin}
     >
       <Styled.SearchInput
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        maxLength={maxLength}
+        defaultValue={defaultValue}
       />
       {value && <CloseButton onClick={() => { reset(); closeModal(); }} />}
       {isOpen && children}

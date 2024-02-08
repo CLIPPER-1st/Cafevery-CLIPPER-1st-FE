@@ -8,6 +8,7 @@ export interface ContainerProps {
     bottom?: number;
     left?: number;
     right?: number;
+    margin?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -23,14 +24,16 @@ export const Container = styled.div<ContainerProps>`
     bottom: ${props => props.bottom}px;
     left: ${props => props.left}px;
     right: ${props => props.right}px;
-    width: ${props => props.width || 315}px;
+    width: ${props => props.width || 300}px;
     height: 36px;
+    margin: ${props => props.margin};
 `;
 
 
 export const SearchInput = styled.input`
     border: none;
     outline: none;
+    width: 100%;
     margin-left: 10px;
     font-size: 18px;
     flex: 1;

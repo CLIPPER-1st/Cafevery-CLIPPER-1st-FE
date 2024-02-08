@@ -8,7 +8,7 @@ export default function TextButton(props: TextButtonProps) {
     <Button 
       width={250} 
       height={24} 
-      color={`${theme.colors.darkBrown}`} 
+      color={theme.colors.darkBrown} 
       margin={"20px 0 20px 16px"}
       fontSize={18}
       backgroundColor={"transparent"}

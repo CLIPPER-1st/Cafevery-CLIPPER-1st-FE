@@ -9,7 +9,7 @@ export default function RegisterButton(props: RegisterButtonProps) {
       width={85} 
       height={85} 
       background={CheckImg} 
-      position={"absolute"}
+      position={props.position}
       right={0}
       {...props}
     >
