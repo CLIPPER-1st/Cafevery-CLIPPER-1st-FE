@@ -8,7 +8,7 @@ export default function Likebutton(props: LikeButtonProps) {
     return props.liked ? Liked : NonLiked;
   };
 
-  const handleLike = (e) => {
+  const handleLike = (e: { stopPropagation: () => void; }) => {
     e.stopPropagation();
     console.log(`like ${props.id}`);
   };

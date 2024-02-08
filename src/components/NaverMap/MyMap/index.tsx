@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { NaverMap } from 'react-naver-maps';
 import { useRecoilState } from 'recoil';
-import { searchedLocationState } from '@/atoms/location';
+import { myLocationState, searchedLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
@@ -10,6 +10,7 @@ import MyMarker from '@/components/Marker/MyMarker';
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
     const [searchedLocation, setSearchedLocation] = useRecoilState(searchedLocationState);
+    const [myLocation, setMyLocation] = useRecoilState(myLocationState);
 
     useEffect(() => {
         if (loaded && coordinates) {

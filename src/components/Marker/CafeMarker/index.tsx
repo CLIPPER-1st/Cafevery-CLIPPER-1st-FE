@@ -3,8 +3,10 @@ import React from 'react'
 import { useRecoilState } from 'recoil';
 import { Marker, useNavermaps } from 'react-naver-maps';
 import CafeMarkerImg from '@/assets/Markers/CafeMarker.png'
+import LikedCafeMarkerImg from '@/assets/Markers/LikedCafeMarker.png'
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
+import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 
 export default function CafeMarker() {
     const [myLocation] = useRecoilState(myLocationState);
@@ -13,7 +15,8 @@ export default function CafeMarker() {
     const handleCafeInfoModalOpen = () => {
         openModal();
     }
-
+    //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude);
+    
     return (
         <>            
             <Marker
