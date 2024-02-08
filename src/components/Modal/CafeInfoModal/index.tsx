@@ -96,7 +96,7 @@ export default function CafeInfoModal({ onClose, isOpen, id }) {
                 <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
             ))}
             </Styled.CafeBusinessHoursWrapper>
-            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.cafe.latitude, mockData.data.cafe.longitude)}/>
+            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.cafe.latitude, mockData.cafe.longitude)}/>
         </Modal>
     );
 }
