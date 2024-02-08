@@ -13,7 +13,7 @@ import { useRecoilState } from 'recoil';
 import Modal from '../Modal'
 import * as Styled from './style';
 
-//TODO: mockData에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
+//TODO: useRecoilState에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
     const businessStatus = useBusinessStatus(cafeInfo.in_business);
