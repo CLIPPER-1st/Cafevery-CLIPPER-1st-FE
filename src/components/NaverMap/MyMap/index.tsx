@@ -5,14 +5,14 @@ import { myLocationState, searchedLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
-import { cafeInfoState } from '@/atoms/CafeInfoState';
+import { cafeInfoListState } from '@/atoms/cafeInfoListState';
 import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 
 
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
     const [searchedLocation, setSearchedLocation] = useRecoilState(searchedLocationState);
-    const [cafeInfoList] = useRecoilState(cafeInfoState); //TODO: 임시 
+    const [cafeInfoList] = useRecoilState(cafeInfoListState); //TODO: 임시 
     //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
     
     useEffect(() => {

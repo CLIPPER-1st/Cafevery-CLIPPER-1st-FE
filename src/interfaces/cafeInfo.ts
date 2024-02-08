@@ -4,7 +4,7 @@ export interface BusinessHour {
     end_time: string;
 }
 export interface Cafe {
-    id: string;
+    id: number;
     latitude: number;
     longitude: number;
     liked: boolean | null;
@@ -15,4 +15,17 @@ export interface Cafe {
 
 export interface CafeList {
     cafes: Cafe[];
+}
+
+/* 카페 상세조회 데이터 */
+export interface CafeInfo {
+    id: number;
+    name: string;
+    latitude: number;
+    longitude: number;
+    business: BusinessHour[];
+    in_business: boolean;
+    phone_number: string;
+    likes: number;
+    liked: boolean;
 }
