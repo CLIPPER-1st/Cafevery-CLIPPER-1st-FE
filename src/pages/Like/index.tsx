@@ -40,7 +40,7 @@ export default function Like() {
     }
   }, [searchTerm, likes]);
 
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     setSearchTerm(value);
   };
 

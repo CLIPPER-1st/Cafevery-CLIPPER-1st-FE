@@ -4,7 +4,7 @@ import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 
 export function LikeSearchBar({onSearch}) {
-  const {value: searchTerm, setValue: setSearchTerm, reset} = useInput();
+  const {value: searchTerm, setValue: setSearchTerm} = useInput();
   const {isOpen, openModal, closeModal} = useModal();
 
   const handleClear = () => {
@@ -12,7 +12,7 @@ export function LikeSearchBar({onSearch}) {
     onSearch('');
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: {target: {value: string}}) => {
     const value = e.target.value;
     setSearchTerm(value);
     onSearch(value);
@@ -27,7 +27,7 @@ export function LikeSearchBar({onSearch}) {
       top={100}
       onChange={handleChange}
       value={searchTerm}
-      reset={reset}
+      reset={handleClear}
     >
       {searchTerm && <CloseButton onClick={handleClear} />}
     </SearchBar>
