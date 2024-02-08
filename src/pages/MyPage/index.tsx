@@ -70,7 +70,6 @@ export default function MyPage() {
         <AlertModal
           isOpen={isOpen}
           onClose={closeModal}
-          modalTitle={"닉네임 변경"}
         >
           {alertModal.message}
         </AlertModal>

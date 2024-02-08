@@ -65,3 +65,6 @@ export interface RegisterButtonProps extends Partial<ButtonProps> {
 }
 
 export interface FavoritePlaceSelectButtonProps extends Partial<ButtonProps> {}
+
+export interface SmallButtonProps extends Partial<ButtonProps> {}
+
