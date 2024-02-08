@@ -9,18 +9,14 @@ import AddFavoritePlaceMap from '@/components/FavoritePlace/AddFavoritePlaceMap'
 import SettingButton from '@/components/Button/SettingButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { userInfoState } from '@/atoms/userInfoState';
-import AlertModal from '@/components/Modal/AlertModal';
-import useModal from '@/hooks/useModal';
 
 export default function MyPage() {
   const nowUrl = useLocation();
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
   const [userInfo, ] = useRecoilState(userInfoState);
-  const {isOpen, openModal, closeModal} = useModal();
 
   const handleChangeProfileName = () => {
-    openModal();
   }
 
   const handleNavigateToSetting = () => {
@@ -41,9 +37,9 @@ export default function MyPage() {
         {!showMap ? (
           <>
             <SettingButton onClick={() => handleNavigateToSetting()} />
-            <Styled.ProfileImage src={Default} />
+            <Styled.ProfileImage src={Default} /> {/* recoil말고 커스텀훅에서 바로 */}
             <TextButton onClick={() => handleChangeProfileName()}>
-              {"룰루랄라룰루랄라룰루 🖊️"}
+              {"recoil말고 커스텀훅에서 바로 🖊️"}
             </TextButton>
             <Styled.Line />
             <TextButton onClick={() => handleToggleMapVisibility()}>
@@ -58,15 +54,6 @@ export default function MyPage() {
           <AddFavoritePlaceMap />
         )}
       </PageLayout>
-
-    {isOpen && (
-      <AlertModal 
-        isOpen={isOpen}
-        onClose={closeModal}
-      >
-        dddddddfzxbzcxbv
-      </AlertModal>
-    )}
     </>
   );
 }

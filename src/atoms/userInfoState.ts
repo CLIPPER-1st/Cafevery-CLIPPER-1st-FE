@@ -1,13 +1,14 @@
 import { atom } from 'recoil';
 import { UserInfoState } from '@/interfaces/userInfo';
+import DefaultProfileImg from '@/assets/Images/default.png'
 
 export const userInfoState = atom<UserInfoState>({
     key: 'userInfoState',
     default: { 
         data: { 
             infos: {
-                profile_image: '',
-                nickname: '',
+                profile_image: `${DefaultProfileImg}`,
+                nickname: 'cafevery',
                 provider: '',
                 locations: [ //TODO: mock data. 
                     {
