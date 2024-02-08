@@ -81,26 +81,24 @@ export default function CafeInfoModal({ onClose, isOpen }) {
 
     return (
         <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>
-            <Styled.ModalInnerWrapper>
-                <Styled.CafeThumb />
-                <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
-                <Styled.SectionTitle>{mockData.data.cafe.name}</Styled.SectionTitle>
-                <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
-                <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
-                <Styled.CafeInfo>{`☎️ ${mockData.data.cafe.phone_number}`}</Styled.CafeInfo>
-                <Styled.CafeInfo>{`🤍 ${mockData.data.cafe.likes}`}</Styled.CafeInfo>
-                <Styled.LikeButtonWrapper>
-                    <Likebutton id={mockData.data.cafe.id} liked={mockData.data.cafe.liked} />
-                </Styled.LikeButtonWrapper>
-                <Styled.Line />
-                <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
-                <Styled.CafeBusinessHoursWrapper>
-                {mockData.data.cafe.business.map(({ days, start_time, end_time }, index) => (
-                    <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
-                ))}
-                </Styled.CafeBusinessHoursWrapper>
-                <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.data.cafe.latitude, mockData.data.cafe.longitude)}/>
-            </Styled.ModalInnerWrapper>
+            <Styled.CafeThumb />
+            <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
+            <Styled.SectionTitle>{mockData.data.cafe.name}</Styled.SectionTitle>
+            <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
+            <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`☎️ ${mockData.data.cafe.phone_number}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`🤍 ${mockData.data.cafe.likes}`}</Styled.CafeInfo>
+            <Styled.LikeButtonWrapper>
+                <Likebutton id={mockData.data.cafe.id} liked={mockData.data.cafe.liked} />
+            </Styled.LikeButtonWrapper>
+            <Styled.Line />
+            <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
+            <Styled.CafeBusinessHoursWrapper>
+            {mockData.data.cafe.business.map(({ days, start_time, end_time }, index) => (
+                <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
+            ))}
+            </Styled.CafeBusinessHoursWrapper>
+            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.data.cafe.latitude, mockData.data.cafe.longitude)}/>
         </Modal>
     );
 }

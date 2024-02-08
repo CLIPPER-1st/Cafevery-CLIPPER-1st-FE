@@ -75,8 +75,6 @@ export const ModalContent = styled.div<ModalContentProps>`
         padding: 15px;
       `;
   }}
-  bottom: 50%;
-  transform: translate(-50%, -50%);
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize}px;
   overflow: hidden;

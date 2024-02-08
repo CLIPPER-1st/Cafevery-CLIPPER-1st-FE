@@ -2,12 +2,6 @@ import {styled} from 'styled-components';
 import DefaultCafeThumbImg from '@/assets/Icons/DefaultCafeThumb.png'
 import theme from '@/theme';
 
-export const ModalInnerWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
-`;
-
 export const CafeAddress = styled.div`
     width: 100%;
     height: 16px;
