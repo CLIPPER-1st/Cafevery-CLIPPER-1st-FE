@@ -1,10 +1,10 @@
 import { useSetRecoilState } from 'recoil';
-import { cafeInfoState } from '@/atoms/CafeInfoState';
+import { cafeInfoListState } from '@/atoms/cafeInfoListState';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchCafes } from '@/apis/cafeList';
 
 export const useFetchCafeList = (centerLatitude: number, centerLongitude: number) => {
-    const setCafeState = useSetRecoilState(cafeInfoState);
+    const setCafeState = useSetRecoilState(cafeInfoListState);
 
     const { data } = useSuspenseQuery({
         queryKey: ['cafeInfoList', centerLatitude, centerLongitude],

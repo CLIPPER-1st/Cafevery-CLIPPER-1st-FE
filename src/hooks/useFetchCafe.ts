@@ -1,10 +1,10 @@
 import { useSetRecoilState } from 'recoil';
-import { cafeInfoState } from '@/atoms/CafeInfoState';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchCafeInfo } from '@/apis/cafeInfo';
+import { cafeInfoState } from '@/atoms/cafeInfostate';
 
 export const useFetchCafeInfo = (id: number) => {
-    const setCafeState = useSetRecoilState(cafeInfoState);
+    const setcafeInfo = useSetRecoilState(cafeInfoState);
 
     const { data } = useSuspenseQuery({
         queryKey: ['cafeInfo', id],
@@ -12,7 +12,7 @@ export const useFetchCafeInfo = (id: number) => {
         staleTime: 100000,
         gcTime: 100,
     });
-    setCafeState(data);
+    setcafeInfo(data);
 
     return data;
 }
