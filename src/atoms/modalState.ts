@@ -4,6 +4,7 @@ import { atom } from 'recoil';
 export const alertModalState = atom<AlertModalState>({
     key: 'alertModalState',
     default: {
+        isOpen: false,
         message: '',
     },
 });
