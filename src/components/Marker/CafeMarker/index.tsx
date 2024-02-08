@@ -1,13 +1,11 @@
-import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 import { Marker, useNavermaps } from 'react-naver-maps';
 import CafeMarkerImg from '@/assets/Markers/CafeMarker.png';
 import LikedCafeMarkerImg from '@/assets/Markers/LikedCafeMarker.png';
 import SummaryCafeInfoModal from '@/components/Modal/SummaryCafeInfoModal';
-import { currentModalState } from '@/atoms/modalState';
 
 export default function CafeMarker({ cafe }) {
-    const [currentModal, setCurrentModal] = useRecoilState(currentModalState);
+    const [currentModal, setCurrentModal] = useState<number | null>(null);
     const navermaps = useNavermaps();
 
     const handleMarkerClick = () => {

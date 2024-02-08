@@ -8,8 +8,3 @@ export const alertModalState = atom<AlertModalState>({
         message: '',
     },
 });
-
-export const currentModalState = atom<number | null>({
-    key: 'currentModalState',
-    default: null, // 기본값으로 null 설정
-});
