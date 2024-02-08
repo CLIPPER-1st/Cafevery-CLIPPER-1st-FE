@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     align-items: center;
     position: fixed;
@@ -8,5 +8,5 @@ export const ButtonContainer = styled.div`
     transform: translateX(-48%);
     width: 350px;
     z-index: 1;
-    bottom: 120px;
+    bottom: 90px;
 `;

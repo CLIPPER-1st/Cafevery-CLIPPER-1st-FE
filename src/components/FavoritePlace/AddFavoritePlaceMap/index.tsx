@@ -34,7 +34,7 @@ export default function AddFavoritePlaceMap() {
             <CloseMapButton onClick={() => setShowMap(!showMap)} />
             <LocationSearchBar />
             <NaverMap />
-            <Styled.ButtonContainer>
+            <Styled.Container>
                 <FavoritePlaceBar />
                 {placeTypes.map((place) => (
                     <FavoritePlaceSelectButton key={place.key} onClick={() => handleSelectFavoritePlace(place.name)}>
@@ -45,7 +45,7 @@ export default function AddFavoritePlaceMap() {
                     position={'absolute'}
                     onClick={() => handleRegisterFavoritePlace()}
                 />
-            </Styled.ButtonContainer>
+            </Styled.Container>
         </>
     )
 }
