@@ -15,7 +15,6 @@ export const Line = styled.div`
   width: 340px;
   height: 2.5px;
   background-color: ${theme.colors.darkBrown};
-  margin: 5px 0 5px 0;
   position: relative;
 `;
 

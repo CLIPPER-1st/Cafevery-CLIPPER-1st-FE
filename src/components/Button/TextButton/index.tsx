@@ -7,7 +7,7 @@ export default function TextButton(props: TextButtonProps) {
   return (
     <Button 
       width={250} 
-      height={24} 
+      height={45} 
       color={theme.colors.darkBrown} 
       margin={"20px 0 20px 16px"}
       fontSize={18}
