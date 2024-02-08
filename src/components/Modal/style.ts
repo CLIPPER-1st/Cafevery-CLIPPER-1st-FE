@@ -16,8 +16,8 @@ export const ModalWrapper = styled.div<ModalWrapperProps & { modalType?: string 
   position: fixed;
   top: 0;
   left: 0;
-  width: ${(props) => (props.modalType === 'SummaryModal' ? '0' : '100%')};
-  height: ${(props) => (props.modalType === 'SummaryModal' ? '0' : '100%')};
+  width: 100%;
+  height: 100%;
   display: ${(props) => (props.show ? 'block' : 'none')};
   z-index: 999;
   background-color: ${(props) => props.modalType === 'SummaryModal' ? 'transparent' : 'rgba(0, 0, 0, 0.5)'};
