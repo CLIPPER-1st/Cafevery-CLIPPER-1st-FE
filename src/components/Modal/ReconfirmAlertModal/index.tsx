@@ -35,12 +35,12 @@ export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props
             </Styled.ButtonContainer>
           </Styled.ModalInnerWrapper>
         </Modal>
-        {alertModal.isOpen && (
+        {alertModal?.isOpen && (
           <AlertModal 
-            isOpen={alertModal.isOpen}
+            isOpen={alertModal?.isOpen}
             onClose={onClose}
             >
-            {alertModal.message}
+            {alertModal?.message}
           </AlertModal>
         )}
       </>

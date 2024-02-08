@@ -6,6 +6,7 @@ import CafeMarkerImg from '@/assets/Markers/CafeMarker.png'
 import LikedCafeMarkerImg from '@/assets/Markers/LikedCafeMarker.png'
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
+import SummaryCafeInfoModal from '@/components/Modal/SummaryCafeInfoModal';
 
 export default function CafeMarker({ cafe }) {
     const {isOpen, openModal, closeModal} = useModal();
@@ -36,7 +37,7 @@ export default function CafeMarker({ cafe }) {
             />
 
             {isOpen && (
-                <CafeInfoModal 
+                <SummaryCafeInfoModal 
                     isOpen={isOpen}
                     onClose={closeModal}
                     id={cafe.id}

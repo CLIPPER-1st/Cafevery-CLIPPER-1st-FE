@@ -1,8 +1,8 @@
 import { CafeInfo } from "@/interfaces/cafeInfo";
 import { atom } from "recoil";
 
-export const cafeInfoState = atom<CafeInfo | null>({
-    key: 'cafeState',
+export const cafeInfoState = atom<CafeInfo>({
+    key: 'cafeInfoState',
     default: {
         id: 1,
         name: "모카 카페",

@@ -33,6 +33,8 @@ const getModalSize = (
       return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
     case 'Modal':
       return {width: '315px', height: '600px', backgroundSize: '315px 600px'};
+    case 'SmallModal':
+      return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
     default:
       return {width: '300px', height: '600px', backgroundSize: '300px 600px'}; // 기본값
   }
