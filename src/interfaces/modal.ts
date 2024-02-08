@@ -5,6 +5,8 @@ export interface ModalProps {
     modalTitle: string;
     modalType?: 'SmallModal' | 'Modal'; 
     modalColor?: string;
+    color?: string;
+    fontSize?: number;
   }
 
   export interface ModalContentProps extends Partial<ModalProps> {

@@ -4,6 +4,7 @@ import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
+import theme from '@/theme';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal'
@@ -79,7 +80,7 @@ export default function CafeInfoModal({ onClose, isOpen }) {
     }
 
     return (
-        <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={'#32281F'}>
+        <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>
             <Styled.ModalInnerWrapper>
                 <Styled.CafeThumb />
                 <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
@@ -103,4 +104,3 @@ export default function CafeInfoModal({ onClose, isOpen }) {
         </Modal>
     );
 }
-

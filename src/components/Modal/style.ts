@@ -30,7 +30,7 @@ const getModalSize = (
 ) => {
   switch (modalType) {
     case 'SmallModal':
-      return {width: '300px', height: '300px', backgroundSize: '300px 300px'};
+      return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
     case 'Modal':
       return {width: '315px', height: '600px', backgroundSize: '315px 600px'};
     default:
@@ -77,8 +77,8 @@ export const ModalContent = styled.div<ModalContentProps>`
   }}
   bottom: 50%;
   transform: translate(-50%, -50%);
-  color: ${theme.colors.textMain};
-  font-size: 20px;
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.fontSize}px;
   overflow: hidden;
 `;
 

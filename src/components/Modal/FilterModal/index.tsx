@@ -9,6 +9,7 @@ import { distanceState } from '@/atoms/distanceFilter';
 import DistanceFilter from '@/components/Filter/DistanceFilter';
 import CheckButton from '@/components/Button/CheckButton';
 import { useLocation } from 'react-router-dom';
+import theme from '@/theme';
 
 export default function FilterModal({onClose, isOpen}) {
   const nowUrl = useLocation();
@@ -29,7 +30,7 @@ export default function FilterModal({onClose, isOpen}) {
     }
   
   return (
-    <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={'#32281F'}>
+    <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>
         <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
         <Styled.SectionText>{`${minValue}:00 - ${maxValue}:00`}</Styled.SectionText>
         <Styled.ModalInnerWrapper>

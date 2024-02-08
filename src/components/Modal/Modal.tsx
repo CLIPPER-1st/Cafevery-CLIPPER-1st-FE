@@ -9,6 +9,8 @@ const Modal: React.FC<ModalProps> = ({
   modalTitle,
   modalType,
   modalColor,
+  fontSize,
+  color
 }) => {
   return (
     <S.ModalWrapper show={isOpen} modalType={modalType} onClick={onClose}>
@@ -16,6 +18,8 @@ const Modal: React.FC<ModalProps> = ({
         onClick={(e: React.SyntheticEvent) => e.stopPropagation()}
         modalType={modalType}
         modalColor={modalColor}
+        fontSize={fontSize}
+        color={color}
       >
         <S.ModalInnerContent>
           <S.ModalTitle>{modalTitle}</S.ModalTitle>
