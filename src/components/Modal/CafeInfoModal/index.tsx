@@ -13,8 +13,7 @@ import * as Styled from './style';
 
 //TODO: 서버로부터 받을 데이터 형식을 가정한 목데이터
 const mockData = {
-    success: true,
-    data: {
+
         cafe: {
             id: 1,
             name: "모카 카페",
@@ -62,15 +61,13 @@ const mockData = {
             likes: 42,
             liked: true
         }
-    },
-    error: null
 };
 
 //TODO: mockData에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
 export default function CafeInfoModal({ onClose, isOpen, id }) {
-    const businessStatus = useBusinessStatus(mockData.data.cafe.in_business);
-    const todayHours = useTodayBusinessHours(mockData.data.cafe.business);
-    const cafeAddress = useNaverMapsReverseGeocoding(mockData.data.cafe.latitude, mockData.data.cafe.longitude);
+    const businessStatus = useBusinessStatus(mockData.cafe.in_business);
+    const todayHours = useTodayBusinessHours(mockData.cafe.business);
+    const cafeAddress = useNaverMapsReverseGeocoding(mockData.cafe.latitude, mockData.cafe.longitude);
     const navigate = useNavigate();
     const [, setLocation] = useRecoilState(locationState);
     //const cafeInfo = useFetchCafeInfo(id); //TODO: 이걸로 적용해야함
@@ -84,22 +81,22 @@ export default function CafeInfoModal({ onClose, isOpen, id }) {
         <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>
             <Styled.CafeThumb />
             <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
-            <Styled.SectionTitle>{mockData.data.cafe.name}</Styled.SectionTitle>
+            <Styled.SectionTitle>{mockData.cafe.name}</Styled.SectionTitle>
             <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
             <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
-            <Styled.CafeInfo>{`☎️ ${mockData.data.cafe.phone_number}`}</Styled.CafeInfo>
-            <Styled.CafeInfo>{`🤍 ${mockData.data.cafe.likes}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`☎️ ${mockData.cafe.phone_number}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`🤍 ${mockData.cafe.likes}`}</Styled.CafeInfo>
             <Styled.LikeButtonWrapper>
-                <Likebutton id={mockData.data.cafe.id} liked={mockData.data.cafe.liked} />
+                <Likebutton id={mockData.cafe.id} liked={mockData.cafe.liked} />
             </Styled.LikeButtonWrapper>
             <Styled.Line />
             <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
             <Styled.CafeBusinessHoursWrapper>
-            {mockData.data.cafe.business.map(({ days, start_time, end_time }, index) => (
+            {mockData.cafe.business.map(({ days, start_time, end_time }, index) => (
                 <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
             ))}
             </Styled.CafeBusinessHoursWrapper>
-            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.data.cafe.latitude, mockData.data.cafe.longitude)}/>
+            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(mockData.cafe.latitude, mockData.data.cafe.longitude)}/>
         </Modal>
     );
 }
