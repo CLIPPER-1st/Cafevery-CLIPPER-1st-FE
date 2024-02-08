@@ -6,21 +6,7 @@ export const likesState = atom<Likes[]>({
   default: [],
 });
 
-export const searchState = atom({
-  key: 'searchState',
-  default: '',
-});
-
-export const filteredLikesState = selector({
+export const filteredLikesState = atom<Likes[]>({
   key: 'filteredLikesState',
-  get: ({get}) => {
-    const search = get(searchState).toLowerCase();
-    const likes = get(likesState);
-
-    return likes.filter(
-      (like) =>
-        like.name.toLowerCase().includes(search) ||
-        like.address.toLowerCase().includes(search),
-    );
-  },
+  default: [],
 });

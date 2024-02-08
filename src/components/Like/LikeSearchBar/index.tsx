@@ -1,33 +1,35 @@
 import CloseButton from '@/components/Button/CloseButton';
 import SearchBar from '@/components/Search/SearchBar';
 import useInput from '@/hooks/useInput';
-import { LikeSearchBarProps } from '@/interfaces/searchBar';
+import useModal from '@/hooks/useModal';
 
-export function LikeSearchBar({
-  children,
-  isOpen,
-  openModal,
-  closeModal,
-}: LikeSearchBarProps) {
-  const { value, setValue, reset } = useInput();
+export function LikeSearchBar({onSearch}) {
+  const {value: searchTerm, setValue: setSearchTerm, reset} = useInput();
+  const {isOpen, openModal, closeModal} = useModal();
 
   const handleClear = () => {
-    setValue('');
+    setSearchTerm('');
+    onSearch('');
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearch(value);
   };
 
   return (
     <SearchBar
-      isOpen={isOpen} 
-      openModal={openModal} 
-      closeModal={closeModal} 
-      placeholder={'위치를 검색하세요.'}
+      isOpen={isOpen}
+      openModal={openModal}
+      closeModal={closeModal}
+      placeholder={'이름으로 검색하기.'}
       top={100}
-      onChange={(e) => setValue(e.target.value)}
-      value={value}
+      onChange={handleChange}
+      value={searchTerm}
       reset={reset}
     >
-      {value && <CloseButton onClick={handleClear} />}
-      {isOpen && children}
+      {searchTerm && <CloseButton onClick={handleClear} />}
     </SearchBar>
   );
 }
