@@ -16,7 +16,7 @@ export default function CafeMarker() {
         openModal();
     }
     //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude);
-    
+
     return (
         <>            
             <Marker

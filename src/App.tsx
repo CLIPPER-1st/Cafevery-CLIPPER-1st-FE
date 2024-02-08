@@ -3,16 +3,19 @@ import Router from './Router';
 import {ThemeProvider} from 'styled-components';
 import theme from './theme';
 import {Suspense} from 'react';
+import { ErrorBoundary } from "react-error-boundary";
 
 const App = () => {
   return (
-    <Suspense fallback={<>Loading...</>}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
-      </ThemeProvider>
-    </Suspense> 
+    <ErrorBoundary fallback={<>Loading...</>}>
+      <Suspense fallback={<>Loading...</>}>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </ThemeProvider>
+      </Suspense> 
+    </ErrorBoundary>
   );
 };
 
