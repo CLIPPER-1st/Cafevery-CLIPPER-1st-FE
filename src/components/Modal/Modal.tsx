@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './style';
+import * as Styled from './style';
 import {ModalProps} from '@/interfaces/modal';
 
 const Modal: React.FC<ModalProps> = ({
@@ -10,23 +10,24 @@ const Modal: React.FC<ModalProps> = ({
   modalType,
   modalColor,
   fontSize,
-  color
+  color,
 }) => {
+  
   return (
-    <S.ModalWrapper show={isOpen} modalType={modalType} onClick={onClose}>
-      <S.ModalContent
+    <Styled.ModalWrapper show={isOpen} modalType={modalType} onClick={onClose}>
+      <Styled.ModalContent
         onClick={(e: React.SyntheticEvent) => e.stopPropagation()}
         modalType={modalType}
         modalColor={modalColor}
         fontSize={fontSize}
         color={color}
       >
-        <S.ModalInnerContent>
-          <S.ModalTitle>{modalTitle}</S.ModalTitle>
+        <Styled.ModalInnerContent>
+          <Styled.ModalTitle>{modalTitle}</Styled.ModalTitle>
           {children}
-        </S.ModalInnerContent>
-      </S.ModalContent>
-    </S.ModalWrapper>
+        </Styled.ModalInnerContent>
+      </Styled.ModalContent>
+    </Styled.ModalWrapper>
   );
 };
 

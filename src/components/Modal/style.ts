@@ -12,29 +12,41 @@ export const fadeOut = keyframes`
   to { opacity: 0; }
 `;
 
-export const ModalWrapper = styled.div<ModalWrapperProps>`
+export const ModalWrapper = styled.div<ModalWrapperProps & { modalType?: string }>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: ${(props) => (props.modalType === 'SummaryModal' ? '0' : '100%')};
+  height: ${(props) => (props.modalType === 'SummaryModal' ? '0' : '100%')};
   display: ${(props) => (props.show ? 'block' : 'none')};
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  background-color: ${(props) => props.modalType === 'SummaryModal' ? 'transparent' : 'rgba(0, 0, 0, 0.5)'};
+  backdrop-filter: ${(props) => props.modalType === 'SummaryModal' ? 'none' : 'blur(5px)'};
+  ${(props) =>
+    props.modalType !== 'SummaryModal' &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+      }
+    `}
 `;
 
 
+
 const getModalSize = (
-  modalType?: 'SmallModal' | 'Modal',
+  modalType?: 'SmallModal' | 'Modal' | 'SummaryModal',
 ) => {
   switch (modalType) {
     case 'SmallModal':
       return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
     case 'Modal':
       return {width: '315px', height: '600px', backgroundSize: '315px 600px'};
-    case 'SmallModal':
-      return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
+    case 'SummaryModal':
+      return {width: '315px', height: '200px', backgroundSize: '300px 200px'};
     default:
       return {width: '300px', height: '600px', backgroundSize: '300px 600px'}; // 기본값
   }
@@ -60,27 +72,30 @@ export const slideUpAnimationLandscape = keyframes`
 
 export const ModalContent = styled.div<ModalContentProps>`
   position: fixed;
-  top: 50%;
+  top: ${(props) => props.modalType === 'SummaryModal' ? 'auto' : '50%'};
+  bottom: ${(props) => props.modalType === 'SummaryModal' ? '15%' : 'auto'};
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: ${(props) => props.modalType === 'SummaryModal' ? 'translate(-50%, 0)' : 'translate(-50%, -50%)'};
   background-color: ${(props) => props.modalColor};
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box;
   ${({modalType}) => {
     const {width, height, backgroundSize} = getModalSize(modalType);
-      return css`
-        width: ${width};
-        height: ${height};
-        background-size: ${backgroundSize};
-        border-radius: 20px;
-        padding: 15px;
-      `;
+    return css`
+      width: ${width};
+      height: ${height};
+      background-size: ${backgroundSize};
+      border-radius: 20px;
+      padding: 15px;
+      animation: ${modalType === 'SummaryModal' ? slideUpAnimationPortrait : 'none'} 0.2s ease-out forwards;
+    `;
   }}
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize}px;
   overflow: hidden;
 `;
+
 
 export const ModalInnerContent = styled.div`
   width: 100%;

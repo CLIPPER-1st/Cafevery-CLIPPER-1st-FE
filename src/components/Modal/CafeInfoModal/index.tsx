@@ -3,7 +3,6 @@ import { locationState } from '@/atoms/location';
 import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
-import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
 import theme from '@/theme';
@@ -12,7 +11,6 @@ import { useRecoilState } from 'recoil';
 import Modal from '../Modal'
 import * as Styled from './style';
 
-//TODO: useRecoilState에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
 export default function CafeInfoModal({ onClose, isOpen, id }) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
     const businessStatus = useBusinessStatus(cafeInfo.in_business);
@@ -20,7 +18,6 @@ export default function CafeInfoModal({ onClose, isOpen, id }) {
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const navigate = useNavigate();
     const [, setLocation] = useRecoilState(locationState);
-    //const cafeInfo = useFetchCafeInfo(id); //TODO: 이걸로 적용해야함
     const handleGoToCafeLocation = (latitude: number, longitude: number) => {
         navigate('/');
         setLocation({ latitude: latitude, longitude: longitude });
