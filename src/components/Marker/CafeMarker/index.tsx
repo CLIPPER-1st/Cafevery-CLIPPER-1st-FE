@@ -39,6 +39,7 @@ export default function CafeMarker({ cafe }) {
                 <CafeInfoModal 
                     isOpen={isOpen}
                     onClose={closeModal}
+                    id={cafe.id}
                 />
             )}
         </>

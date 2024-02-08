@@ -2,6 +2,7 @@ import { locationState } from '@/atoms/location';
 import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
+import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocoding';
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
 import theme from '@/theme';
@@ -65,14 +66,14 @@ const mockData = {
     error: null
 };
 
-//TODO: mockData에서 api 커스텀 훅이 반환하는 data로 변경해야 함.
-export default function CafeInfoModal({ onClose, isOpen }) {
+//TODO: mockData에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
+export default function CafeInfoModal({ onClose, isOpen, id }) {
     const businessStatus = useBusinessStatus(mockData.data.cafe.in_business);
     const todayHours = useTodayBusinessHours(mockData.data.cafe.business);
     const cafeAddress = useNaverMapsReverseGeocoding(mockData.data.cafe.latitude, mockData.data.cafe.longitude);
     const navigate = useNavigate();
     const [, setLocation] = useRecoilState(locationState);
-
+    //const cafeInfo = useFetchCafeInfo(id); //TODO: 이걸로 적용해야함
     const handleGoToCafeLocation = (latitude: number, longitude: number) => {
         navigate('/');
         setLocation({ latitude: latitude, longitude: longitude });
