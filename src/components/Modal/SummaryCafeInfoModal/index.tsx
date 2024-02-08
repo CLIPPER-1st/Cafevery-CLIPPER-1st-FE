@@ -1,4 +1,4 @@
-import { cafeInfoState } from '@/atoms/cafeInfostate';
+import { cafeInfoState } from '@/atoms/cafeInfoState';
 import { locationState } from '@/atoms/location';
 import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';

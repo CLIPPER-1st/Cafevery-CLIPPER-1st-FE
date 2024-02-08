@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchCafeInfo } from '@/apis/cafeInfo';
-import { cafeInfoState } from '@/atoms/cafeInfostate';
+import { cafeInfoState } from '@/atoms/cafeInfoState';
 
 export const useFetchCafeInfo = (id: number) => {
     const setcafeInfo = useSetRecoilState(cafeInfoState);
