@@ -35,6 +35,7 @@ export default function MyPage() {
     if (userInfo?.data?.infos?.locations?.length >= 5) {
       openModal();
       setAlertModal({
+        isOpen: true,
         message: '5개까지 등록 가능해요.',
       });
     } else {
