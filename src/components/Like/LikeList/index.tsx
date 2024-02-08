@@ -7,55 +7,57 @@ import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
+import {useRecoilState} from 'recoil';
+import {selectedCafeState} from '@/atoms/likesState';
 
 interface Props {
   likes: Likes[];
-  searchTerm: string;
 }
 
-export function LikeList({likes, searchTerm}: Props) {
+export function LikeList(props: Props) {
   const {coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
-  const handleCafeInfoModalOpen = () => {
+  const [cafeId, setCafeId] = useRecoilState(selectedCafeState);
+
+  const handleCafeInfoModalOpen = (id: number) => {
+    setCafeId(id);
     openModal();
   };
   return (
     <>
       <Styled.Container>
-        {likes.length === 0 ? (
+        {props.likes.length === 0 ? (
           <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
         ) : (
-          likes
-            .filter((like) =>
-              like.name.toLowerCase().includes(searchTerm.toLowerCase()),
-            )
-            .map((like) => {
-              return (
-                <Styled.Wrapper
-                  key={like.id}
-                  onClick={() => handleCafeInfoModalOpen()}
-                >
-                  <NameCard
-                    id={like.id}
-                    name={like.name}
-                    address={like.address}
-                    business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
-                    likes={like.likes}
-                    distance={useDistance({
-                      currentLatitude: coordinates.lat,
-                      currentLongitude: coordinates.lng,
-                      targetLatitude: like.latitude,
-                      targetLongitude: like.longitude,
-                    })}
-                    liked={like.liked}
-                  />
-                </Styled.Wrapper>
-              );
-            })
+          props.likes.map((like) => {
+            return (
+              <Styled.Wrapper
+                key={like.id}
+                onClick={() => handleCafeInfoModalOpen(like.id)}
+              >
+                <NameCard
+                  id={like.id}
+                  name={like.name}
+                  address={like.address}
+                  business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
+                  likes={like.likes}
+                  distance={useDistance({
+                    currentLatitude: coordinates.lat,
+                    currentLongitude: coordinates.lng,
+                    targetLatitude: like.latitude,
+                    targetLongitude: like.longitude,
+                  })}
+                  liked={like.liked}
+                />
+              </Styled.Wrapper>
+            );
+          })
         )}
       </Styled.Container>
 
-      {isOpen && <CafeInfoModal isOpen={isOpen} onClose={closeModal} />}
+      {isOpen && (
+        <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={cafeId} />
+      )}
     </>
   );
 }

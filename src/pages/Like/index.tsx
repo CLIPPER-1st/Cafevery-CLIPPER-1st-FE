@@ -15,7 +15,7 @@ export default function Like() {
   const [likes, setLikes] = useRecoilState(likesState);
   const {isOpen, openModal, closeModal} = useModal();
   const [filteredLikes, setFilteredLikes] = useRecoilState(filteredLikesState);
-  const {value: searchTerm, setValue: setSearchTerm, reset} = useInput();
+  const {value: searchTerm, setValue: setSearchTerm} = useInput();
 
   useEffect(() => {
     fetch('/test/cafes/likes')
@@ -30,7 +30,7 @@ export default function Like() {
   };
 
   useEffect(() => {
-    if (!searchTerm) {
+    if (searchTerm === '') {
       setFilteredLikes(likes);
     } else {
       const filtered = likes.filter((like) =>
@@ -52,7 +52,7 @@ export default function Like() {
           <Toggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar onSearch={handleSearch} />
-        <LikeList likes={filteredLikes} searchTerm={searchTerm} />
+        <LikeList likes={filteredLikes} />
       </PageLayout>
 
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}

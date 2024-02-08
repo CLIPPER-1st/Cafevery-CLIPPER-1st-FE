@@ -10,3 +10,8 @@ export const filteredLikesState = atom<Likes[]>({
   key: 'filteredLikesState',
   default: [],
 });
+
+export const selectedCafeState = atom<number | null>({
+  key: 'selectedCafeState',
+  default: null,
+});
