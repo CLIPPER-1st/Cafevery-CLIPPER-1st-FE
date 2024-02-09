@@ -1,17 +1,17 @@
-import { toggleState } from '@/atoms/toggle';
-import { useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import * as Styled from './style'
+import * as Styled from './style';
 
-export function Toggle() {
-    const nowUrl = useLocation();
-    const [isOn, setIsOn] = useRecoilState(toggleState((nowUrl.pathname)));
-    const toggle = () => setIsOn(!isOn);
+interface Props {
+  isOn: boolean;
+  toggle: () => void;
+}
 
-    return (
-        <Styled.ToggleButtonContainer isOn={isOn} onClick={toggle}>
-            <Styled.ToggleButtonText isOn={isOn}>{isOn ? '운영 중' : '모두 보기'}</Styled.ToggleButtonText>
-            <Styled.ToggleButtonCircle isOn={isOn} />
-        </Styled.ToggleButtonContainer>
-    );
-};
+export function Toggle(props: Props) {
+  return (
+    <Styled.ToggleButtonContainer isOn={props.isOn} onClick={props.toggle}>
+      <Styled.ToggleButtonText isOn={props.isOn}>
+        {props.isOn ? '운영 중' : '모두 보기'}
+      </Styled.ToggleButtonText>
+      <Styled.ToggleButtonCircle isOn={props.isOn} />
+    </Styled.ToggleButtonContainer>
+  );
+}
