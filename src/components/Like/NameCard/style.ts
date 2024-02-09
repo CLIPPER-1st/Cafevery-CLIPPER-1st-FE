@@ -18,7 +18,8 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-right: 20px;
+  align-items: right;
+  width: 32vw;
 `;
 
 export const Address = styled.p`
@@ -75,5 +76,3 @@ export const Distance = styled.span`
   font-size: 12px;
   color: #feffe7;
 `;
-
-export const Liked = styled.div``;
