@@ -17,5 +17,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/assets", "src/pages/Login/.tsx", "types.d.ts"]
+  "include": ["src", "src/assets", "src/pages/Login/.tsx", "types/**/*"]
 }

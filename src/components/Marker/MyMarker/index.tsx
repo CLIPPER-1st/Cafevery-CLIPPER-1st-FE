@@ -1,5 +1,5 @@
 import { myLocationState } from '@/atoms/location';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 import { Marker, useNavermaps } from 'react-naver-maps';
 import MyMarkerImg from '@/assets/Markers/MyMarker.png'
