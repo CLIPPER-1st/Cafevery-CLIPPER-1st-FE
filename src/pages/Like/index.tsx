@@ -4,12 +4,12 @@ import * as Styled from './style';
 import {LikeList} from '@/components/Like/LikeList';
 import {LikeSearchBar} from '@/components/Like/LikeSearchBar';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import {Toggle} from '@/components/Toggle/Toggle';
 import useModal from '@/hooks/useModal';
 import {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
+import BusinessToggle from '@/components/Like/BusinessToggle';
 
 export default function Like() {
   const [likes, setLikes] = useRecoilState(likesState);
@@ -49,7 +49,7 @@ export default function Like() {
       <PageLayout>
         <Styled.ButtonsWrapper>
           <FilterButton onClick={() => handleFilterModalOpen()} />
-          <Toggle />
+          <BusinessToggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar onSearch={handleSearch} />
         <LikeList likes={filteredLikes} />
