@@ -23,7 +23,6 @@ export function MyMap() {
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [myLocation, setMyLocation] = useRecoilState(myLocationState)
-
     const [mapCenterLocation, setMapCenter] = useRecoilState(mapCenterState)
 
     useEffect(() => {
@@ -38,7 +37,6 @@ export function MyMap() {
         console.log(searchedLocation)
     }, [loaded, coordinates, setSearchedLocation]);
 
-    
     return (
         <>
         {searchedLocation.latitude !== 0 && searchedLocation.longitude !== 0 && (
