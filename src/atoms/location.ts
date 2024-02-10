@@ -19,15 +19,6 @@ export const myLocationState = atom<Location>({
   },
 });
 
-/** 검색창을 통해 검색한 location */
-export const searchedLocationState = atom<Location>({
-  key: 'searchedLocationState',
-  default: {
-    latitude: 0,
-    longitude: 0,
-  },
-});
-
 /** 지도의 중심 location */
 export const mapCenterState = atom<Location>({
   key: 'mapCenterState',

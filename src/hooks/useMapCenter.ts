@@ -1,16 +1,14 @@
-import { mapCenterState } from '@/atoms/location';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import useGeolocation from './useGeolocation';
+import { mapCenterState } from '@/atoms/location';
 
 const useMapCenter = (naverMap) => {
-    const [mapCenter, setMapCenter] = useState({latitude: 0, longitude: 0})
-    const { loaded, coordinates } = useGeolocation();
+    const [mapCenter, setMapCenter] = useRecoilState(mapCenterState);
 
     useEffect(() => {
         if (!naverMap) return;
 
-        // 지도의 'bounds_changed' 이벤트에 대한 리스너 추가
+        // 지도의 중심 위치가 변경될 때마다 해당 위치를 mapCenter 상태에 업데이트
         const boundsChangedListener = naver.maps.Event.addListener(naverMap, 'bounds_changed', () => {
             const center = naverMap.getCenter();
             setMapCenter({
@@ -19,18 +17,10 @@ const useMapCenter = (naverMap) => {
             });
         });
 
-        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
         return () => naver.maps.Event.removeListener(boundsChangedListener);
-    }, [naverMap]);
+    }, [naverMap, setMapCenter]);
 
-    useEffect(() => {
-        if (loaded && coordinates) {
-            setMapCenter({ latitude: coordinates.lat, longitude: coordinates.lng });
-            console.log("useMapCenter mapCenter: ",mapCenter); // 지도 중심 위치 출력
-        }
-    }, [loaded, coordinates, setMapCenter]);
-
-    return mapCenter;
+    return mapCenter; // 현재 지도의 중심 위치 반환
 };
 
 export default useMapCenter;
