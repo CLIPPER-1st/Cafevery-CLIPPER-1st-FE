@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-/** 도로명주소로 reverse geocoding하는 hook*/
 export const useNaverMapsReverseGeocoding = (latitude: number, longitude: number) => {
     const [address, setAddress] = useState<string>('');
 
