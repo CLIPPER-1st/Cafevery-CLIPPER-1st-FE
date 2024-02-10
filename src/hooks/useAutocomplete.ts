@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { searchedLocationState } from '@/atoms/location';
+import { mapCenterState } from '@/atoms/location';
 
 interface Suggestion {
     id: string;
@@ -9,7 +9,7 @@ interface Suggestion {
 
 export function useAutocomplete(searchTerm: string) {
     const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-    const [, setSearchedLocation] = useRecoilState(searchedLocationState);
+    const [, setCenterLocation] = useRecoilState(mapCenterState);
 
     useEffect(() => {
         if (!window.google || !searchTerm.trim()) {
@@ -46,7 +46,7 @@ export function useAutocomplete(searchTerm: string) {
             const latitude = locationData.lat();
             const longitude = locationData.lng();
 
-            setSearchedLocation({ latitude, longitude });
+            setCenterLocation({ latitude, longitude });
         }
         });
     };
