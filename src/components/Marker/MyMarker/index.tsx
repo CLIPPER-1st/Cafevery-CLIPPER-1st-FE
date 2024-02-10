@@ -9,16 +9,15 @@ export default function MyMarker() {
     const { loaded, coordinates } = useGeolocation();
     const [myLocation, setMyLocation] = useRecoilState(myLocationState);
 
-    // 위치 정보가 로드되었는지 확인하고 myLocation 상태를 업데이트합니다.
     useEffect(() => {
-        if (loaded && coordinates.lat && coordinates.lng) {
-            setMyLocation({longitude: coordinates.lng, latitude: coordinates.lat});
+        if (loaded && coordinates?.lat !== undefined && coordinates?.lng !== undefined) {
+            setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
         }
     }, [loaded, coordinates, setMyLocation]);
 
-    // 위치 정보가 유효한 경우에만 Marker 컴포넌트를 렌더링합니다.
-    if (!loaded || coordinates.lat == null || coordinates.lng == null) {
-        return null; // 위치 정보가 로드되지 않았거나 유효하지 않은 경우 렌더링하지 않음
+    // 위치 정보가 유효한 경우에만 Marker 컴포넌트를 렌더링
+    if (!loaded || coordinates?.lat === undefined || coordinates?.lng === undefined) {
+        return null;
     }
 
     return (
@@ -26,7 +25,6 @@ export default function MyMarker() {
             position={{ lat: myLocation.latitude, lng: myLocation.longitude }}
             icon={{
                 content: `<div style="width: 30px; height: 30px;"><img src="${MyMarkerImg}" alt="My Location" style="width: 100%; height: 100%;" /></div>`,
-                // anchor 설정이 필요한 경우 여기에 추가
             }}
         />
     );
