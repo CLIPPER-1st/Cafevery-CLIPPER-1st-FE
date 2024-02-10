@@ -1,6 +1,7 @@
 import { LocationType } from '@/interfaces/location';
 import { useState, useEffect } from 'react';
 
+/** 현재 나의 location 가져오는 hook*/
 const useGeolocation = () => {
   const [location, setLocation] = useState<LocationType>({
     loaded: false,

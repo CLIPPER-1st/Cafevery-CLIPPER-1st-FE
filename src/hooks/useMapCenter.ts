@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useGeolocation from './useGeolocation';
 
+/** 지도의 중심 위치를 가져오는 hook*/
 const useMapCenter = (naverMap) => {
     const [mapCenter, setMapCenter] = useRecoilState(mapCenterState)
     const { loaded, coordinates } = useGeolocation();
