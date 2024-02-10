@@ -26,6 +26,7 @@ const useMapCenter = (naverMap) => {
     useEffect(() => {
         if (loaded && coordinates) {
             setMapCenter({ latitude: coordinates.lat, longitude: coordinates.lng });
+            console.log("useMapCenter mapCenter: ",mapCenter); // 지도 중심 위치 출력
         }
     }, [loaded, coordinates, setMapCenter]);
 

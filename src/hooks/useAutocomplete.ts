@@ -9,7 +9,7 @@ interface Suggestion {
 
 export function useAutocomplete(searchTerm: string) {
     const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-    const [, setCenterLocation] = useRecoilState(mapCenterState);
+    const [, setMapCenterLocation] = useRecoilState(mapCenterState);
 
     useEffect(() => {
         if (!window.google || !searchTerm.trim()) {
@@ -46,7 +46,7 @@ export function useAutocomplete(searchTerm: string) {
             const latitude = locationData.lat();
             const longitude = locationData.lng();
 
-            setCenterLocation({ latitude, longitude });
+            setMapCenterLocation({ latitude, longitude });
         }
         });
     };

@@ -25,18 +25,27 @@ export function MyMap() {
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
 
     useEffect(() => {
-        console.log("mapCenter: ",mapCenter); // 지도 중심 위치 출력
-        console.log("mapCenterLocation: ", mapCenterLocation)
-    }, [loaded,coordinates, mapCenter]);
+        console.log("useEffect");
+        console.log("if문 밖 mapCenter: ",mapCenter); // 지도 중심 위치 출력
+        console.log("if문 밖 mapCenterLocation: ", mapCenterLocation)
+        if(mapCenter.latitude !== mapCenterLocation.latitude && mapCenter.longitude !== mapCenterLocation.longitude) {
+            console.log("mapCenter: ",mapCenter); // 지도 중심 위치 출력
+            console.log("mapCenterLocation: ", mapCenterLocation)
+            setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
+
+        }
+    }, [mapCenter]);
 
     useEffect(() => {
-        if (loaded && coordinates) {
+        if (loaded && coordinates && mapCenterLocation.latitude === 0 ) {
             setMapCenterLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
         }
+        // console.log("loaded", loaded)
+        // console.log("coordinates", coordinates)
 
-        console.log("로딩 전 mapCenter :",mapCenter)
-        console.log("로딩 전 mapCenterLocation :",mapCenterLocation)
-    }, [loaded, coordinates]);
+        // console.log("로딩 전 mapCenter :",mapCenter)
+        // console.log("로딩 전 mapCenterLocation :",mapCenterLocation)
+    }, [loaded]);
 
     return (
         <>
