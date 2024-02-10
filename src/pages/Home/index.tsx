@@ -18,11 +18,11 @@ export default function Home() {
   const {loaded, coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const {setValue: setSearchTerm} = useInput();
-  const [, setCenterLocation] = useRecoilState(mapCenterState);
+  const [, setMapCenterLocation] = useRecoilState(mapCenterState);
 
   const handleMyLocationButtonClicked = () => {
     if (loaded) {
-      setCenterLocation({
+      setMapCenterLocation({
         latitude: coordinates.lat,
         longitude: coordinates.lng,
       });
