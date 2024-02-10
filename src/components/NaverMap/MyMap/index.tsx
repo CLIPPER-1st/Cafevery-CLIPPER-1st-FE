@@ -37,8 +37,6 @@ export function MyMap() {
         console.log(searchedLocation)
     }, [loaded, coordinates, setSearchedLocation]);
 
-
-    
     return (
         <>
         {searchedLocation.latitude !== 0 && searchedLocation.longitude !== 0 && (
