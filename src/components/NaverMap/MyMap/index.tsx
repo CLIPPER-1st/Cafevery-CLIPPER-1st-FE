@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NaverMap } from 'react-naver-maps';
 import { useRecoilState } from 'recoil';
-import { mapCenterState } from '@/atoms/location';
+import { mapCenterState, myLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
@@ -22,6 +22,7 @@ export function MyMap() {
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
+    const [myLocation, setMyLocation ] = useRecoilState(myLocationState)
 
     useEffect(() => {
         console.log("mapCenter: ",mapCenter); // 지도 중심 위치 출력
@@ -36,15 +37,15 @@ export function MyMap() {
         }
         console.log("로딩 전 mapCenter :",mapCenter)
         console.log("로딩 전 mapCenterLocation :",mapCenterLocation)
-    }, [loaded, coordinates]);
+    }, [loaded, coordinates, setMapCenterLocation, mapCenter]);
 
     return (
         <>
-        {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 && (
+        {mapCenter.latitude !== 0 && mapCenter.longitude !== 0 && (
             <NaverMap
                 center={{
-                    lat: mapCenterLocation.latitude,
-                    lng: mapCenterLocation.longitude,
+                    lat: mapCenter.latitude,
+                    lng: mapCenter.longitude,
                 }}
                 defaultZoom={18}
                 minZoom={12}
