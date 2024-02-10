@@ -1,36 +1,36 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 import { CafeList } from '@/interfaces/cafeInfo';
 
-export const cafeInfoListState = atom<CafeList | null>({
+export const cafeInfoListState = atomFamily<CafeList | null, { distance: number; startTime: number; endTime: number; }>({ 
     key: 'cafeInfoListState',
     //TODO: 더미 데이터
     default: {
         cafes: [
             {
             id: 1,
-            latitude: 37.5605,
-            longitude: 126.9940,
+            latitude: 35.9405935,
+            longitude: 128.6339386,
             liked: true,
-            start_time: "2023-01-01T08:00:00",
-            end_time: "2023-01-01T22:00:00",
+            start_time: "08:00",
+            end_time: "22:00",
             in_business: true,
             },
             {
             id: 2,
-            latitude: 37.5600,
-            longitude: 126.9940,
+            latitude: 35.9402835,
+            longitude: 128.6339386,
             liked: null,
-            start_time: "2023-01-01T09:00:00",
-            end_time: "2023-01-01T23:00:00",
+            start_time: "09:00",
+            end_time: "23:00",
             in_business: true,
             },
             {
             id: 3,
-            latitude: 37.5595,
-            longitude: 126.9940,
+            latitude: 35.9350135,
+            longitude: 128.6319376,
             liked: false,
-            start_time: "2023-01-01T07:30:00",
-            end_time: "2023-01-01T20:00:00",
+            start_time: "07:30",
+            end_time: "20:00",
             in_business: false,
             }
         ]

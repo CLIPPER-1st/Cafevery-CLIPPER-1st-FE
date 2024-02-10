@@ -2,5 +2,5 @@ import { atom, atomFamily } from 'recoil';
 
 export const distanceState = atomFamily<number, string>({
   key: 'distanceState',
-  default: (page) => ( 0.5 ),
+  default: (page) => ( 3 ),
 });

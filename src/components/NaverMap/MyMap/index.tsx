@@ -11,17 +11,22 @@ import { distanceState } from '@/atoms/distanceFilter';
 import { useLocation } from 'react-router-dom';
 import useMapCenter from '@/hooks/useMapCenter';
 import { mapCenterState } from '@/atoms/location';
+import { useFilteredCafes } from '@/hooks/useFilteredCafes';
 
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
-    const [cafeInfoList] = useRecoilState(cafeInfoListState); //TODO: 임시 
-    //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
     const nowUrl = useLocation();
     const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
     const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
+    const [cafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: minValue, endTime: maxValue})); //TODO: 임시 
+    //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
+    const filteredCafes = useFilteredCafes(minValue, maxValue, distance);
+    console.log("cafeInfoList", cafeInfoList)
+
+    console.log("filteredCafes", filteredCafes)
 
     useEffect(() => {
         if (loaded && coordinates && mapCenterLocation.latitude === 0 &&  mapCenterLocation.longitude === 0) {
@@ -50,7 +55,7 @@ export function MyMap() {
                 }}
             >
                 <MyMarker />
-                {cafeInfoList?.cafes.map((cafe) => (
+                {filteredCafes?.cafes.map((cafe) => (
                     <CafeMarker key={cafe.id} cafe={cafe} />
                 ))}
             </NaverMap>

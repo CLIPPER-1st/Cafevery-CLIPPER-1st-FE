@@ -1,6 +1,6 @@
-import {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { Marker } from 'react-naver-maps'; // 이 부분은 실제 사용하시는 라이브러리에 맞게 조정해주세요.
+import { Marker } from 'react-naver-maps'; // react-naver-maps 라이브러리 사용 예시
 import MyMarkerImg from '@/assets/Markers/MyMarker.png';
 import useGeolocation from '@/hooks/useGeolocation';
 import { myLocationState } from '@/atoms/location';
@@ -9,34 +9,25 @@ export default function MyMarker() {
     const { loaded, coordinates } = useGeolocation();
     const [myLocation, setMyLocation] = useRecoilState(myLocationState);
 
-    // 좌표가 로드되었을 때만 myLocation 상태 업데이트
+    // 위치 정보가 로드되었는지 확인하고 myLocation 상태를 업데이트합니다.
     useEffect(() => {
-        if (loaded) {
-            setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+        if (loaded && coordinates.lat && coordinates.lng) {
+            setMyLocation({longitude: coordinates.lng, latitude: coordinates.lat});
         }
     }, [loaded, coordinates, setMyLocation]);
 
-    // 좌표가 로드되었고, 유효한 경우에만 Marker 렌더링
-    if (!loaded || !coordinates.lat || !coordinates.lng) {
-        return null; // 좌표가 없거나 로드되지 않았다면 렌더링하지 않음
+    // 위치 정보가 유효한 경우에만 Marker 컴포넌트를 렌더링합니다.
+    if (!loaded || coordinates.lat == null || coordinates.lng == null) {
+        return null; // 위치 정보가 로드되지 않았거나 유효하지 않은 경우 렌더링하지 않음
     }
 
     return (
-        <>
         <Marker
-            position={{
-                lat: coordinates.lat,
-                lng: coordinates.lng,
+            position={{ lat: myLocation.latitude, lng: myLocation.longitude }}
+            icon={{
+                content: `<div style="width: 30px; height: 30px;"><img src="${MyMarkerImg}" alt="My Location" style="width: 100%; height: 100%;" /></div>`,
+                // anchor 설정이 필요한 경우 여기에 추가
             }}
-                icon={{
-                content: `
-                    <div style="width: 30px; height: 30px;">
-                    <img src="${MyMarkerImg}" style="width: 30px; height: 30px;" />
-                    </div>
-                `,
-                anchor: { x: 15, y: 30 },
-                }}
-            />
-        </>
-    )
+        />
+    );
 }
