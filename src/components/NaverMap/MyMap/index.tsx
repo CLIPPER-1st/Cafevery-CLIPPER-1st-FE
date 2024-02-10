@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NaverMap } from 'react-naver-maps';
 import { useRecoilState } from 'recoil';
-import { myLocationState, searchedLocationState } from '@/atoms/location';
+import { mapCenterState, myLocationState, searchedLocationState } from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
@@ -24,8 +24,11 @@ export function MyMap() {
     const mapCenter = useMapCenter(mapRef.current);
     const [myLocation, setMyLocation] = useRecoilState(myLocationState)
 
+    const [mapCenterLocation, setMapCenter] = useRecoilState(mapCenterState)
+
     useEffect(() => {
         console.log("mapCenter: ",mapCenter); // 지도 중심 위치 출력
+        console.log("mapCenterLocation: ", mapCenterLocation)
     }, [loaded,coordinates, mapCenter]);
 
     useEffect(() => {
@@ -34,6 +37,7 @@ export function MyMap() {
         }
         console.log(searchedLocation)
     }, [loaded, coordinates, setSearchedLocation]);
+
     
     return (
         <>
