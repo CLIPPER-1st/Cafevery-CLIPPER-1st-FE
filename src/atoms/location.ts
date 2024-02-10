@@ -1,14 +1,16 @@
 import { atom } from 'recoil';
 import { Location } from '@/interfaces/location';
 
-export const locationState = atom<Location>({
-  key: 'locationState',
+/** 좋아요한 카페 location */
+export const cafeLocationState = atom<Location>({
+  key: 'cafeLocationState',
   default: {
     latitude: 0,
     longitude: 0,
   },
 });
 
+/** 현재 나의 location */
 export const myLocationState = atom<Location>({
   key: 'myLocationState',
   default: {
@@ -17,6 +19,7 @@ export const myLocationState = atom<Location>({
   },
 });
 
+/** 검색창을 통해 검색한 location */
 export const searchedLocationState = atom<Location>({
   key: 'searchedLocationState',
   default: {
@@ -25,6 +28,7 @@ export const searchedLocationState = atom<Location>({
   },
 });
 
+/** 지도의 중심 location */
 export const mapCenterState = atom<Location>({
   key: 'mapCenterState',
   default: {

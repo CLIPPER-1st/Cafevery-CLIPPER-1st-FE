@@ -1,5 +1,5 @@
 import { cafeInfoState } from '@/atoms/cafeInfoState';
-import { locationState } from '@/atoms/location';
+import { cafeLocationState } from '@/atoms/location';
 import GoToCafeLocationButton from '@/components/Button/GoToCafeLocationButton';
 import Likebutton from '@/components/Like/LikeButton';
 import { useBusinessStatus } from '@/hooks/useBusinessStatus';
@@ -17,11 +17,12 @@ export default function CafeInfoModal({ onClose, isOpen, id }) {
     const todayHours = useTodayBusinessHours(cafeInfo.business);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const navigate = useNavigate();
-    const [, setLocation] = useRecoilState(locationState);
+    const [cafeLocation, setCafeLocation] = useRecoilState(cafeLocationState);
     const handleGoToCafeLocation = (latitude: number, longitude: number) => {
         navigate('/');
-        setLocation({ latitude: latitude, longitude: longitude });
+        setCafeLocation({ latitude: latitude, longitude: longitude });
         onClose();
+        console.log("location: ", cafeLocation)
     }
 
     return (
