@@ -1,10 +1,10 @@
 import { mapCenterState } from '@/atoms/location';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import useGeolocation from './useGeolocation';
 
 const useMapCenter = (naverMap) => {
-    const [mapCenter, setMapCenter] = useRecoilState(mapCenterState)
+    const [mapCenter, setMapCenter] = useState({latitude: 0, longitude: 0})
     const { loaded, coordinates } = useGeolocation();
 
     useEffect(() => {
