@@ -17,7 +17,7 @@ import { distanceState } from '@/atoms/distanceFilter';
 import {likesListState} from '@/atoms/likesState';
 
 export function LikeList() {
-  const {coordinates} = useGeolocation();
+  const {loaded, coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const [cafeId, setCafeId] = useRecoilState(selectedCafeState);
   const nowUrl = useLocation();
@@ -31,39 +31,44 @@ export function LikeList() {
     setCafeId(id);
     openModal();
   };
+
+  if (!loaded || !coordinates) {
+    return ;
+  }
+
   return (
     <>
-      <Styled.Container>
-        {filteredCafes?.cafes.length === 0 ? (
-          <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
-        ) : (
-          filteredCafes?.cafes.map((like) => {
-            return (
-              <Styled.Wrapper
-                key={like.id}
-                onClick={() => handleCafeInfoModalOpen(like.id)}
-              >
-                <NameCard
-                  id={like.id}
-                  name={like.name}
-                  address={like.address}
-                  business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
-                  likes={like.likes}
-                  // distance={useDistance({
-                  //   currentLatitude: coordinates.lat,
-                  //   currentLongitude: coordinates.lng,
-                  //   targetLatitude: like.latitude,
-                  //   targetLongitude: like.longitude,
-                  // })}
-                  distance={1}
-                  liked={like.liked}
-                />
-              </Styled.Wrapper>
-            );
-          })
-        )}
-      </Styled.Container>
-
+      {coordinates.lat !== 0 && coordinates.lng !== 0 && loaded &&(
+        <Styled.Container>
+          {filteredCafes?.cafes.length === 0 ? (
+            <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
+          ) : (
+            filteredCafes?.cafes.map((like) => {
+              return (
+                <Styled.Wrapper
+                  key={like.id}
+                  onClick={() => handleCafeInfoModalOpen(like.id)}
+                >
+                  <NameCard
+                    id={like.id}
+                    name={like.name}
+                    address={like.address}
+                    business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
+                    likes={like.likes}
+                    distance={useDistance({
+                      currentLatitude: coordinates.lat,
+                      currentLongitude: coordinates.lng,
+                      targetLatitude: like.latitude,
+                      targetLongitude: like.longitude,
+                    })}
+                    liked={like.liked}
+                  />
+                </Styled.Wrapper>
+              );
+            })
+          )}
+        </Styled.Container>
+      )}
       {isOpen && (
         <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={cafeId} />
       )}
