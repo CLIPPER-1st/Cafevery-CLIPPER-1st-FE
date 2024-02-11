@@ -15,13 +15,11 @@ async function enableMocking() {
 
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
       <QueryClientContext>
         <RecoilRoot>
           <App />
           <GlobalStyle />
         </RecoilRoot>
       </QueryClientContext>
-    </React.StrictMode>,
   );
 });

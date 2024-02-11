@@ -1,4 +1,4 @@
-import {Likes} from '@/interfaces/likes';
+import {LikesList} from '@/interfaces/likes';
 import * as Styled from './style';
 import NameCard from '../NameCard';
 import useDistance from '@/hooks/useDistance';
@@ -7,17 +7,25 @@ import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import {selectedCafeState} from '@/atoms/likesState';
+import { CafeList } from '@/interfaces/cafeInfo';
+import { timeFilterState } from '@/atoms/timeFilter';
+import { useFilteredCafes } from '@/hooks/useFilteredCafes';
+import { useLocation } from 'react-router-dom';
+import { distanceState } from '@/atoms/distanceFilter';
+import {likesListState} from '@/atoms/likesState';
 
-interface Props {
-  likes: Likes[];
-}
-
-export function LikeList(props: Props) {
+export function LikeList() {
   const {coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const [cafeId, setCafeId] = useRecoilState(selectedCafeState);
+  const nowUrl = useLocation();
+  const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
+  const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
+  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue}));
+
+  const filteredCafes = useFilteredCafes(likesList, timeFilter.minValue, timeFilter.maxValue, distance);
 
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);
@@ -26,10 +34,10 @@ export function LikeList(props: Props) {
   return (
     <>
       <Styled.Container>
-        {props.likes.length === 0 ? (
+        {filteredCafes?.cafes.length === 0 ? (
           <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
         ) : (
-          props.likes.map((like) => {
+          filteredCafes?.cafes.map((like) => {
             return (
               <Styled.Wrapper
                 key={like.id}
@@ -41,12 +49,13 @@ export function LikeList(props: Props) {
                   address={like.address}
                   business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
                   likes={like.likes}
-                  distance={useDistance({
-                    currentLatitude: coordinates.lat,
-                    currentLongitude: coordinates.lng,
-                    targetLatitude: like.latitude,
-                    targetLongitude: like.longitude,
-                  })}
+                  // distance={useDistance({
+                  //   currentLatitude: coordinates.lat,
+                  //   currentLongitude: coordinates.lng,
+                  //   targetLatitude: like.latitude,
+                  //   targetLongitude: like.longitude,
+                  // })}
+                  distance={1}
                   liked={like.liked}
                 />
               </Styled.Wrapper>

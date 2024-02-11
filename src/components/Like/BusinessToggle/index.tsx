@@ -1,15 +1,17 @@
-import {filteredLikesState, likesState} from '@/atoms/likesState';
+import {likesListState} from '@/atoms/likesState';
 import {toggleState} from '@/atoms/toggle';
 import {Toggle} from '@/components/Toggle/Toggle';
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {useRecoilState} from 'recoil';
+import { timeFilterState } from '@/atoms/timeFilter';
+import { distanceState } from '@/atoms/distanceFilter';
 
 export default function BusinessToggle() {
   const nowUrl = useLocation();
-  const [isOn, setIsOn] = useRecoilState(toggleState(nowUrl.pathname));
-  const [likes] = useRecoilState(likesState);
-  const [filteredLikes, setFilteredLikes] = useRecoilState(filteredLikesState);
+  const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
+  const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));  const [isOn, setIsOn] = useRecoilState(toggleState(nowUrl.pathname));
+  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: minValue, endTime: maxValue}));
 
   useEffect(() => {
     const currentTime = new Date();
@@ -17,7 +19,7 @@ export default function BusinessToggle() {
     const currentMinute = currentTime.getMinutes();
 
     if (isOn) {
-      const tempLikes = likes.filter((like) => {
+      const tempLikes = likesList.cafes.filter((like) => {
         const startParts = like.start_time.split(':');
         const endParts = like.end_time.split(':');
 
@@ -36,11 +38,11 @@ export default function BusinessToggle() {
         }
         return false;
       });
-      setFilteredLikes(tempLikes);
+      setLikesList({ cafes: tempLikes });
     } else {
-      setFilteredLikes(likes);
+      setLikesList(likesList);
     }
-  }, [isOn, setFilteredLikes, likes]);
+  }, [isOn, setLikesList, likesList]);
 
   const toggle = () => setIsOn(!isOn);
 

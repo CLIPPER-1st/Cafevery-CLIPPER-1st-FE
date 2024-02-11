@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { NaverMap } from 'react-naver-maps';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
@@ -16,18 +16,16 @@ import { useFilteredCafes } from '@/hooks/useFilteredCafes';
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
     const nowUrl = useLocation();
-    const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
+    const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
     const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
-    const [cafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: minValue, endTime: maxValue})); //TODO: 임시 
-    //const cafeList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
-    const filteredCafes = useFilteredCafes(minValue, maxValue, distance);
-    console.log("cafeInfoList", cafeInfoList)
+    const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
+    //const cafeInfoList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
+    const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance);
 
-    console.log("filteredCafes", filteredCafes)
-
+    console.log("mymap render")
     useEffect(() => {
         if (loaded && coordinates && mapCenterLocation.latitude === 0 &&  mapCenterLocation.longitude === 0) {
             setMapCenterLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
@@ -35,11 +33,15 @@ export function MyMap() {
 
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
-            console.log("mapCenter :",mapCenter)
-            console.log("mapCenterLocation: ", mapCenterLocation)
 
         }
-    }, [loaded, coordinates ]);
+        async function fetchAndSetCafeList() {
+            const cafes = await useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
+
+            const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance);
+            setCafeInfoList(filteredCafes)
+        }
+    }, [coordinates]);
 
     return (
         <>

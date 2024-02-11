@@ -1,12 +1,10 @@
-import { useState, useEffect, version } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { cafeInfoListState } from '@/atoms/cafeInfoListState';
-import { timeFilterState } from '@/atoms/timeFilter';
-import { distanceState } from '@/atoms/distanceFilter';
 import { myLocationState } from '@/atoms/location';
-import { useLocation } from 'react-router-dom';
 import { CafeList } from '@/interfaces/cafeInfo';
-import useGeolocation from './useGeolocation';
+import useGeolocation from '@/hooks/useGeolocation';
+import { Likes, LikesList } from '@/interfaces/likes';
+import { likesListState } from '@/atoms/likesState';
 
 /**시간을 분으로 변환하는 함수 */
 function convertTime(time: string) {
@@ -41,17 +39,17 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 }
 
 /**시간과 거리에 따른 카페 필터링 커스텀 훅 */ 
-export function useFilteredCafes(minValue: number, maxValue: number, distance) {
-    const nowUrl = useLocation();
+export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minValue: number, maxValue: number, distance) {
     const { loaded, coordinates } = useGeolocation();
     const myLocation = useRecoilValue(myLocationState);
-    const cafesData = useRecoilValue(cafeInfoListState({distance: 3, startTime: 0, endTime: 24}));
-    const [filteredCafes, setFilteredCafes] = useState<CafeList | null>(cafesData);
-    console.log("cafesData", cafesData)
+    const likes = useRecoilValue(likesListState({distance: distance, startTime: minValue, endTime: maxValue}));
+    const [filteredCafes, setFilteredCafes] = useState<CafeList | LikesList | null>();
+    //const [filteredLikes, setFilteredLikes] = useState<LikesList>(likes);
+
+    console.log("cafeInfoList", cafeInfoList)
     useEffect(() => {
         if(myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
-            const cafes = cafesData?.cafes;
-            console.log("cafes", cafes)
+            const cafes = cafeInfoList?.cafes;
     
             if (!cafes || cafes.length === 0) return;
         
@@ -65,15 +63,15 @@ export function useFilteredCafes(minValue: number, maxValue: number, distance) {
                 // 거리 필터링 로직
                 const distanceToCafe = calculateDistance(coordinates.lat, coordinates.lng, cafe.latitude, cafe.longitude);
                 const isInDistanceRange = distanceToCafe <= distance;
-                console.log(distanceToCafe, distance)
         
                 return isInTimeRange && isInDistanceRange;
             })
             setFilteredCafes({ cafes: filtered });
-            console.log("filtered",filtered);
+            console.log("filtered", filtered)
+
         }
-        
-    }, [cafesData, minValue, maxValue, distance, coordinates, loaded]);
+        console.log("filtered")
+    }, [minValue, maxValue, distance, cafeInfoList, coordinates, loaded]);
 
     return filteredCafes;
 }
