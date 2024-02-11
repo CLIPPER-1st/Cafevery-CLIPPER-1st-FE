@@ -15,6 +15,7 @@ import { useFilteredCafes } from '@/hooks/useFilteredCafes';
 import { useLocation } from 'react-router-dom';
 import { distanceState } from '@/atoms/distanceFilter';
 import {likesListState} from '@/atoms/likesState';
+import { toggleState } from '@/atoms/toggle';
 
 export function LikeList() {
   const {loaded, coordinates} = useGeolocation();
@@ -24,8 +25,8 @@ export function LikeList() {
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
   const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue}));
-
-  const filteredCafes = useFilteredCafes(likesList, timeFilter.minValue, timeFilter.maxValue, distance);
+  const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
+  const filteredCafes = useFilteredCafes(likesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
 
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);

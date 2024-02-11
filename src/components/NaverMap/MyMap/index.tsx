@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 import useMapCenter from '@/hooks/useMapCenter';
 import { mapCenterState } from '@/atoms/location';
 import { useFilteredCafes } from '@/hooks/useFilteredCafes';
+import { toggleState } from '@/atoms/toggle';
 
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
@@ -23,7 +24,8 @@ export function MyMap() {
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
     const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
     //const cafeInfoList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
-    const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance);
+    const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
+    const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
 
     console.log("mymap render")
     useEffect(() => {
@@ -34,12 +36,6 @@ export function MyMap() {
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
 
-        }
-        async function fetchAndSetCafeList() {
-            const cafes = await useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
-
-            const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance);
-            setCafeInfoList(filteredCafes)
         }
     }, [coordinates]);
 
