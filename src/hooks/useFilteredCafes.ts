@@ -39,10 +39,9 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 }
 
 /**시간과 거리에 따른 카페 필터링 커스텀 훅 */ 
-export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minValue: number, maxValue: number, distance) {
+export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minValue: number, maxValue: number, filteredDistance: number) {
     const { loaded, coordinates } = useGeolocation();
     const myLocation = useRecoilValue(myLocationState);
-    const likes = useRecoilValue(likesListState({distance: distance, startTime: minValue, endTime: maxValue}));
     const [filteredCafes, setFilteredCafes] = useState<CafeList | LikesList | null>();
     //const [filteredLikes, setFilteredLikes] = useState<LikesList>(likes);
 
@@ -62,6 +61,8 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
         
                 // 거리 필터링 로직
                 const distanceToCafe = calculateDistance(coordinates.lat, coordinates.lng, cafe.latitude, cafe.longitude);
+
+                const distance = filteredDistance === 3 ? 10000 : filteredDistance; // 3km일 땐 불러온 데이터 전체로 보여주게 하기 위해 10000으로 포멧팅.
                 const isInDistanceRange = distanceToCafe <= distance;
         
                 return isInTimeRange && isInDistanceRange;
@@ -71,7 +72,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
 
         }
         console.log("filtered")
-    }, [minValue, maxValue, distance, cafeInfoList, coordinates, loaded]);
+    }, [minValue, maxValue, filteredDistance, cafeInfoList, coordinates, loaded]);
 
     return filteredCafes;
 }
