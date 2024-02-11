@@ -5,6 +5,8 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const Wrapper = styled.div``;
+
 export const Label = styled.label`
   left: 27px;
   font-size: 24px;
