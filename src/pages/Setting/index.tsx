@@ -2,6 +2,7 @@ import SettingCloseButton from '@/components/Button/SettingCloseButton';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import * as Styled from './style';
 import SettingInfoList from '@/components/Setting/SettingInfoList';
+import UserInfo from '@/components/Setting/UserInfo';
 
 export default function Setting() {
   const isLogin = true;
@@ -10,7 +11,11 @@ export default function Setting() {
     <PageLayout>
       <SettingCloseButton />
       <Styled.Wrapper>
-        <Styled.Label>로그인 후 이용해주세요</Styled.Label>
+        <UserInfo
+          isLogin={isLogin}
+          nickname={'Cafevery'}
+          provider={'소셜 로그인 회원'}
+        />
       </Styled.Wrapper>
       <Styled.Line />
       <SettingInfoList />
