@@ -68,3 +68,5 @@ export interface FavoritePlaceSelectButtonProps extends Partial<ButtonProps> {}
 
 export interface SmallButtonProps extends Partial<ButtonProps> {}
 
+export interface SocialButtonProps extends Partial<ButtonProps> {}
+
