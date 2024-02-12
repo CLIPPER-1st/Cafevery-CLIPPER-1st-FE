@@ -14,7 +14,7 @@ import { alertModalState } from '@/atoms/modalState';
 import ProfileNameButton from '@/components/Button/ProfileNameButton';
 import { useFetchUserInfo } from '@/hooks/useFetchUserInfo';
 import { useLoginStatus } from '@/hooks/useLoginStatus';
-import UnloginMypage from '@/components/UnloginMypage';
+import UnloginMypage from '@/components/MyPage/UnloginMypage';
 
 export default function MyPage() {
   const nowUrl = useLocation();
