@@ -11,7 +11,7 @@ export const likesListState = atomFamily<LikesList | null, { distance: number; s
           longitude: 128.6339386,
           name: "카페카페1",
           address: "어딘가1",
-          start_time: "08:00",
+          start_time: "12:00",
           end_time: "22:00",
           likes: 3,
           liked: true,

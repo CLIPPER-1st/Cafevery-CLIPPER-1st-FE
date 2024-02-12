@@ -30,7 +30,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
                 const convertedTime = useConvertTime(`${currentHour}:${currentMinute}`) // HH:MM 형태로 컨버팅 후 useConvertTime
 
                 //운영 중 필터링 로직
-                const isInBusinness = convertedTime <= cafeEndTime;
+                const isInBusinness = convertedTime <= cafeEndTime && convertedTime >= cafeStartTime;
 
                 // 시간 필터링 로직
                 const isInTimeRange = cafeStartTime >= minValue && cafeEndTime <= maxValue;

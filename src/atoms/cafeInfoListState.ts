@@ -11,7 +11,7 @@ export const cafeInfoListState = atomFamily<CafeList | null, { distance: number;
             latitude: 35.9405935,
             longitude: 128.6339386,
             liked: true,
-            start_time: "08:00",
+            start_time: "12:00",
             end_time: "22:00",
             in_business: true,
             },
