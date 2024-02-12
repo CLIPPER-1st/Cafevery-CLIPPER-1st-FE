@@ -21,6 +21,7 @@ export function LikeSearchBar() {
   
   const handleClear = () => {
     setSearchTerm('');
+    setLikesSearchTerm('');
   };
 
   const handleChange = (e: {target: {value: string}}) => {
