@@ -13,16 +13,18 @@ import AlertModal from '@/components/Modal/AlertModal';
 import useModal from '@/hooks/useModal';
 import { alertModalState } from '@/atoms/modalState';
 import ProfileNameButton from '@/components/Button/ProfileNameButton';
+import { useFetchUserInfo } from '@/hooks/useFetchUserInfo';
 
 export default function MyPage() {
   const nowUrl = useLocation();
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
-  const [userInfo, ] = useRecoilState(userInfoState);
+  const [userInfo, ] = useRecoilState(userInfoState); //TODO: 임시
   const {isOpen, openModal, closeModal} = useModal();
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  
+  //const userInfo = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
+
   const handleChangeProfileName = () => {
     setShowSearchBar(!showSearchBar);
   }

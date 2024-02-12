@@ -19,8 +19,10 @@ export const useFetchCafeList = (centerLatitude: number, centerLongitude: number
         staleTime: 100000,
         gcTime: 100,
     });
-    setCafeState(data);
-
+    setCafeState((prevCafeState) => ({
+        ...prevCafeState,
+        data: { cafes: data }
+    }));
     return data;
     */
     
