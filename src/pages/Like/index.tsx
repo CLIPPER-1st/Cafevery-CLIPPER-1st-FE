@@ -8,7 +8,7 @@ import {useEffect} from 'react';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
-import BusinessToggle from '@/components/Like/BusinessToggle';
+import { Toggle } from '@/components/Toggle';
 import { useLocation } from 'react-router-dom';
 import { timeFilterState } from '@/atoms/timeFilter';
 import { distanceState } from '@/atoms/distanceFilter';
@@ -23,13 +23,13 @@ export default function Like() {
   const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시
   //const cafeInfoList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 이런식으로 커스텀 훅 만들어서 api 호출
 
-  useEffect(() => {
-    fetch('/test/cafes/likes')
-      .then((res) => res.json())
-      .then((data) => {
-        setLikesList(data.cafes);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/test/cafes/likes')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLikesList(data.cafes);
+  //     });
+  // }, []);
 
   const handleFilterModalOpen = () => {
     openModal();
@@ -55,7 +55,7 @@ export default function Like() {
       <PageLayout>
         <Styled.ButtonsWrapper>
           <FilterButton onClick={() => handleFilterModalOpen()} />
-          <BusinessToggle />
+          <Toggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar onSearch={handleSearch} />
         <LikeList />

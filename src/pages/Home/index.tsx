@@ -6,13 +6,12 @@ import * as Styled from './style';
 import {useRecoilState} from 'recoil';
 import {mapCenterState} from '@/atoms/location';
 import useGeolocation from '@/hooks/useGeolocation';
-import {Toggle} from '@/components/Toggle/Toggle';
+import {Toggle} from '@/components/Toggle';
 import FilterButton from '@/components/Button/FilterButton';
 import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
-import HomeToggle from '@/components/Toggle/homeToggle';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
@@ -39,7 +38,7 @@ export default function Home() {
       <PageLayout>
         <Styled.ButtonsWrapper>
           <FilterButton onClick={() => handleFilterModalOpen()} />
-          <HomeToggle />
+          <Toggle />
         </Styled.ButtonsWrapper>
         <LocationSearchBar />
         <Styled.ButtonContainer>

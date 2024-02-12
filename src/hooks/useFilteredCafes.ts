@@ -27,10 +27,10 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
                 const currentTime = new Date(); // 현재 시간
                 const currentHour = currentTime.getHours(); // 현재 시
                 const currentMinute = currentTime.getMinutes(); // 현재 분
-                const convertedTime = useConvertTime(`${currentHour}:${currentMinute}`) // HH:MM 형태로 컨버팅 후 useConvertTime
+                const convertedCurrentTime = useConvertTime(`${currentHour}:${currentMinute}`) // HH:MM 형태로 컨버팅 후 useConvertTime
 
                 //운영 중 필터링 로직
-                const isInBusinness = convertedTime <= cafeEndTime && convertedTime >= cafeStartTime;
+                const isInBusinness = convertedCurrentTime <= cafeEndTime && convertedCurrentTime >= cafeStartTime;
 
                 // 시간 필터링 로직
                 const isInTimeRange = cafeStartTime >= minValue && cafeEndTime <= maxValue;
@@ -41,7 +41,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
                 const distance = filteredDistance === 3 ? 10000 : filteredDistance; // 3km일 땐 불러온 데이터 전체로 보여주게 하기 위해 10000으로 포멧팅.
                 const isInDistanceRange = distanceToCafe <= distance;
 
-                if (!toggleState) {
+                if (toggleState === false) {
                     // 전체 카페 리스트 반환
                     return isInTimeRange && isInDistanceRange;
                 } else {
@@ -54,7 +54,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
 
         }
         console.log("filtered")
-    }, [minValue, maxValue, filteredDistance, cafeInfoList, coordinates, loaded]);
+    }, [minValue, maxValue, filteredDistance, cafeInfoList, coordinates, loaded, toggleState]);
 
     return filteredCafes;
 }
