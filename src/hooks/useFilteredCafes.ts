@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { myLocationState } from '@/atoms/location';
 import { CafeList } from '@/interfaces/cafeInfo';
 import useGeolocation from '@/hooks/useGeolocation';
-import { Likes, LikesList } from '@/interfaces/likes';
+import { LikesList } from '@/interfaces/likes';
 import { useConvertTime } from '@/hooks/useConvertTime';
 import { useCalculateDistance } from './useCalculateDistance';
 
@@ -18,7 +18,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
         if(myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
             const cafes = cafeInfoList?.cafes;
     
-            if (!cafes || cafes.length === 0) return;
+            //if (!cafes || cafes.length === 0) return;
         
             const filtered = cafes.filter((cafe) => {
                 const cafeStartTime = useConvertTime(cafe.start_time);

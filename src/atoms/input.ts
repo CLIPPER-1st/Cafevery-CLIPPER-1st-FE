@@ -9,3 +9,8 @@ export const selectedPlaceNameState = atom<string>({
   key: 'selectedPlaceNameState',
   default: '',
 });
+
+export const searchTermState = atom<string>({
+  key: 'searchTermState',
+  default: ''
+});

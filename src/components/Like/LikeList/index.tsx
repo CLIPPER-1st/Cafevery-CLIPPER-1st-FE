@@ -16,6 +16,7 @@ import { useLocation } from 'react-router-dom';
 import { distanceState } from '@/atoms/distanceFilter';
 import {likesListState} from '@/atoms/likesState';
 import { toggleState } from '@/atoms/toggle';
+import { searchTermState } from '@/atoms/input';
 
 export function LikeList() {
   const {loaded, coordinates} = useGeolocation();
@@ -24,7 +25,8 @@ export function LikeList() {
   const nowUrl = useLocation();
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
-  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue}));
+  const [likesSearchTerm, setLikesSearchTerm] = useRecoilState(searchTermState)
+  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue, searchTerm: likesSearchTerm}));
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const filteredCafes = useFilteredCafes(likesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
 

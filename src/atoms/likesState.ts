@@ -1,7 +1,7 @@
 import { LikesList} from '@/interfaces/likes';
 import {atom, atomFamily} from 'recoil';
 
-export const likesListState = atomFamily<LikesList | null, { distance: number; startTime: number; endTime: number; }>({
+export const likesListState = atomFamily<LikesList | null, { distance: number; startTime: number; endTime: number; searchTerm: string }>({
   key: 'likesListState',
   default: {
       cafes: [ 
