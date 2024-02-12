@@ -49,3 +49,23 @@ export const DiscriptionText = styled.div`
   height: 20px;
   color: ${theme.colors.gray};
 `;
+
+export const UnloginText = styled.div`
+  font-size: 18px;
+  color: ${theme.colors.darkBrown};
+  width: 250px;
+  height: 45px;
+  margin: 20px 0 20px 0px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+export const SocialButtonWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  position: relative;
+`;
