@@ -25,6 +25,14 @@ export default function FilterModal({onClose, isOpen}) {
       return (1 - (maxValue) / 24) * 100; // 시간 비율을 백분율로 계산
     }, [maxValue]);
 
+    // 거리 텍스트를 조건부로 설정
+    const distanceText = useMemo(() => {
+      if (nowUrl.pathname === '/likes' && distance === 3) {
+        return `반경 전체`;
+      }
+      return `반경 ${distance}km`;
+    }, [distance, nowUrl.pathname]);
+
     const handleCheckbuttonClick = () => {
       onClose();
     }
@@ -42,7 +50,7 @@ export default function FilterModal({onClose, isOpen}) {
         </Styled.ModalInnerWrapper>
         <Styled.Line />
         <Styled.SectionTitle>{"거리"}</Styled.SectionTitle>
-        <Styled.SectionText>{`반경 ${distance}km`}</Styled.SectionText>
+        <Styled.SectionText>{distanceText}</Styled.SectionText>
         <Styled.ModalInnerWrapper>
           <DistanceFilter />
           <DistanceFilterSliderrMemoized />
