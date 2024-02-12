@@ -51,9 +51,9 @@ export default function MyPage() {
         {!showMap ? (
           <>
             <SettingButton onClick={() => handleNavigateToSetting()} />
-            <Styled.ProfileImage src={Default} /> {/* recoil말고 커스텀훅에서 바로 */}
+            <Styled.ProfileImage src={userInfo?.data?.infos?.profile_image} />
             <ProfileNameButton onClick={() => handleChangeProfileName()}>
-              {`${"recoil말고 커스텀훅에서 바로"} 🖊️`}
+              {`${userInfo?.data?.infos?.nickname} 🖊️`}
             </ProfileNameButton>
             <Styled.Line />
             <TextButton onClick={() => handleToggleMapVisibility()}>
