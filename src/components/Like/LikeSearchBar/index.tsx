@@ -41,10 +41,6 @@ export function LikeSearchBar() {
     }
   }, [searchTerm]);
 
-  const handleSearch = (value: string) => {
-    setSearchTerm(value);
-  };
-
   return (
     <SearchBar
       isOpen={isOpen}
