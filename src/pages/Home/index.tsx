@@ -12,12 +12,13 @@ import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
+import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const {setValue: setSearchTerm} = useInput();
-  const [, setMapCenterLocation] = useRecoilState(mapCenterState);
+  const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
 
   const handleMyLocationButtonClicked = () => {
     if (loaded) {
@@ -33,6 +34,10 @@ export default function Home() {
     openModal();
   };
 
+  const handleGetCafeLocation = () => {
+
+  };
+
   return (
     <>
       <PageLayout>
@@ -46,7 +51,7 @@ export default function Home() {
             onClick={() => handleMyLocationButtonClicked()}
           />
           <Styled.CenteredButton>
-            <GetCafeLocationButton />
+            <GetCafeLocationButton onClick={useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude)}/>
           </Styled.CenteredButton>
         </Styled.ButtonContainer>
         <NaverMap />
