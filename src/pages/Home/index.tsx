@@ -34,10 +34,6 @@ export default function Home() {
     openModal();
   };
 
-  const handleGetCafeLocation = () => {
-
-  };
-
   return (
     <>
       <PageLayout>
