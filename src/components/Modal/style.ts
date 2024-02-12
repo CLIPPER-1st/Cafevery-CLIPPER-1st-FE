@@ -56,7 +56,7 @@ const getModalSize = (
 // 세로 모드용 애니메이션
 export const slideUpAnimationPortrait = keyframes`
   from { transform: translate(-50%, 100%); }
-  to { transform: translate(-50%, -2%); }
+  to { transform: translate(-50%, -10%); }
 `;
 
 export const slideUpAnimationLandscapeRanking = keyframes`

@@ -5,7 +5,7 @@ export const Container = styled.div`
     width: 100vw;
     max-width: 430px;
     overflow-x: hidden;
-    height: 60px;
+    height: 80px;
     background-color: ${theme.colors.white};
     bottom: 0;
     position: fixed;

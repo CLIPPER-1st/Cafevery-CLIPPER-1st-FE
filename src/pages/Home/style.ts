@@ -4,7 +4,7 @@ export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
     position: fixed;
-    bottom: 72px;
+    bottom: 92px;
     width: 100%;
     max-width: 315px;
     z-index: 1;
