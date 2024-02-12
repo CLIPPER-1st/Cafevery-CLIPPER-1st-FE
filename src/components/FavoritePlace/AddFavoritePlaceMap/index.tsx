@@ -33,6 +33,7 @@ export default function AddFavoritePlaceMap() {
     const queryClient = useQueryClient();
     const { mutate }  = useRegisterFavoritePlace();
     const [mapCenter, ] = useRecoilState(mapCenterState);
+    let timer: string | number | NodeJS.Timeout;
 
     const handleSelectFavoritePlace = (name: string) => {
         setSelectedPlaceName(name);
@@ -51,6 +52,9 @@ export default function AddFavoritePlaceMap() {
                 message: '자주 가는 장소가\n등록되었습니다.',
                 });        
                 await queryClient.invalidateQueries({queryKey: ['userInfo']});
+                timer = setTimeout(() => {
+                    setShowMap(!showMap);
+                }, 800);   
             },
             onError: (error) => {
                 if(isAxiosError(error)) {
