@@ -7,7 +7,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 const App = () => {
   return (
-    <ErrorBoundary fallback={<>Loading...</>}>
+    <ErrorBoundary fallback={<>에러 발생</>}>
       <Suspense fallback={<>Loading...</>}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
