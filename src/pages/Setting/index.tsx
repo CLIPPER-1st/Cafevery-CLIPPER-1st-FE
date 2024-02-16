@@ -14,7 +14,7 @@ export default function Setting() {
       <Styled.Wrapper>
         <UserInfo
           isLogin={isLoggedIn}
-          nickname={'Cafevery'}
+          nickname={'PWA 테스트'}
           provider={'소셜 로그인 회원'}
           logout={logout}
         />
