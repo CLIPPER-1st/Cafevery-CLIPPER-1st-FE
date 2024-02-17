@@ -85,13 +85,13 @@ export default function AddFavoritePlaceMap() {
                 />
             </Styled.Container>
             {alertModal?.isOpen && (
-            <AlertModal 
-                isOpen={alertModal?.isOpen}
-                onClose={closeModal}
-                >
-                {alertModal?.message}
-            </AlertModal>
-        )}
+                <AlertModal 
+                    isOpen={alertModal?.isOpen}
+                    onClose={closeModal}
+                    >
+                    {alertModal?.message}
+                </AlertModal>
+            )}
         </>
     )
 }
