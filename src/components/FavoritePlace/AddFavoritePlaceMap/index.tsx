@@ -58,10 +58,10 @@ export default function AddFavoritePlaceMap() {
             },
             onError: (error) => {
                 if(isAxiosError(error)) {
-                setAlertModal({
-                    isOpen: true,
-                    message: '등록에 실패했습니다.\n다시 시도해주세요.',
-                });  
+                    setAlertModal({
+                        isOpen: true,
+                        message: '등록에 실패했습니다.\n다시 시도해주세요.',
+                    });  
                 }
             },
         });

@@ -6,6 +6,7 @@ export const ModalInnerWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100%;
   white-space: pre-line;
 `;

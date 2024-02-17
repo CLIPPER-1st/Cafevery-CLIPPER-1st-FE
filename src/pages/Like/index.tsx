@@ -7,10 +7,11 @@ import FilterModal from '@/components/Modal/FilterModal';
 import { Toggle } from '@/components/Toggle';
 import { LikeList } from '@/components/Like/LikeList';
 import { useFetchCafeLikes } from '@/hooks/useFetchCafeLikes';
+import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 export default function Like() {
   const {isOpen, openModal, closeModal} = useModal();
-  //useFetchCafeLikes(); //TODO: 주석 해제하면 됨.
+  //useFetchCafeLikes();
 
   const handleFilterModalOpen = () => {
     openModal();
