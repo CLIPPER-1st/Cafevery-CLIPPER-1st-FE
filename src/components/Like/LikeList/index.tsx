@@ -1,4 +1,3 @@
-import {LikesList} from '@/interfaces/likes';
 import * as Styled from './style';
 import NameCard from '../NameCard';
 import useDistance from '@/hooks/useDistance';
@@ -9,7 +8,6 @@ import CafeInfoModal from '@/components/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {selectedCafeState} from '@/atoms/likesState';
-import { CafeList } from '@/interfaces/cafeInfo';
 import { timeFilterState } from '@/atoms/timeFilter';
 import { useFilteredCafes } from '@/hooks/useFilteredCafes';
 import { useLocation } from 'react-router-dom';
@@ -25,11 +23,11 @@ export function LikeList() {
   const nowUrl = useLocation();
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
-  const [likesSearchTerm, setLikesSearchTerm] = useRecoilState(searchTermState)
-  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue, searchTerm: likesSearchTerm}));
-  const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
+  const [likesSearchTerm, ] = useRecoilState(searchTermState)
+  const [likesList, ] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue, searchTerm: likesSearchTerm}));
+  const [showMap, ] = useRecoilState(toggleState((nowUrl.pathname)));
   const filteredCafes = useFilteredCafes(likesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
-
+  
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);
     openModal();
