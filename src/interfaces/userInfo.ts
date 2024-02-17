@@ -8,7 +8,6 @@ export interface ILocation {
 export interface UserInfo {
     profile_image: string;
     nickname: string;
-    provider: string;
     locations: ILocation[];
 }
 

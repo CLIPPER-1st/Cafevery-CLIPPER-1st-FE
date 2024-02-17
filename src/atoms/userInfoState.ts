@@ -9,7 +9,6 @@ export const userInfoState = atom<UserInfoState>({
             infos: {
                 profile_image: `${DefaultProfileImg}`,
                 nickname: 'cafevery',
-                provider: '',
                 locations: [ //TODO: mock data. 
                     {
                         id: '1',

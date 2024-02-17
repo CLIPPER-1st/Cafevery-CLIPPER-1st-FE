@@ -13,8 +13,8 @@ export default function Setting() {
       <SettingCloseButton />
       <Styled.Wrapper>
         <UserInfo
-          isLogin={isLoggedIn}
-          nickname={'PWA 테스트'}
+          isLogin={!isLoggedIn} //TODO: isLoggedIn으로 바꿔야함.
+          nickname={'Cafevery'}
           provider={'소셜 로그인 회원'}
           logout={logout}
         />
