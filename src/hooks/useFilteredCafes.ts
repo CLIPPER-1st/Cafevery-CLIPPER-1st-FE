@@ -26,6 +26,7 @@ export function useFilteredCafes(cafeInfoList: CafeList | LikesList | null, minV
 
                 const currentTime = new Date(); // 현재 시간
                 const currentHour = currentTime.getHours(); // 현재 시
+                console.log('currentHour', currentHour)
                 const currentMinute = currentTime.getMinutes(); // 현재 분
                 const convertedCurrentTime = useConvertTime(`${currentHour}:${currentMinute}`) // HH:MM 형태로 컨버팅 후 useConvertTime
 
