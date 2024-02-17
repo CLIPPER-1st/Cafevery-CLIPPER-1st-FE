@@ -6,7 +6,7 @@ export function useConvertTime(time: string) {
     }
     else {
     
-        const convertedMinutes = minutes / 100; //0.01단위로 환산
+        const convertedMinutes = minutes / 60; //0.01단위로 환산
         const convertedTime = hours + convertedMinutes
         return convertedTime;
     }
