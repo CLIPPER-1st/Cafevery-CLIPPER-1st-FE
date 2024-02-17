@@ -25,7 +25,7 @@ export default function MyPage() {
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
   //const userInfo = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
-  const { isLoggedIn, logout } = useLoginStatus();
+  const { isLoggedIn } = useLoginStatus();
 
   const handleChangeProfileName = () => {
     setShowSearchBar(!showSearchBar);

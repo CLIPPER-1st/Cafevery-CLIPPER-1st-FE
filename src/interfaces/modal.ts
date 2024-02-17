@@ -3,7 +3,7 @@ export interface ModalProps {
     onClose: (event?: React.MouseEvent) => void;
     children: React.ReactNode;
     modalTitle: string;
-    modalType?: 'SmallModal' | 'Modal' | 'SummaryModal'; 
+    modalType?: 'SmallModal' | 'Modal' | 'SummaryModal' | 'MediumModal'; 
     modalColor?: string;
     color?: string;
     fontSize?: number;
@@ -16,7 +16,7 @@ export interface ModalProps {
   // show 프로퍼티를 갖는 ModalWrapperProps 인터페이스를 정의
   export interface ModalWrapperProps {
     show: boolean;
-    modalType?: 'SmallModal' | 'Modal' | 'SummaryModal';
+    modalType?: 'SmallModal' | 'Modal' | 'SummaryModal' | 'MediumModal';
   }
 
   export interface ModalButtonProps {

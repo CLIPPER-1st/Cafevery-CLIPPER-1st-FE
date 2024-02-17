@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { deleteSignout } from '@/apis/signout';
+import { useMutation } from '@tanstack/react-query';
 
 export const useLoginStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,12 +18,9 @@ export const useLoginStatus = () => {
         }
     }, []);
 
-    /**로그아웃 상태 변경을 위한 함수 */ 
-    const logout = () => {
-        Cookies.remove('accessToken');
-        Cookies.remove('refreshToken');
-        setIsLoggedIn(false);
-    };
+        // Cookies.remove('accessToken');
+        // Cookies.remove('refreshToken');
+        // setIsLoggedIn(false);
 
-    return { isLoggedIn, logout };
+    return { isLoggedIn };
 }

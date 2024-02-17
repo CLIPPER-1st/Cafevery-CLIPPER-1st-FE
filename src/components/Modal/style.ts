@@ -38,11 +38,13 @@ export const ModalWrapper = styled.div<ModalWrapperProps & { modalType?: string 
 
 
 const getModalSize = (
-  modalType?: 'SmallModal' | 'Modal' | 'SummaryModal',
+  modalType?: 'SmallModal' | 'Modal' | 'SummaryModal' | 'MediumModal',
 ) => {
   switch (modalType) {
     case 'SmallModal':
       return {width: '315px', height: '120px', backgroundSize: '300px 120px'};
+    case 'MediumModal':
+      return {width: '315px', height: '400px', backgroundSize: '300px 400px'};
     case 'Modal':
       return {width: '315px', height: '600px', backgroundSize: '315px 600px'};
     case 'SummaryModal':
@@ -107,7 +109,7 @@ export const ModalTitle = styled.div`
   position: absolute;
   left: 50%;
   transform: translate(-50%, 50%);
-  color: ${theme.colors.textMain};
+  color: ${theme.colors.darkBrown};
   font-size: 20px;
   overflow-y: auto;
   white-space: pre;
