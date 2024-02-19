@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchSettingUserInfo } from '@/apis/SettingUserInfo';
+import { fetchSettingUserInfo } from '@/apis/settingUserInfo';
 
 export const useFetchSettingUserInfo = () => {
     const { data } = useSuspenseQuery({
