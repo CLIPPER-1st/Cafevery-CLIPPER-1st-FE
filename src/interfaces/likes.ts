@@ -11,6 +11,6 @@ export interface Likes {
   in_business: boolean;
 }
 
-export interface LikesList {
+export interface ILikesList {
   cafes: Likes[];
 }

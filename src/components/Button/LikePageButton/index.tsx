@@ -16,6 +16,7 @@ export default function LikePageButton(props: LikePageButtonProps) {
   const {isLoggedIn} = useLoginStatus();
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const { closeModal } = useModal();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let timer: string | number | NodeJS.Timeout;
 
   const getImage = () => {
@@ -23,7 +24,7 @@ export default function LikePageButton(props: LikePageButtonProps) {
   };
 
   const handleClicked = () => {
-    if(isLoggedIn) {
+    if(!isLoggedIn) { //TODO: isLoggedIn
       navigate('/likes')
     } else {
       setAlertModal({
@@ -32,7 +33,7 @@ export default function LikePageButton(props: LikePageButtonProps) {
         });        
         timer = setTimeout(() => {
           navigate('/mypage')
-        }, 800);  
+        }, 800);
     }
   }
 

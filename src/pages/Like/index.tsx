@@ -5,13 +5,16 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import { Toggle } from '@/components/Toggle';
-import { LikeList } from '@/components/Like/LikeList';
+import LikeList from '@/components/Like/LikeList';
 import { useFetchCafeLikes } from '@/hooks/useFetchCafeLikes';
-import { useLoginStatus } from '@/hooks/useLoginStatus';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { likesListState } from '@/atoms/likesState';
+import { useEffect } from 'react';
+//import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 export default function Like() {
   const {isOpen, openModal, closeModal} = useModal();
-  //useFetchCafeLikes();
+  const data = useFetchCafeLikes();
 
   const handleFilterModalOpen = () => {
     openModal();
@@ -25,7 +28,7 @@ export default function Like() {
           <Toggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar />
-        <LikeList />
+        <LikeList data={{ cafes: data }} />
       </PageLayout>
 
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}

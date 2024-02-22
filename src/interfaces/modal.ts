@@ -22,3 +22,6 @@ export interface ModalProps {
   export interface ModalButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
   }
+
+  export interface FilterModalProps extends Partial<ModalProps> {
+  }

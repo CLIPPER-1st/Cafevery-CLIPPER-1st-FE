@@ -13,3 +13,9 @@ export default function NavBar() {
         </Styled.Container>
     )
 }
+// 폴더 분리 방식
+// 기능에 의한 분리 / 지역성의 원칙 / 도메인에 의한 분리
+
+// liktpage > pages, hooks, constants, 
+// src/hooks
+// src/componn

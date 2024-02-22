@@ -2,24 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import {RecoilRoot} from 'recoil';
-import QueryClientContext from './contexts/QueryClientContext';
 import {GlobalStyle} from './style';
 import {initMocks} from './mocks';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 async function enableMocking() {
-  if (!import.meta.env.DEV) {
+  if (!import.meta.env.VITE_APP_NODE_ENV) {
     return;
   }
   return initMocks();
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+      queries: {
+          refetchOnWindowFocus: false,
+          retry: 0,
+      },
+  },
+});
+
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
-      <QueryClientContext>
+    <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <App />
           <GlobalStyle />
         </RecoilRoot>
-      </QueryClientContext>
+        <ReactQueryDevtools />
+    </QueryClientProvider>,
+
   );
 });

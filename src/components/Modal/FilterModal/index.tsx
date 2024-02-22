@@ -10,8 +10,9 @@ import DistanceFilter from '@/components/Filter/DistanceFilter';
 import CheckButton from '@/components/Button/CheckButton';
 import { useLocation } from 'react-router-dom';
 import theme from '@/theme';
+import { FilterModalProps } from '@/interfaces/modal';
 
-export default function FilterModal({onClose, isOpen}) {
+export default function FilterModal({ onClose, isOpen }: FilterModalProps) {
   const nowUrl = useLocation();
   const [{ minValue, maxValue }, ] = useRecoilState(timeFilterState(nowUrl.pathname));
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));

@@ -1,8 +1,8 @@
 import {http, HttpResponse} from 'msw';
-import {data} from './data';
+import {data} from './data.json';
 
 export const likeHandler = [
-  http.get('/test/cafes/likes', () => {
-    return HttpResponse.json(data, {status: 200});
+  http.get('/cafes/likes', () => {
+    return HttpResponse.json(data);
   }),
 ];

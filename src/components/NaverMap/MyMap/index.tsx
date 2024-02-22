@@ -23,7 +23,7 @@ export function MyMap() {
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
     const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
-    //const cafeInfoList = useFetchCafeList(myLocation.latitude, myLocation.longitude); //TODO: 
+    //const cafeInfoList = useFetchCafeList(coordinates.lat, coordinates.lng); //TODO: 
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
     const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
 
