@@ -11,14 +11,17 @@ precacheAndRoute(self.__WB_MANIFEST);
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(({request, url}) => {
   if (request.mode !== 'navigate') {
+    console.log('returning false', request.mode);
     return false;
   }
 
   if (url.pathname.startsWith('/_')) {
+    console.log('returning false', url.pathname);
     return false;
   }
 
   if (url.pathname.match(fileExtensionRegexp)) {
+    console.log('returning false', url.pathname);
     return false;
   }
 

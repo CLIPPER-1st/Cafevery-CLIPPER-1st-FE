@@ -10,7 +10,7 @@ export function register(config) {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       if (isLocalhost) {
-        checkValidServiceWorker('/serviceWorker.js', config);
+        checkValidServiceWorker('./serviceWorker.js', config);
 
         navigator.serviceWorker.ready.then(() => {
           console.log(
@@ -19,7 +19,7 @@ export function register(config) {
           );
         });
       } else {
-        registerValidSW('serviceWorker.js', config);
+        registerValidSW('./serviceWorker.js', config);
       }
     });
   }
