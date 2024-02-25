@@ -1,7 +1,7 @@
 import FilterButton from '@/components/Button/FilterButton';
 import * as Styled from './style';
 import {LikeSearchBar} from '@/components/Like/LikeSearchBar';
-import PageLayout from '@/components/PageLayout/PageLayout';
+import PageLayout from '@/components/PageLayout';
 import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import { Toggle } from '@/components/Toggle';

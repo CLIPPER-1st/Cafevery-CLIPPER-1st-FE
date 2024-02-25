@@ -1,4 +1,4 @@
-import PageLayout from '@/components/PageLayout/PageLayout';
+import PageLayout from '@/components/PageLayout';
 import * as Styled from './style';
 import TextButton from '@/components/Button/TextButton';
 import { FavoritePlaceList } from '@/components/FavoritePlace/FavoritePlaceList';

@@ -1,5 +1,5 @@
 import {NaverMap} from '@/components/NaverMap';
-import PageLayout from '@/components/PageLayout/PageLayout';
+import PageLayout from '@/components/PageLayout';
 import GoToMyLocationButton from '@/components/Button/GoToMyLocationButton';
 import GetCafeLocationButton from '@/components/Button/GetCafeLocationButton';
 import * as Styled from './style';

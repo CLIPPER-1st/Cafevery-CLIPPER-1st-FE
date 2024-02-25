@@ -1,5 +1,5 @@
 import SettingCloseButton from '@/components/Button/SettingCloseButton';
-import PageLayout from '@/components/PageLayout/PageLayout';
+import PageLayout from '@/components/PageLayout';
 import * as Styled from './style';
 import SettingInfoList from '@/components/Setting/SettingInfoList';
 import UserInfo from '@/components/Setting/UserInfo';

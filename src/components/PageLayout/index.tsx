@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './style';
+import * as Style from './style';
 import NavBar from '@/components/NavBar'
 
 interface Props {
@@ -10,12 +10,12 @@ export default function PageLayout({ children }: Props) {
 
   return (
     <>
-      <S.Layout>
-        <S.Wrapper>
+      <Style.Layout>
+        <Style.Wrapper>
           {children}
           <NavBar />
-        </S.Wrapper>
-      </S.Layout>
+        </Style.Wrapper>
+      </Style.Layout>
     </>
   );
 }
