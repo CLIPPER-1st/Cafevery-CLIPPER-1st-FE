@@ -5,37 +5,38 @@ import CafeMarkerImg from '@/assets/Markers/CafeMarker.png';
 import LikedCafeMarkerImg from '@/assets/Markers/LikedCafeMarker.png';
 import SummaryCafeInfoModal from '@/components/Modal/SummaryCafeInfoModal';
 import { currentModalState } from '@/atoms/modalState';
+import { Cafe } from '@/interfaces/cafeInfo';
 
-export default function CafeMarker({ cafe }) {
+export default function CafeMarker({ data }: { data: Cafe }) {
     const [currentModal, setCurrentModal] = useRecoilState(currentModalState);
     const navermaps = useNavermaps();
 
     const handleMarkerClick = () => {
-        if (currentModal === cafe.id) {
+        if (currentModal === data.id) {
             setCurrentModal(null);
         } else {
-            setCurrentModal(cafe.id);
+            setCurrentModal(data.id);
         }
     };
 
-    const markerImage = cafe.liked ? LikedCafeMarkerImg : CafeMarkerImg;
+    const markerImage = data.liked ? LikedCafeMarkerImg : CafeMarkerImg;
 
     return (
         <>            
             <Marker
-                key={cafe.id}
+                key={data.id}
                 onClick={handleMarkerClick}
-                position={{lat: cafe.latitude, lng: cafe.longitude}}
+                position={{lat: data.latitude, lng: data.longitude}}
                 icon={{
                     content: `<div style="width: 40px; height: 40px;"><img src="${markerImage}" style="width: 40px; height: 40px;" /></div>`,
                     anchor: new navermaps.Point(20, 40),
                 }}
             />
-            {currentModal === cafe.id && (
+            {currentModal === data.id && (
                 <SummaryCafeInfoModal 
-                    isOpen={currentModal === cafe.id}
+                    isOpen={currentModal === data.id}
                     onClose={() => setCurrentModal(null)}
-                    id={cafe.id}
+                    id={data.id}
                 />
             )}
         </>

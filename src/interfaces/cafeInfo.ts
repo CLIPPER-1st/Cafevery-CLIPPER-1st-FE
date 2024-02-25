@@ -13,7 +13,7 @@ export interface Cafe {
     in_business: boolean;
 }
 
-export interface CafeList {
+export interface ICafeList {
     cafes: Cafe[];
 }
 

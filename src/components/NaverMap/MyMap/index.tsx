@@ -54,7 +54,7 @@ export function MyMap() {
             >
                 <MyMarker />
                 {filteredCafes?.cafes.map((cafe) => (
-                    <CafeMarker key={cafe.id} cafe={cafe} />
+                    <CafeMarker key={cafe.id} data={cafe} />
                 ))}
             </NaverMap>
         )}

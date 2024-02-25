@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { myLocationState } from '@/atoms/location';
-import { CafeList } from '@/interfaces/cafeInfo';
+import { ICafeList } from '@/interfaces/cafeInfo';
 import useGeolocation from '@/hooks/useGeolocation';
 import { ILikesList } from '@/interfaces/likes';
 import { useConvertTime } from '@/hooks/useConvertTime';
 import { useCalculateDistance } from './useCalculateDistance';
 
 /**시간과 거리에 따른 카페 필터링 커스텀 훅 */ 
-export function useFilteredCafes(cafeInfoList: CafeList | ILikesList | null, minValue: number, maxValue: number, filteredDistance: number, toggleState: boolean) {
+export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, minValue: number, maxValue: number, filteredDistance: number, toggleState: boolean) {
     const { loaded, coordinates } = useGeolocation();
     const myLocation = useRecoilValue(myLocationState);
-    const [filteredCafes, setFilteredCafes] = useState<CafeList | ILikesList | null>();
+    const [filteredCafes, setFilteredCafes] = useState<ICafeList | ILikesList | null>();
 
-    console.log("cafeInfoList", cafeInfoList)
+    console.log("useFilteredCafes cafeInfoList", cafeInfoList)
     useEffect(() => {
+        if (!cafeInfoList || !cafeInfoList.cafes || cafeInfoList.cafes.length === 0) return;
+
         if(myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
             const cafes = cafeInfoList.cafes;
     

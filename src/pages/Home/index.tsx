@@ -47,7 +47,7 @@ export default function Home() {
             onClick={() => handleMyLocationButtonClicked()}
           />
           <Styled.CenteredButton>
-            <GetCafeLocationButton onClick={useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude)}/>
+            <GetCafeLocationButton onClick={handleFilterModalOpen}/> {/* TODO: 이 부분 고쳐야 함*/}
           </Styled.CenteredButton>
         </Styled.ButtonContainer>
         <NaverMap />

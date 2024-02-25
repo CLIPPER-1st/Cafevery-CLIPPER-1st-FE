@@ -10,7 +10,7 @@ export default function SocialButton(props: SocialButtonProps) {
   };
 
   return (
-    <Button width={236} height={52} margin={"8px 0 8px 0"} background={socialImg} onClick={handleSignIn} {...props}>
+    <Button width={236} height={60} margin={"8px 0 8px 0"} background={socialImg} onClick={handleSignIn} {...props}>
       {props.children}
     </Button>
   );

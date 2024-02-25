@@ -20,7 +20,7 @@ declare namespace naver {
         }
     
         const Event: {
-            addListener(instance: any, eventName: string, handler: Function): any;
+            addListener(instance: HTMLElement | string, eventName: string, handler: (event: Event) => void): any;
             removeListener(listener: any): void;
         };
     
