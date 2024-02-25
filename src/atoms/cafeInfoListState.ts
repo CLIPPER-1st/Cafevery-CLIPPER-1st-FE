@@ -1,7 +1,7 @@
-import { atom, atomFamily } from 'recoil';
-import { CafeList } from '@/interfaces/cafeInfo';
+import { atomFamily } from 'recoil';
+import { ICafeList } from '@/interfaces/cafeInfo';
 
-export const cafeInfoListState = atomFamily<CafeList | null, { distance: number; startTime: number; endTime: number; }>({ 
+export const cafeInfoListState = atomFamily<ICafeList | null, { distance: number; startTime: number; endTime: number; }>({ 
     key: 'cafeInfoListState',
     //TODO: 더미 데이터
     default: {
