@@ -5,18 +5,20 @@ export const Layout = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   max-height: 932px;
   min-height: 850px;
   overflow-x: hidden;
-  position: absolute;
 `;
 
 
 export const Wrapper = styled.div`
   z-index: 10;
-  width: 430px;
-  height: 932px;
+  max-width: 430px;
+  max-height: 932px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
