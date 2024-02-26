@@ -22,16 +22,20 @@ export default function CafeMarker({ data }: { data: Cafe }) {
     const markerImage = data.liked ? LikedCafeMarkerImg : CafeMarkerImg;
 
     return (
-        <>            
+        <>          
+        {navermaps && (  
             <Marker
                 key={data.id}
                 onClick={handleMarkerClick}
-                position={{lat: data.latitude, lng: data.longitude}}
+                position={new navermaps.LatLng(data.latitude, 
+                    data.longitude)
+                }
                 icon={{
                     content: `<div style="width: 40px; height: 40px;"><img src="${markerImage}" style="width: 40px; height: 40px;" /></div>`,
                     anchor: new navermaps.Point(20, 40),
                 }}
             />
+            )}
             {currentModal === data.id && (
                 <SummaryCafeInfoModal 
                     isOpen={currentModal === data.id}

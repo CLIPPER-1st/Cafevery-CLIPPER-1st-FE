@@ -4,8 +4,8 @@
     "cafes": [
       {
         "id": 1,
-        "latitude": 37.5650918,
-        "longitude": 126.9893802,
+        "latitude": 37.5606291,
+        "longitude": 126.9934283,
         "start_time": "08:00",
         "end_time": "23:00",
         "liked": false,

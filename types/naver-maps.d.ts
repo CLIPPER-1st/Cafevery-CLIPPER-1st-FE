@@ -20,8 +20,8 @@ declare namespace naver {
         }
     
         const Event: {
-            addListener(instance: HTMLElement | string, eventName: string, handler: (event: Event) => void): any;
-            removeListener(listener: any): void;
+            addListener(instance: HTMLElement | string, eventName: string, handler: (event: Event) => void): void;
+            removeListener(listener: EventListenerOrEventListenerObject): void;
         };
     
         interface MapOptions {

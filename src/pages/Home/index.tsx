@@ -12,13 +12,14 @@ import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
-import { useFetchCafeList } from '@/hooks/useFetchCafeList';
+import { useNavermaps } from 'react-naver-maps';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const {setValue: setSearchTerm} = useInput();
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
+  const navermaps = useNavermaps();
 
   const handleMyLocationButtonClicked = () => {
     if (loaded) {

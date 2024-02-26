@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { NaverMap } from 'react-naver-maps';
+import { NaverMap, useNavermaps } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
@@ -13,6 +13,8 @@ import useMapCenter from '@/hooks/useMapCenter';
 import { mapCenterState } from '@/atoms/location';
 import { useFilteredCafes } from '@/hooks/useFilteredCafes';
 import { toggleState } from '@/atoms/toggle';
+import { Cafe } from '@/interfaces/cafeInfo';
+import Splash from '@/components/Splash';
 
 export function MyMap() {
     const { loaded, coordinates } = useGeolocation();
@@ -22,10 +24,11 @@ export function MyMap() {
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
-    const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
-    //const cafeInfoList = useFetchCafeList(coordinates.lat, coordinates.lng); //TODO: 
+    //const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
+    const cafeInfoList = useFetchCafeList(mapCenter.latitude, mapCenter.longitude); //TODO: 
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
     const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
+    const navermaps = useNavermaps();
 
     console.log("mymap render")
     useEffect(() => {
@@ -41,23 +44,24 @@ export function MyMap() {
 
     return (
         <>
-        {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 && (
-            <NaverMap
-                defaultZoom={18}
-                minZoom={12}
-                maxZoom={19}
-                ref={mapRef}
-                center={{
-                    lat: mapCenterLocation.latitude,
-                    lng: mapCenterLocation.longitude,
-                }}
-            >
-                <MyMarker />
-                {filteredCafes?.cafes.map((cafe) => (
-                    <CafeMarker key={cafe.id} data={cafe} />
-                ))}
-            </NaverMap>
-        )}
+            {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 ? (
+                <NaverMap
+                    defaultZoom={18}
+                    minZoom={12}
+                    maxZoom={19}
+                    ref={mapRef}
+                    center={new navermaps.LatLng(mapCenterLocation.latitude, 
+                        mapCenterLocation.longitude)
+                    }
+                >
+                    <MyMarker />
+                    {filteredCafes?.cafes.map((cafe: Cafe) => (
+                        <CafeMarker key={cafe.id} data={cafe} />
+                    ))}
+                </NaverMap>
+            ) : (
+                <Splash />
+            )}
         </>
     );
 }
