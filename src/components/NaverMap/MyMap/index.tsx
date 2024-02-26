@@ -29,7 +29,7 @@ export function MyMap() {
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
     const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
     const navermaps = useNavermaps();
-    const [showSplash, setShowSplash] = useState<boolean>(false);
+    const [showSplash, setShowSplash] = useState(false);
 
     useEffect(() => {
         // mapCenterLocation 상태가 유효한 값으로 업데이트되었을 때 Splash 컴포넌트를 숨기는 로직을 실행

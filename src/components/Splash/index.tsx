@@ -1,10 +1,7 @@
 // Splash.tsx
 import React, { useEffect, useState } from 'react';
 import * as Styled from './style';
-
-interface SplashProps {
-    showSplash: boolean;
-}
+import { SplashProps } from '@/interfaces/splash';
 
 export default function Splash({ showSplash }: SplashProps) {
     const [animateOut, setAnimateOut] = useState(false);
