@@ -1,8 +1,9 @@
 import useInput from '@/hooks/useInput';
 import React from 'react';
 import * as Styled from './style';
+import { SuggestionsListProps } from '@/interfaces/suggestion';
 
-export function SuggestionsList({ suggestions, onSuggestionClick }) {
+export function SuggestionsList({ suggestions, onSuggestionClick }: SuggestionsListProps) {
     const { setValue: setSearchTerm } = useInput();
 
     return (

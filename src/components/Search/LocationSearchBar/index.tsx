@@ -26,6 +26,7 @@ export default function LocationSearchBar() {
       onChange={handleChangeAndOpenModal}
       value={searchTerm}
       reset={reset}
+      width={325}
     >
       {isOpen && (
         <SuggestionsList
