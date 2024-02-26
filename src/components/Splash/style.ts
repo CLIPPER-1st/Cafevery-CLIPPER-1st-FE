@@ -15,10 +15,9 @@ export const Layout = styled.div`
 
 export const Wrapper = styled.div`
   z-index: 10;
+  width: 100vw;
   max-width: 430px;
-  max-height: 932px;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
