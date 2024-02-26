@@ -1,13 +1,24 @@
-import React from 'react';
-import * as Style from './style';
+// Splash.tsx
+import React, { useEffect, useState } from 'react';
+import * as Styled from './style';
 
-export default function Splash() {
+interface SplashProps {
+    showSplash: boolean;
+}
+
+export default function Splash({ showSplash }: SplashProps) {
+    const [animateOut, setAnimateOut] = useState(false);
+
+    useEffect(() => {
+        if(!showSplash) return;
+        setAnimateOut(true);
+    }, [showSplash]);
 
     return (
-        <Style.Layout>
-            <Style.Wrapper>
-                <Style.SplashIcon />
-            </Style.Wrapper>
-        </Style.Layout>
+        <Styled.Layout>
+            <Styled.Wrapper animateOut={animateOut}>
+                <Styled.SplashIcon />
+            </Styled.Wrapper>
+        </Styled.Layout>
     );
 }

@@ -14,7 +14,6 @@ import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
 import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 import { useNavermaps } from 'react-naver-maps';
-import Splash from '@/components/Splash';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
@@ -22,8 +21,6 @@ export default function Home() {
   const {setValue: setSearchTerm} = useInput();
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
   //const navermaps = useNavermaps();
-  const [myLocation, ] = useRecoilState(myLocationState);
-  console.log(mapCenterLocation)
 
   const handleMyLocationButtonClicked = () => {
     if (loaded) {
@@ -41,7 +38,6 @@ export default function Home() {
 
   return (
     <>
-      {/* {loaded && coordinates ? ( */}
         <PageLayout>
           <Styled.ButtonsWrapper>
             <FilterButton onClick={() => handleFilterModalOpen()} />
@@ -58,9 +54,6 @@ export default function Home() {
           </Styled.ButtonContainer>
           <NaverMap />
         </PageLayout>
-       {/* ) : (
-         <Splash />
-     )} */}
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}
     </>
   );

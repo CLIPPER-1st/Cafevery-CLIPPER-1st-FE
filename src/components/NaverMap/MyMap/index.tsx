@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NaverMap, useNavermaps } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
@@ -29,6 +29,20 @@ export function MyMap() {
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
     const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
     const navermaps = useNavermaps();
+    const [showSplash, setShowSplash] = useState(false);
+
+    useEffect(() => {
+        // mapCenterLocation 상태가 유효한 값으로 업데이트되었을 때 Splash 컴포넌트를 숨기는 로직을 실행
+        if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
+            // 일정 시간(예: 2초) 후에 Splash 화면을 숨김
+            const timeoutId = setTimeout(() => {
+                setShowSplash(true);
+            }, 2000); // 2초 후에 실행
+
+            // 컴포넌트가 언마운트될 때 setTimeout 취소
+            return () => clearTimeout(timeoutId);
+        }
+    }, [mapCenterLocation]);
 
     console.log("mymap render")
     useEffect(() => {
@@ -44,23 +58,22 @@ export function MyMap() {
 
     return (
         <>
-        {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 ? (
-            <NaverMap
-                defaultZoom={18}
-                minZoom={12}
-                maxZoom={19}
-                ref={mapRef}
-                center={new navermaps.LatLng(mapCenterLocation.latitude, 
-                    mapCenterLocation.longitude)
-                }
-            >
-                <MyMarker />
-                {filteredCafes?.cafes.map((cafe: Cafe) => (
-                    <CafeMarker key={cafe.id} data={cafe} />
-                ))}
-            </NaverMap>
-              ) : (
-                <Splash />
+            <Splash showSplash={showSplash} />
+            {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 && (
+                <NaverMap
+                    defaultZoom={18}
+                    minZoom={12}
+                    maxZoom={19}
+                    ref={mapRef}
+                    center={new navermaps.LatLng(mapCenterLocation.latitude, 
+                        mapCenterLocation.longitude)
+                    }
+                >
+                    <MyMarker />
+                    {filteredCafes?.cafes.map((cafe: Cafe) => (
+                        <CafeMarker key={cafe.id} data={cafe} />
+                    ))}
+                </NaverMap>
             )}
         </>
     );
