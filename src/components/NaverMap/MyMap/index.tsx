@@ -31,16 +31,11 @@ export function MyMap() {
     const navermaps = useNavermaps();
     const [showSplash, setShowSplash] = useState(false);
 
+    console.log(mapCenterLocation)
     useEffect(() => {
         // mapCenterLocation 상태가 유효한 값으로 업데이트되었을 때 Splash 컴포넌트를 숨기는 로직을 실행
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
-            // 일정 시간(예: 2초) 후에 Splash 화면을 숨김
-            const timeoutId = setTimeout(() => {
-                setShowSplash(true);
-            }, 2000); // 2초 후에 실행
-
-            // 컴포넌트가 언마운트될 때 setTimeout 취소
-            return () => clearTimeout(timeoutId);
+            setShowSplash(true);
         }
     }, [mapCenterLocation]);
 
