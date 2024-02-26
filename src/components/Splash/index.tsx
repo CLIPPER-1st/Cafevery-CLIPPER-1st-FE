@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as Styled from './style';
 
 interface SplashProps {
-    showSplash: boolean;
+    showSplash?: boolean;
 }
 
 export default function Splash({ showSplash }: SplashProps) {
