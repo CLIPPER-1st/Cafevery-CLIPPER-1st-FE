@@ -9,7 +9,7 @@ import Splash from './components/Splash';
 const App = () => {
   return (
     <ErrorBoundary fallback={<>에러 발생</>}>
-      <Suspense fallback={<Splash />}>
+      <Suspense fallback={ <Splash />}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <Router />

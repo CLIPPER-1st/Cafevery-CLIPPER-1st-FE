@@ -44,22 +44,22 @@ export function MyMap() {
 
     return (
         <>
-            {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 ? (
-                <NaverMap
-                    defaultZoom={18}
-                    minZoom={12}
-                    maxZoom={19}
-                    ref={mapRef}
-                    center={new navermaps.LatLng(mapCenterLocation.latitude, 
-                        mapCenterLocation.longitude)
-                    }
-                >
-                    <MyMarker />
-                    {filteredCafes?.cafes.map((cafe: Cafe) => (
-                        <CafeMarker key={cafe.id} data={cafe} />
-                    ))}
-                </NaverMap>
-            ) : (
+        {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 ? (
+            <NaverMap
+                defaultZoom={18}
+                minZoom={12}
+                maxZoom={19}
+                ref={mapRef}
+                center={new navermaps.LatLng(mapCenterLocation.latitude, 
+                    mapCenterLocation.longitude)
+                }
+            >
+                <MyMarker />
+                {filteredCafes?.cafes.map((cafe: Cafe) => (
+                    <CafeMarker key={cafe.id} data={cafe} />
+                ))}
+            </NaverMap>
+              ) : (
                 <Splash />
             )}
         </>

@@ -2,27 +2,23 @@ import styled, { keyframes } from 'styled-components';
 import SplashIconImg from '@/assets/Splash/SplashIcon.png';
 
 export const Layout = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  max-height: 932px;
-  min-height: 850px;
   overflow-x: hidden;
 `;
 
 
 export const Wrapper = styled.div`
-  z-index: 10;
-  width: 100vw;
   max-width: 430px;
+  max-height: 932px;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   background: linear-gradient(10deg, #FED2A1 0%, #A97953 100%);
+  z-index: 100;
 `;
 
 // 둥실둥실 떠다니는 효과를 위한 keyframes 정의
