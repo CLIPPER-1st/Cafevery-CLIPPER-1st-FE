@@ -6,7 +6,7 @@ interface SplashProps {
     showSplash: boolean;
 }
 
-export default function Splash({ showSplash }: SplashProps) {
+export default function Splash( showSplash : SplashProps) {
     const [animateOut, setAnimateOut] = useState(false);
 
     useEffect(() => {
