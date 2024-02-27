@@ -1,7 +1,7 @@
 import { toggleState } from '@/atoms/toggle';
 import CloseMapButton from '@/components/Button/CloseMapButton'
 import RegisterButton from '@/components/Button/RegisterButton';
-import { NaverMap } from '@/components/NaverMap';
+import { NaverMaps } from '@/components/NaverMaps';
 import LocationSearchBar from '@/components/Search/LocationSearchBar'
 import { useRecoilState } from 'recoil';
 import { FavoritePlaceBar } from '../FavoritePlaceBar';
@@ -71,7 +71,7 @@ export default function AddFavoritePlaceMap() {
         <>
             <CloseMapButton onClick={() => setShowMap(!showMap)} />
             <LocationSearchBar />
-            <NaverMap />
+            <NaverMaps />
             <Styled.Container>
                 <FavoritePlaceBar />
                 {placeTypes.map((place) => (

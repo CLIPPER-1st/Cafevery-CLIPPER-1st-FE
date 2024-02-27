@@ -55,7 +55,7 @@ export default function LikeList({ data }: { data: ILikesList }) {
                     address={like.address}
                     business={`${useTimeConverter(like.start_time)} ~ ${useTimeConverter(like.end_time)}`}
                     likes={like.likes}
-                    distance={useDistance({
+                    distance={useDistance({ //TODO: 고쳐야함
                       currentLatitude: coordinates.lat,
                       currentLongitude: coordinates.lng,
                       targetLatitude: like.latitude,

@@ -10,6 +10,7 @@ export default function MyMarker() {
     const [myLocation, setMyLocation] = useRecoilState(myLocationState);
 
     useEffect(() => {
+        //if (loaded && coordinates?.lat !== undefined && coordinates?.lng !== undefined) {
         if (loaded && coordinates?.lat !== undefined && coordinates?.lng !== undefined) {
             setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
         }

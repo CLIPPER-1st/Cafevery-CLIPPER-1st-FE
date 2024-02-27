@@ -16,10 +16,13 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
     console.log("useFilteredCafes cafeInfoList", cafeInfoList)
     useEffect(() => {
         if (!cafeInfoList || !cafeInfoList.cafes || cafeInfoList.cafes.length === 0) return;
-
+        console.log("1")
         if(myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
-            const cafes = cafeInfoList.cafes;
-    
+        //if(coordinates.lat !== 0 && coordinates.lng!== 0 && loaded && coordinates) {
+            console.log("2")
+
+        const cafes = cafeInfoList.cafes;
+        console.log("useFilteredCafes useEffect cafeInfoList", cafeInfoList)
             //if (!cafes || cafes.length === 0) return;
         
             const filtered = cafes?.filter((cafe) => {
@@ -53,11 +56,11 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
                 }
             })
             setFilteredCafes({ cafes: filtered });
-            console.log("filtered", filteredCafes)
+            console.log("filteredCafes", filteredCafes)
 
         }
-        console.log("filtered")
-    }, [minValue, maxValue, filteredDistance, cafeInfoList, toggleState]);
+        console.log("filteredd", filteredCafes)
+    }, [minValue, maxValue, filteredDistance, toggleState]);
 
     return filteredCafes;
 }
