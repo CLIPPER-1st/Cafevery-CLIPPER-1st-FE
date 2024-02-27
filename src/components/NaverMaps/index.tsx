@@ -1,7 +1,7 @@
 import { NavermapsProvider } from 'react-naver-maps';
 import { useEffect, useRef, useState } from 'react';
 import { NaverMap, useNavermaps } from 'react-naver-maps';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
@@ -10,8 +10,13 @@ import { mapCenterState } from '@/atoms/location';
 import { Cafe, ICafeList } from '@/interfaces/cafeInfo';
 import Splash from '@/components/Splash';
 import { Container as MapDiv } from 'react-naver-maps'
+import { useFilteredCafes } from '@/hooks/useFilteredCafes';
+import { timeFilterState } from '@/atoms/timeFilter';
+import { distanceState } from '@/atoms/distanceFilter';
+import { useLocation } from 'react-router-dom';
+import { toggleState } from '@/atoms/toggle';
 
-export function NaverMaps( data ) {
+export function NaverMaps( cafes: ICafeList ) {
     const { loaded, coordinates } = useGeolocation();
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
@@ -19,7 +24,13 @@ export function NaverMaps( data ) {
     //const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
     const navermaps = useNavermaps();
     const [showSplash, setShowSplash] = useState(false);
-    console.log('NaverMaps cafe filtered data', data)
+    const nowUrl = useLocation();
+    const distance = useRecoilValue(distanceState(nowUrl.pathname));
+    const showMap = useRecoilValue(toggleState((nowUrl.pathname)));
+    const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
+    const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
+
+    console.log('NaverMaps cafe filtered data', cafes)
     useEffect(() => {
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
             setShowSplash(true);
@@ -57,7 +68,7 @@ export function NaverMaps( data ) {
                             }
                         >
                             <MyMarker />
-                            {data?.cafes?.map((cafe: Cafe) => (
+                            {filteredCafes?.cafes.map((cafe) => (
                                 <CafeMarker key={cafe.id} data={cafe} />
                             ))}
                         </NaverMap>
