@@ -2,8 +2,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import useSetTokens from '../hooks/useSetTokens';
 
-const accessToken = Cookies.get('access_token');
-const refreshToken = Cookies.get('refresh_token');
+const accessTokenCookie = Cookies.get('access_token');
+const refreshTokenCookie = Cookies.get('refresh_token');
+localStorage.setItem('accessToken', accessTokenCookie);
+localStorage.setItem('refreshToken', refreshTokenCookie);
+
+const accessToken = localStorage.getItem('accessToken');
+const refreshToken = localStorage.getItem('refreshtoken');
+
 console.log(accessToken);
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL

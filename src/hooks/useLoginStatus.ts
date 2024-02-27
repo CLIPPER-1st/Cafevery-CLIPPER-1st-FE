@@ -7,10 +7,13 @@ export const useLoginStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-       // const accessToken = Cookies.get('access_token');
-       // const refreshToken = Cookies.get('refresh_token');
-       const accessToken = localStorage.getItem('accessToken');
-       const refreshToken = localStorage.getItem('refreshToken');
+        const accessTokenCookie = Cookies.get('access_token');
+        const refreshTokenCookie = Cookies.get('refresh_token');
+        localStorage.setItem('accessToken', accessTokenCookie);
+        localStorage.setItem('refreshToken', refreshTokenCookie);
+        
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshtoken');
 
         console.log(accessToken);
 
