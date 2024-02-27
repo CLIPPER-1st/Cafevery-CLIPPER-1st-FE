@@ -28,7 +28,9 @@ export default function Home() {
       queryFn: async () => {
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
           return await fetchCafes(mapCenterLocation.latitude, mapCenterLocation.longitude);
-        } 
+        } else {
+          return { data: { cafes: [] } }; // 이 예제에서는 빈 카페 목록을 반환
+        }
       },
       staleTime: 1000,
       gcTime: 10000,
