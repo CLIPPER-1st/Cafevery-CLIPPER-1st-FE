@@ -45,7 +45,6 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
-  "proxy": "https://api.cafevery.site",
   "msw": {
     "workerDirectory": [
       "public"
