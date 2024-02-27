@@ -2,8 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import useSetTokens from '../hooks/useSetTokens';
 
-const getAccessTokenFromCookies = () => Cookies.get('accessCookie');
-const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
+const getAccessTokenFromCookies = () => Cookies.get('access_token');
+const getRefreshTokenFromCookies = () => Cookies.get('refresh_token');
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL

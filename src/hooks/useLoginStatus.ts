@@ -7,14 +7,14 @@ export const useLoginStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const accessToken = Cookies.get('accessToken');
-        const refreshToken = Cookies.get('refreshToken');
+        const accessToken = Cookies.get('access_token');
+        const refreshToken = Cookies.get('refresh_token');
 
         /**액세스 토큰과 리프레시 토큰이 모두 존재하는지 확인하여 로그인 상태 설정 */ 
         if (accessToken && refreshToken) {
-        setIsLoggedIn(true);
+            setIsLoggedIn(true);
         } else {
-        setIsLoggedIn(false);
+            setIsLoggedIn(false);
         }
     }, []);
 
