@@ -53,7 +53,7 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
                 }
             })
             setFilteredCafes({ cafes: filtered });
-            console.log("filtered", filtered)
+            console.log("filtered", filteredCafes)
 
         }
         console.log("filtered")

@@ -25,15 +25,14 @@ export function MyMap() {
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
     //const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
-    const cafeInfoList = useFetchCafeList(mapCenter.latitude, mapCenter.longitude); //TODO: 
+    const cafeInfoList = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude); //TODO: 
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
-    const filteredCafes = useFilteredCafes(cafeInfoList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
+    const filteredCafes = useFilteredCafes({ cafes: cafeInfoList }, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
     const navermaps = useNavermaps();
     const [showSplash, setShowSplash] = useState(false);
 
     console.log(mapCenterLocation)
     useEffect(() => {
-        // mapCenterLocation 상태가 유효한 값으로 업데이트되었을 때 Splash 컴포넌트를 숨기는 로직을 실행
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
             setShowSplash(true);
         }
@@ -47,7 +46,6 @@ export function MyMap() {
 
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
-
         }
     }, [coordinates]);
 

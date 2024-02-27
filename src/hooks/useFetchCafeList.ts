@@ -9,6 +9,6 @@ export const useFetchCafeList = (centerLatitude: number, centerLongitude: number
         staleTime: 100000,
         gcTime: 100,
     });
-    
+    console.log("======useSuspenseQuery", data.data.cafes)
     return data.data.cafes;
 };

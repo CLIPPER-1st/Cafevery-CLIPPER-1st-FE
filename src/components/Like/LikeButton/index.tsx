@@ -1,8 +1,7 @@
 import Liked from '@/assets/Icons/Liked.png';
 import NonLiked from '@/assets/Icons/NonLiked.png';
 import Button from '@/components/Button/Button';
-import { useDeleteLikeCafe } from '@/hooks/useDeleteLikeCafe';
-import { useRegisterLikeCafe } from '@/hooks/useRegisterLikeCafe';
+import { usePatchLikeCafe } from '@/hooks/usePatchLikeCafe';
 import {LikeButtonProps} from '@/interfaces/button';
 import { useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
@@ -13,8 +12,7 @@ import { useRecoilState } from 'recoil';
 import useModal from '@/hooks/useModal';
 
 export default function Likebutton(props: LikeButtonProps) {
-  const mutateRegister  = useRegisterLikeCafe();
-  const mutateDelete  = useDeleteLikeCafe();
+  const { mutate }  = usePatchLikeCafe();
   const queryClient = useQueryClient();
   const [liked, setLiked] = useState(props.liked);
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
@@ -27,10 +25,8 @@ export default function Likebutton(props: LikeButtonProps) {
   const handleLike = (e: { stopPropagation: () => void; }) => {
     e.stopPropagation();
     getImage()
-    if(props.liked) {
-      mutateDelete.mutate(props.id, {
+      mutate(props.id, {
         onSuccess: async () => {
-          console.log(`unlike ${props.id}`);
           setLiked(!liked)
           await queryClient.invalidateQueries({queryKey: [['cafeInfo', props.id], ['cafeLikeList']]});
         },
@@ -43,23 +39,6 @@ export default function Likebutton(props: LikeButtonProps) {
           }
         },
       });
-    } else {
-      mutateRegister.mutate(props.id, {
-        onSuccess: async () => {
-          console.log(`like ${props.id}`);
-          setLiked(!liked)
-          await queryClient.invalidateQueries({queryKey: [['cafeInfo', props.id], ['cafeLikeList']]});
-        },
-        onError: (error) => {
-          if(isAxiosError(error)) {
-            setAlertModal({
-              isOpen: true,
-              message: '좋아요에 실패했어요.\n다시 시도해주세요.',
-            });
-          }
-        },
-      });
-    }
   };
 
   return (

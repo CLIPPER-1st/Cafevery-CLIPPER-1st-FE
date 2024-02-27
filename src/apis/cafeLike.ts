@@ -7,22 +7,9 @@ export const fetchCafeLikes = async () => {
   return response;
 };
 
-export const likeCafe = async (cafeId: number) => {
+export const patchLikeCafe = async (cafeId: number) => {
   try {
-    const response = await instance.put(`/cafes/${cafeId}`);
-    return response;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      throw error;
-    } else {
-      throw error;
-    }
-  }
-};
-
-export const unlikeCafe = async (cafeId: number) => {
-  try {
-    const response = await instance.delete(`/cafes/${cafeId}`);
+    const response = await instance.patch(`/cafes/${cafeId}`);
     return response;
   } catch (error) {
     if (isAxiosError(error)) {
