@@ -15,7 +15,6 @@ export const likesListState = atomFamily<ILikesList | null, { distance: number; 
           end_time: "22:00",
           likes: 3,
           liked: true,
-          in_business: true,
         },
         {
           id: 2,
@@ -27,7 +26,6 @@ export const likesListState = atomFamily<ILikesList | null, { distance: number; 
           end_time: "23:00",
           likes: 3,
           liked: false,
-          in_business: false,
         },
         {
           id: 3,
@@ -39,7 +37,6 @@ export const likesListState = atomFamily<ILikesList | null, { distance: number; 
           end_time: "20:00",
           likes: 3,
           liked: true,
-          in_business: false,
         },
       ] 
     }

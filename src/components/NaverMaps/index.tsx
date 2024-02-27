@@ -7,7 +7,7 @@ import CafeMarker from '@/components/Marker/CafeMarker';
 import MyMarker from '@/components/Marker/MyMarker';
 import useMapCenter from '@/hooks/useMapCenter';
 import { mapCenterState } from '@/atoms/location';
-import { Cafe, ICafeList } from '@/interfaces/cafeInfo';
+import { ICafeList } from '@/interfaces/cafeInfo';
 import Splash from '@/components/Splash';
 import { Container as MapDiv } from 'react-naver-maps'
 import { useFilteredCafes } from '@/hooks/useFilteredCafes';

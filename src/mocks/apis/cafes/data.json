@@ -8,8 +8,7 @@
         "longitude": 126.9934283,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 2,
@@ -17,8 +16,7 @@
         "longitude": 126.9892802,
         "start_time": "07:30",
         "end_time": "21:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 3,
@@ -26,8 +24,7 @@
         "longitude": 126.9894802,
         "start_time": "09:00",
         "end_time": "22:30",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 4,
@@ -35,8 +32,7 @@
         "longitude": 126.9895802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 5,
@@ -44,8 +40,7 @@
         "longitude": 126.9896802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 6,
@@ -53,8 +48,7 @@
         "longitude": 126.9897802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 7,
@@ -62,17 +56,15 @@
         "longitude": 126.9898802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
-      },
+        "liked": false
+        },
       {
         "id": 8,
         "latitude": 37.5657,
         "longitude": 126.9899802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 9,
@@ -80,8 +72,7 @@
         "longitude": 126.9890802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false,
-        "in_business": true
+        "liked": false
       }
     ]
   },

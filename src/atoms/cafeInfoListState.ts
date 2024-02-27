@@ -13,7 +13,6 @@ export const cafeInfoListState = atomFamily<ICafeList | null, { distance: number
             liked: true,
             start_time: "13:00",
             end_time: "22:00",
-            in_business: true,
             },
             {
             id: 2,
@@ -22,7 +21,6 @@ export const cafeInfoListState = atomFamily<ICafeList | null, { distance: number
             liked: null,
             start_time: "09:00",
             end_time: "23:00",
-            in_business: true,
             },
             {
             id: 3,
@@ -31,7 +29,6 @@ export const cafeInfoListState = atomFamily<ICafeList | null, { distance: number
             liked: false,
             start_time: "07:30",
             end_time: "20:00",
-            in_business: false,
             }
         ]
     },

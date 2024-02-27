@@ -17,7 +17,6 @@ export const cafeInfoState = atom<CafeInfo>({
             { days: "토", start_time: "10:00", end_time: "17:00" },
             { days: "일", start_time: "휴무", end_time: "" }
         ],
-        in_business: true,
         phone_number: "02-123-4567",
         likes: 42,
         liked: true

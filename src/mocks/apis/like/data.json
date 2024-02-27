@@ -11,8 +11,7 @@
         "start_time": "08:00",
         "end_time": "23:00",
         "likes": 256,
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 2,
@@ -23,8 +22,7 @@
         "start_time": "07:30",
         "end_time": "21:00",
         "likes": 182,
-        "liked": true,
-        "in_business": true
+        "liked": true
       },
       {
         "id": 3,
@@ -35,8 +33,7 @@
         "start_time": "09:00",
         "end_time": "22:30",
         "likes": 98,
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 4,
@@ -47,8 +44,7 @@
         "start_time": "10:00",
         "end_time": "20:00",
         "likes": 134,
-        "liked": true,
-        "in_business": true
+        "liked": true
       },
       {
         "id": 5,
@@ -59,8 +55,7 @@
         "start_time": "08:30",
         "end_time": "21:30",
         "likes": 200,
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 6,
@@ -71,8 +66,7 @@
         "start_time": "07:00",
         "end_time": "22:00",
         "likes": 350,
-        "liked": true,
-        "in_business": true
+        "liked": true
       },
       {
         "id": 7,
@@ -83,8 +77,7 @@
         "start_time": "06:30",
         "end_time": "23:30",
         "likes": 415,
-        "liked": false,
-        "in_business": true
+        "liked": false
       },
       {
         "id": 8,
@@ -95,8 +88,7 @@
         "start_time": "08:00",
         "end_time": "22:00",
         "likes": 128,
-        "liked": true,
-        "in_business": true
+        "liked": true
       },
       {
         "id": 9,
@@ -107,8 +99,7 @@
         "start_time": "09:30",
         "end_time": "24:00",
         "likes": 432,
-        "liked": true,
-        "in_business": true
+        "liked": true
       },
       {
         "id": 10,
@@ -119,128 +110,7 @@
         "start_time": "10:00",
         "end_time": "23:00",
         "likes": 213,
-        "liked": false,
-        "in_business": true
-      },
-      {
-        "id": 11,
-        "latitude": 37.502022,
-        "longitude": 127.049603,
-        "name": "매머드커피 청담점",
-        "address": "서울시 강남구 청담동",
-        "start_time": "09:00",
-        "end_time": "21:00",
-        "likes": 150,
-        "liked": true,
-        "in_business": true
-      },
-      {
-        "id": 12,
-        "latitude": 37.509123,
-        "longitude": 127.038,
-        "name": "투썸플레이스 압구정점",
-        "address": "서울시 강남구 압구정동",
-        "start_time": "10:00",
-        "end_time": "22:00",
-        "likes": 120,
-        "liked": false,
-        "in_business": true
-      },
-      {
-        "id": 13,
-        "latitude": 37.510345,
-        "longitude": 127.046789,
-        "name": "이디야 신사점",
-        "address": "서울시 강남구 신사동",
-        "start_time": "08:00",
-        "end_time": "20:00",
-        "likes": 98,
-        "liked": true,
-        "in_business": true
-      },
-      {
-        "id": 14,
-        "latitude": 37.518123,
-        "longitude": 127.022345,
-        "name": "카페14",
-        "address": "서울시 강남구 논현동",
-        "start_time": "07:00",
-        "end_time": "19:00",
-        "likes": 134,
-        "liked": false,
-        "in_business": true
-      },
-      {
-        "id": 15,
-        "latitude": 37.522345,
-        "longitude": 127.033212,
-        "name": "카페15",
-        "address": "서울시 강남구 역삼동",
-        "start_time": "11:30",
-        "end_time": "23:30",
-        "likes": 165,
-        "liked": true,
-        "in_business": true
-      },
-      {
-        "id": 16,
-        "latitude": 37.523456,
-        "longitude": 127.037654,
-        "name": "카페16",
-        "address": "서울시 강남구 대치동",
-        "start_time": "09:00",
-        "end_time": "18:00",
-        "likes": 73,
-        "liked": true,
-        "in_business": true
-      },
-      {
-        "id": 17,
-        "latitude": 37.530123,
-        "longitude": 127.045678,
-        "name": "카페17",
-        "address": "서울시 강남구 삼성동",
-        "start_time": "10:00",
-        "end_time": "22:00",
-        "likes": 250,
-        "liked": false,
-        "in_business": true
-      },
-      {
-        "id": 18,
-        "latitude": 37.531789,
-        "longitude": 127.046456,
-        "name": "카페18",
-        "address": "서울시 강남구 도곡동",
-        "start_time": "08:30",
-        "end_time": "21:30",
-        "likes": 210,
-        "liked": false,
-        "in_business": true
-      },
-      {
-        "id": 19,
-        "latitude": 37.535678,
-        "longitude": 127.053456,
-        "name": "카페19",
-        "address": "서울시 강남구 개포동",
-        "start_time": "06:30",
-        "end_time": "23:00",
-        "likes": 325,
-        "liked": true,
-        "in_business": true
-      },
-      {
-        "id": 20,
-        "latitude": 37.53789,
-        "longitude": 127.062233,
-        "name": "카페20",
-        "address": "서울시 강남구 일원동",
-        "start_time": "09:00",
-        "end_time": "24:00",
-        "likes": 180,
-        "liked": true,
-        "in_business": true
+        "liked": false
       }
     ]
   },

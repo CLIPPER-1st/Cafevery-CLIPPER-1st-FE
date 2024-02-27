@@ -8,7 +8,7 @@ export interface Likes {
   end_time: string;
   likes: number;
   liked: boolean | null;
-  in_business: boolean;
+  //in_business: boolean;
 }
 
 export interface ILikesList {

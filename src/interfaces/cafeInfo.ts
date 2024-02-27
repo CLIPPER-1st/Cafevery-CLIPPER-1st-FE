@@ -10,7 +10,7 @@ export interface Cafe {
     liked: boolean | null;
     start_time: string;
     end_time: string;
-    in_business: boolean;
+    //in_business: boolean;
 }
 
 export interface ICafeList {
@@ -24,7 +24,7 @@ export interface CafeInfo {
     latitude: number;
     longitude: number;
     business: BusinessHour[];
-    in_business: boolean;
+    //in_business: boolean;
     phone_number: string;
     likes: number;
     liked: boolean;

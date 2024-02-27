@@ -21,7 +21,7 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }) {
 
     const handleOpenCafeInfoModal = () => {
         openCafeInfoModal();
-    };
+    }
 
     return (
         <>
