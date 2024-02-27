@@ -44,7 +44,7 @@ export default function SettingInfoList() {
           title="개인정보처리방침"
           handleClicked={() => handleClickedThird()}
         />
-        {isLoggedIn && (
+        {!isLoggedIn && ( //TODO: 
           <SettingInfo
             title="회원탈퇴"
             handleClicked={() => openModal()}
