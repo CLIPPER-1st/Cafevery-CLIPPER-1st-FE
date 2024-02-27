@@ -20,11 +20,11 @@ export default function MyPage() {
   const nowUrl = useLocation();
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
-  //const [userInfo, ] = useRecoilState(userInfoState); //TODO: 임시
+  const [userInfo, ] = useRecoilState(userInfoState); //TODO: 임시
   const {isOpen, openModal, closeModal} = useModal();
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  const userInfo = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
+  //const userInfo = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
   const { isLoggedIn } = useLoginStatus();
 
   const handleChangeProfileName = () => {
