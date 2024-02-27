@@ -6,7 +6,7 @@ export default function SocialButton(props: SocialButtonProps) {
   const socialImg = useSocialSignInImage(props.socialType);
 
   const handleSignIn = () => {
-    window.location.href = `https://cafevery.com/oauth2/authorization/${props.socialType}`;
+    window.location.href = `https://cafevery.site/oauth2/authorization/${props.socialType}`;
   };
 
   return (

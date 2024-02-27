@@ -6,8 +6,8 @@ const getAccessTokenFromCookies = () => Cookies.get('accessCookie');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
 
 export const instance = axios.create({
-  //baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL
-  baseURL:"",
+  baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL
+  //baseURL:"",
   headers: {
     Authorization: `Bearer ${getAccessTokenFromCookies()}`,
   },
