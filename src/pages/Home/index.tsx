@@ -22,9 +22,14 @@ export default function Home() {
   const {setValue: setSearchTerm} = useInput();
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
   const queryClient = useQueryClient();
+
   const { data } = useSuspenseQuery({
       queryKey: ['cafeInfoList'],
-      queryFn: async () => (await fetchCafes(mapCenterLocation.latitude, mapCenterLocation.longitude)),
+      queryFn: async () => {
+        if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
+          return await fetchCafes(mapCenterLocation.latitude, mapCenterLocation.longitude);
+        } 
+      },
       staleTime: 1000,
       gcTime: 10000,
   });
