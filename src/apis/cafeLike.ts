@@ -2,7 +2,7 @@ import {isAxiosError} from 'axios';
 import {instance} from './axios';
 
 export const fetchCafeLikes = async () => {
-  const response = await instance.get('api/v1/cafes/likes');
+  const response = await instance.get('/api/v1/cafes/likes');
   console.log('========fetchCafeLikes=========', response);
   return response;
 };
