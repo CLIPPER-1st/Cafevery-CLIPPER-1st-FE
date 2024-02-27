@@ -24,7 +24,7 @@ export default function LikePageButton(props: LikePageButtonProps) {
   };
 
   const handleClicked = () => {
-    if(!isLoggedIn) { //TODO: isLoggedIn
+    if(isLoggedIn) { //TODO: isLoggedIn
       navigate('/likes')
     } else {
       setAlertModal({
