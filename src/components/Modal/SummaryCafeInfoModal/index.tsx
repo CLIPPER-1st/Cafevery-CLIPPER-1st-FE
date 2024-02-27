@@ -13,8 +13,8 @@ import * as Styled from './style';
 //TODO: useRecoilState에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
-    const businessStatus = useBusinessStatus(cafeInfo.in_business);
     const todayHours = useTodayBusinessHours(cafeInfo.business);
+    const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const { isOpen: isCafeInfoModalOpen, openModal: openCafeInfoModal, closeModal: closeCafeInfoModal } = useModal();
     //const cafeInfo = useFetchCafeInfo(id); //TODO: 이걸로 적용해야함

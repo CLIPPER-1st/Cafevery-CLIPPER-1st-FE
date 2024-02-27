@@ -13,8 +13,8 @@ import * as Styled from './style';
 
 export default function CafeInfoModal({ onClose, isOpen, id }) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
-    const businessStatus = useBusinessStatus(cafeInfo.in_business);
     const todayHours = useTodayBusinessHours(cafeInfo.business);
+    const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const navigate = useNavigate();
     const [, setMapCenterLocation] = useRecoilState(mapCenterState);
