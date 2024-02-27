@@ -1,5 +1,5 @@
 {
-  "name": "cafealimi",
+  "name": "cafevery",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -45,7 +45,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
-  "proxy": "https://openapi.naver.com/",
+  "proxy": "https://api.cafevery.site",
   "msw": {
     "workerDirectory": [
       "public"
