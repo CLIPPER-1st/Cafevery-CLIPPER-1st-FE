@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import Modal from '@/components/Modal';
 import theme from '@/theme';
 import * as Styled from './style';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { alertModalState } from '@/atoms/modalState';
+import { AlertModalProps } from '@/interfaces/modal';
 
-export default function AlertModal({onClose, isOpen, ...props}) {
-  const [alertModal, setAlertModal] = useRecoilState(alertModalState);
+export default function AlertModal({onClose, isOpen, ...props}: AlertModalProps) {
+  const setAlertModal = useSetRecoilState(alertModalState);
 
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout;

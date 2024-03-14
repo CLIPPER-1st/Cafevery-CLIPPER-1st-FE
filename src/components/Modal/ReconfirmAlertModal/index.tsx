@@ -9,8 +9,9 @@ import AlertModal from '@/components/Modal/AlertModal';
 import { useDeleteFavoritePlace } from '@/hooks/useDeleteFavoritePlace';
 import { isAxiosError } from 'axios';
 import { useQueryClient } from '@tanstack/react-query';
+import { ReconfirmAlertModalProps } from '@/interfaces/modal';
 
-export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props}) {
+export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props}: ReconfirmAlertModalProps) {
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const { closeModal } = useModal();
   const queryClient = useQueryClient();

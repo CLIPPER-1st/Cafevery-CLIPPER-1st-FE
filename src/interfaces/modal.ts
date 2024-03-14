@@ -25,3 +25,18 @@ export interface ModalProps {
 
   export interface FilterModalProps extends Partial<ModalProps> {
   }
+
+  export interface CafeInfoModalProps extends Partial<ModalProps> {
+    id: number;
+  }
+
+  export interface AlertModalProps extends Partial<ModalProps> {}
+
+  export interface ReconfirmAlertModalProps extends Partial<ModalProps> {
+    name: string;
+    id: number;
+  }
+
+  export interface SignoutModalProps extends Partial<ModalProps> {}
+
+  export interface SummaryCafeInfoModalProps extends Partial<ModalProps> {}

@@ -2,19 +2,14 @@ import Modal from '@/components/Modal';
 import theme from '@/theme';
 import * as Styled from './style';
 import SmallButton from '@/components/Button/SmallButton';
-import useModal from '@/hooks/useModal';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { alertModalState } from '@/atoms/modalState';
 import AlertModal from '@/components/Modal/AlertModal';
-import { useDeleteFavoritePlace } from '@/hooks/useDeleteFavoritePlace';
-import { isAxiosError } from 'axios';
-import { useQueryClient } from '@tanstack/react-query';
-import { useLoginStatus } from '@/hooks/useLoginStatus';
 import { useSignout } from '@/hooks/useSignout';
+import { SignoutModalProps } from '@/interfaces/modal';
 
-export default function SignoutModal({onClose, isOpen, ...props}) {
-  const [alertModal, setAlertModal] = useRecoilState(alertModalState);
-  const { closeModal } = useModal();
+export default function SignoutModal({onClose, isOpen, ...props}: SignoutModalProps) {
+  const alertModal = useRecoilValue(alertModalState);
   const { mutate } = useSignout();
 
   const handleSignout = () => {

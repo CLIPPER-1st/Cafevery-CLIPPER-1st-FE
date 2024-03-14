@@ -10,8 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Modal from '@/components/Modal'
 import * as Styled from './style';
+import { CafeInfoModalProps } from '@/interfaces/modal';
 
-export default function CafeInfoModal({ onClose, isOpen, id }) {
+export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
     const todayHours = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);

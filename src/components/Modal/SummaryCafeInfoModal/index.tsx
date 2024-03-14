@@ -9,9 +9,10 @@ import { useRecoilState } from 'recoil';
 import CafeInfoModal from '../CafeInfoModal';
 import Modal from '@/components/Modal'
 import * as Styled from './style';
+import { SummaryCafeInfoModalProps } from '@/interfaces/modal';
 
 //TODO: useRecoilState에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
-export default function SummaryCafeInfoModal({ onClose, isOpen, id }) {
+export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
     const todayHours = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
