@@ -1,17 +1,39 @@
-/**두 지점 간의 거리를 계산하는 함수 (Haversine 공식) */
-export function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
-    function toRad(x: number) {
-        return (x * Math.PI) / 180;
-    }
+import {EARTH_RADIUS} from '@/constants';
 
-    const R = 6371; // 지구의 반지름(km)
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
-    return d;
+interface Props {
+  currentLatitude: number;
+  currentLongitude: number;
+  targetLatitude: number;
+  targetLongitude: number;
+}
+
+/**
+ * 현재 위치와 타겟 위치의 거리 계산
+ */
+export default function calculateDistance({
+  currentLatitude,
+  currentLongitude,
+  targetLatitude,
+  targetLongitude,
+}: Props) {
+  const convertDegreeToRadian = (degree: number) => {
+    return (degree * Math.PI) / 100;
+  };
+
+  const deltaLatitude = convertDegreeToRadian(targetLatitude - currentLatitude);
+  const deltaLongitude = convertDegreeToRadian(
+    targetLongitude - currentLongitude,
+  );
+
+  const a =
+    Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2) +
+    Math.cos(convertDegreeToRadian(currentLatitude)) *
+      Math.cos(convertDegreeToRadian(targetLatitude)) *
+      Math.sin(deltaLongitude / 2) *
+      Math.sin(deltaLongitude / 2);
+
+  const centralAngle = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = ((EARTH_RADIUS * centralAngle) / 1000).toFixed(1);
+
+  return parseFloat(distance);
 }

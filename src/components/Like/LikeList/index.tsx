@@ -1,6 +1,6 @@
 import * as Styled from './style';
 import NameCard from '../NameCard';
-import useDistance from '@/hooks/useDistance';
+import calculateDistance from '@/utils/calculateDistance';
 import { convertTime } from '@/utils/convertTime';
 import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
@@ -55,7 +55,7 @@ export default function LikeList({ data }: { data: ILikesList }) {
                     address={like.address}
                     business={`${convertTime(like.start_time)} ~ ${convertTime(like.end_time)}`}
                     likes={like.likes}
-                    distance={useDistance({ //TODO: 고쳐야함
+                    distance={calculateDistance({ //TODO: 고쳐야함
                       currentLatitude: coordinates.lat,
                       currentLongitude: coordinates.lng,
                       targetLatitude: like.latitude,
