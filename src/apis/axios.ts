@@ -43,7 +43,7 @@ instance.interceptors.response.use(
           if (response.status === 200) {
             // 새로운 accessToken과 refreshToken을 쿠키에 설정
             const accessToken = Cookies.get('accessToken');
-            Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+            Cookies.set('accessToken', accessToken, { path: '/', domain: 'cafevery.site' });
             // 헤더에 새로운 accessToken 설정
             originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
             originalRequest.withCredentials = true;

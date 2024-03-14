@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 
-export default function useSetTokens(accessToken, refreshToken) {
-  Cookies.set('accessToken', accessToken);
-  Cookies.set('refreshToken', refreshToken);
+export default function useSetTokens(accessToken) {
+  Cookies.set('accessToken', accessToken, { path: '/', domain: 'cafevery.site' });
 }
