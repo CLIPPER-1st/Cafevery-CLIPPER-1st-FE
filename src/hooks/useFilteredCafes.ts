@@ -16,10 +16,8 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
     console.log("useFilteredCafes cafeInfoList", cafeInfoList)
     useEffect(() => {
         if (!cafeInfoList || !cafeInfoList.cafes || cafeInfoList.cafes.length === 0) return;
-        console.log("1")
-        if(myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
+        if (myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
         //if(coordinates.lat !== 0 && coordinates.lng!== 0 && loaded && coordinates) {
-            console.log("2")
 
         const cafes = cafeInfoList.cafes;
         console.log("useFilteredCafes useEffect cafeInfoList", cafeInfoList)
