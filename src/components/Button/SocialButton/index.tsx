@@ -1,9 +1,9 @@
 import Button from '@/components/Button/Button';
 import { SocialButtonProps } from '@/interfaces/button';
-import { useSocialSignInImage } from '@/hooks/useSocialSignInImage';
+import { getSocialSignInImage } from '@/utils/getSocialSignInImage';
 
 export default function SocialButton(props: SocialButtonProps) {
-  const socialImg = useSocialSignInImage(props.socialType);
+  const socialImg = getSocialSignInImage(props.socialType);
 
   const handleSignIn = () => {
     window.location.href = `https://api.cafevery.site/oauth2/authorization/${props.socialType}`;

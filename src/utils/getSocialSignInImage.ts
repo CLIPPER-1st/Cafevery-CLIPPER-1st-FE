@@ -2,7 +2,7 @@ import NaverSignInButtonImg from '@/assets/Buttons/NaverSignInButton.png';
 import KakaoSignInButtonImg from '@/assets/Buttons/KakaoSignInButton.png';
 import GoogleSignInButtonImg from '@/assets/Buttons/GoogleSignInButton.png';
 
-export const useSocialSignInImage = (socialType: string) => {
+export const getSocialSignInImage = (socialType: string) => {
     switch(socialType) {
         case "naver":
             return NaverSignInButtonImg;
