@@ -1,7 +1,7 @@
 import * as Styled from './style';
 import NameCard from '../NameCard';
 import useDistance from '@/hooks/useDistance';
-import getConvertertedTime from '@/utils/getConvertertedTime';
+import { convertTime } from '@/utils/convertTime';
 import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/Modal/CafeInfoModal';
@@ -53,7 +53,7 @@ export default function LikeList({ data }: { data: ILikesList }) {
                     id={like.id}
                     name={like.name}
                     address={like.address}
-                    business={`${getConvertertedTime(like.start_time)} ~ ${getConvertertedTime(like.end_time)}`}
+                    business={`${convertTime(like.start_time)} ~ ${convertTime(like.end_time)}`}
                     likes={like.likes}
                     distance={useDistance({ //TODO: 고쳐야함
                       currentLatitude: coordinates.lat,

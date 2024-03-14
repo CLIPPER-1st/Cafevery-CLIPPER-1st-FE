@@ -4,8 +4,8 @@ import { myLocationState } from '@/atoms/location';
 import { ICafeList } from '@/interfaces/cafeInfo';
 import useGeolocation from '@/hooks/useGeolocation';
 import { ILikesList } from '@/interfaces/likes';
-import { useConvertTime } from '@/hooks/useConvertTime';
 import { getCalculateDistance } from '@/utils/getCalculateDistance';
+import { convertTime } from '@/utils/convertTime';
 
 /**시간과 거리에 따른 카페 필터링 커스텀 훅 */ 
 export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, minValue: number, maxValue: number, filteredDistance: number, toggleState: boolean) {
@@ -26,14 +26,14 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
             //if (!cafes || cafes.length === 0) return;
         
             const filtered = cafes?.filter((cafe) => {
-                const cafeStartTime = useConvertTime(cafe.start_time);
-                const cafeEndTime = useConvertTime(cafe.end_time);
+                const { convertedTime: cafeStartTime } = convertTime(cafe.start_time);
+                const { convertedTime: cafeEndTime } = convertTime(cafe.end_time);
 
                 const currentTime = new Date(); // 현재 시간
                 const currentHour = currentTime.getHours(); // 현재 시
                 console.log('currentHour', currentHour)
                 const currentMinute = currentTime.getMinutes(); // 현재 분
-                const convertedCurrentTime = useConvertTime(`${currentHour}:${currentMinute}`) // HH:MM 형태로 컨버팅 후 useConvertTime
+                const { convertedTime: convertedCurrentTime } = convertTime(`${currentHour}:${currentMinute}`);
 
                 //운영 중 필터링 로직
                 const isInBusinness = convertedCurrentTime <= cafeEndTime && convertedCurrentTime >= cafeStartTime;
