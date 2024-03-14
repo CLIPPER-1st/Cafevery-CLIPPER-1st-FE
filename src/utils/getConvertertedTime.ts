@@ -1,4 +1,4 @@
-export default function useTimeConverter(time: string) {
+export default function getConvertertedTime(time: string) {
   if (!time || typeof time !== 'string' || !time.includes(':')) {
     console.error('Invalid time format');
     return '';
