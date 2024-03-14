@@ -1,5 +1,5 @@
 /**두 지점 간의 거리를 계산하는 함수 (Haversine 공식) */
-export function getCalculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+export function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
     function toRad(x: number) {
         return (x * Math.PI) / 180;
     }

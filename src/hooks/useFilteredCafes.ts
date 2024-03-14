@@ -4,7 +4,7 @@ import { myLocationState } from '@/atoms/location';
 import { ICafeList } from '@/interfaces/cafeInfo';
 import useGeolocation from '@/hooks/useGeolocation';
 import { ILikesList } from '@/interfaces/likes';
-import { getCalculateDistance } from '@/utils/getCalculateDistance';
+import { calculateDistance } from '@/utils/calculateDistance';
 import { convertTime } from '@/utils/convertTime';
 
 /**시간과 거리에 따른 카페 필터링 커스텀 훅 */ 
@@ -40,7 +40,7 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
                 const isInTimeRange = cafeStartTime >= minValue && cafeEndTime <= maxValue;
         
                 // 거리 필터링 로직
-                const distanceToCafe = getCalculateDistance(coordinates.lat, coordinates.lng, cafe.latitude, cafe.longitude);
+                const distanceToCafe = calculateDistance(coordinates.lat, coordinates.lng, cafe.latitude, cafe.longitude);
 
                 const distance = filteredDistance === 3 ? 10000 : filteredDistance; // 3km일 땐 불러온 데이터 전체로 보여주게 하기 위해 10000으로 포멧팅.
                 const isInDistanceRange = distanceToCafe <= distance;

@@ -1,14 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useModal from '@/hooks/useModal';
 import { alertModalState } from '@/atoms/modalState';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isAxiosError } from 'axios';
 import { deleteSignout } from '@/apis/signout';
+import Cookies from 'js-cookie';
 
 export const useSignout = () => {
     const { closeModal } = useModal();
     const queryClient = useQueryClient();
-    const [alertModal, setAlertModal] = useRecoilState(alertModalState);
+    const setAlertModal = useSetRecoilState(alertModalState);
 
     return useMutation({
         mutationFn: () => deleteSignout(),
@@ -20,7 +21,8 @@ export const useSignout = () => {
             isOpen: true,
             message: '회원탈퇴 되었습니다.',
             });
-            // 기타 성공 시 처리
+            Cookies.remove('accessToken', { path: '/', domain: 'cafevery.site' });
+            Cookies.remove('refreshToken', { path: '/', domain: 'cafevery.site' }); 
         },
         onError: (error) => {
             // 로그아웃 실패 시 처리
@@ -30,7 +32,6 @@ export const useSignout = () => {
                 message: '회원탍퇴에 실패했습니다.\n다시 시도해주세요.',
             });
             }
-            // 기타 에러 처리
         },
     });
 };
