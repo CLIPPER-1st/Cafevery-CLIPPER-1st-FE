@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({
         </Styled.ModalInnerContent>
       </Styled.ModalContent>
     </Styled.ModalWrapper>,
-    document.getElementById('modal-root') // 이것은 모달이 렌더링 될 대상 DOM 요소입니다.
+    document.getElementById('modal-root')
   );
 };
 

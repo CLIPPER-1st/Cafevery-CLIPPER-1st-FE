@@ -39,4 +39,6 @@ export interface ModalProps {
 
   export interface SignoutModalProps extends Partial<ModalProps> {}
 
-  export interface SummaryCafeInfoModalProps extends Partial<ModalProps> {}
+  export interface SummaryCafeInfoModalProps extends Partial<ModalProps> {
+    id: number;
+  }
