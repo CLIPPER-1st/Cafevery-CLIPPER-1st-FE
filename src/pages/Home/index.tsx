@@ -12,9 +12,9 @@ import useModal from '@/hooks/useModal';
 import FilterModal from '@/components/Modal/FilterModal';
 import useInput from '@/hooks/useInput';
 import LocationSearchBar from '@/components/Search/LocationSearchBar';
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { fetchCafes } from '@/apis/cafeList';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { useFetchCafeList } from '@/hooks/useFetchCafeList';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
@@ -22,27 +22,13 @@ export default function Home() {
   const {setValue: setSearchTerm} = useInput();
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
   const queryClient = useQueryClient();
-
-  const { data } = useSuspenseQuery({
-      queryKey: ['cafeInfoList'],
-      queryFn: async () => {
-        if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
-          return await fetchCafes(mapCenterLocation.latitude, mapCenterLocation.longitude);
-        } else {
-          return { data: { cafes: [] } }; // 이 예제에서는 빈 카페 목록을 반환
-        }
-      },
-      staleTime: 1000,
-      gcTime: 10000,
-  });
-
-    console.log("======useSuspenseQuery", data?.data?.cafes)
+  const { data } = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
 
   const handleFetchCafeList = () => {
     queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
-    //setFetchCafesEnabled(true); // 버튼 클릭 시 쿼리 활성화
   }
-  useEffect(() => {
+
+  useEffect(() => { // TODO: 의존성 배열 안에 mapCenterLocation을 넣으니 지도를 옮길 때마다 요청되는 것.
     if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
       queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
     }
@@ -80,7 +66,7 @@ export default function Home() {
               <GetCafeLocationButton onClick={() => handleFetchCafeList()}/>
             </Styled.CenteredButton>
           </Styled.ButtonContainer>
-          <NaverMaps cafes={data?.data.cafes} />
+          <NaverMaps cafes={data.data.cafes} />
         </PageLayout>
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}
     </>

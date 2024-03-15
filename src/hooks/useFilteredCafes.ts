@@ -45,7 +45,7 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
                     currentLongitude: coordinates.lng, 
                     targetLatitude: cafe.latitude, 
                     targetLongitude: cafe.longitude
-                });
+                    });
 
                 const distance = filteredDistance === 3 ? 10000 : filteredDistance; // 3km일 땐 불러온 데이터 전체로 보여주게 하기 위해 10000으로 포멧팅.
                 const isInDistanceRange = distanceToCafe <= distance;

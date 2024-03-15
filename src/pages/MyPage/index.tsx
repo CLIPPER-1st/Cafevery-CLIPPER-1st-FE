@@ -50,7 +50,7 @@ export default function MyPage() {
   return (
       <>
         <PageLayout>
-          {!isLoggedIn ? ( //TODO: 
+          {!isLoggedIn ? ( //TODO: isLoggedIn
             <>
               {!showMap ? (
                 <>

@@ -17,7 +17,7 @@ export default function calculateDistance({
   targetLongitude,
 }: Props) {
   const convertDegreeToRadian = (degree: number) => {
-    return (degree * Math.PI) / 100;
+    return (degree * Math.PI) / 180;
   };
 
   const deltaLatitude = convertDegreeToRadian(targetLatitude - currentLatitude);

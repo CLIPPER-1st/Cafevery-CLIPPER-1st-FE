@@ -14,7 +14,7 @@ import useModal from '@/hooks/useModal';
 export default function Setting() {
   const {isLoggedIn} = useLoginStatus();
   const {mutate} = useLogout();
-  const { data } = useFetchSettingUserInfo(); //TODO: 주석 해제 해야함.
+  //const { data } = useFetchSettingUserInfo(); //TODO: 주석 해제 해야함.
   const [alertModal, setAlertModal] = useRecoilState(alertModalState);
   const { closeModal } = useModal();
 
@@ -28,7 +28,7 @@ export default function Setting() {
         <SettingCloseButton />
         <Styled.Wrapper>
           <UserInfo
-            isLogin={isLoggedIn} //TODO: isLoggedIn으로 바꿔야함.
+            isLogin={!isLoggedIn} //TODO: isLoggedIn으로 바꿔야함.
             nickname={'Cafevery'} //TODO: 지워야 함.
             provider={'카카오 로그인 회원'}  //TODO: 지워야 함.
             //nickname={data.nickname}  //TODO: 주석 해제 해야함.
