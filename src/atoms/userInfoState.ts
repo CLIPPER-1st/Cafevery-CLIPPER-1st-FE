@@ -11,25 +11,25 @@ export const userInfoState = atom<UserInfoState>({
                 nickname: 'cafevery',
                 locations: [ //TODO: mock data. 
                     {
-                        id: '1',
+                        id: 1,
                         name: 'Place 1',
                         latitude: 37.5665,
                         longitude: 126.9780,
                     },
                     {
-                        id: '2',
+                        id: 2,
                         name: 'Place 2',
                         latitude: 37.5651,
                         longitude: 126.9895,
                     },
                     {
-                        id: '3',
+                        id: 3,
                         name: 'Place 1',
                         latitude: 37.5665,
                         longitude: 126.9780,
                     },
                     {
-                        id: '4',
+                        id: 4,
                         name: 'Place 2',
                         latitude: 37.5651,
                         longitude: 126.9895,
