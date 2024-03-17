@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import SettingButton from '@/components/Button/SettingButton';
+import SettingButton from '@/components/common/Button/SettingButton';
 import * as Styled from './style';
 import DefaultProfileImg from '@/assets/Images/default.png'
-import SocialButton from '@/components/Button/SocialButton';
+import SocialButton from '@/components/MyPage/SocialButton';
 
 export default function UnloginMypage() {
   const navigate = useNavigate();

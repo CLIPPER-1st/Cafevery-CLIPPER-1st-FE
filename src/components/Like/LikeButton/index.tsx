@@ -1,6 +1,6 @@
 import Liked from '@/assets/Icons/Liked.png';
 import NonLiked from '@/assets/Icons/NonLiked.png';
-import Button from '@/components/Button/Button';
+import Button from '@/components/common/Button/Button';
 import { usePatchLikeCafe } from '@/hooks/usePatchLikeCafe';
 import {LikeButtonProps} from '@/interfaces/button';
 import { useQueryClient } from '@tanstack/react-query';

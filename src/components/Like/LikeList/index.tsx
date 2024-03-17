@@ -4,7 +4,7 @@ import calculateDistance from '@/utils/calculateDistance';
 import { convertTime } from '@/utils/convertTime';
 import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
-import CafeInfoModal from '@/components/Modal/CafeInfoModal';
+import CafeInfoModal from '@/components/common/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {likesListState, selectedCafeState} from '@/atoms/likesState';

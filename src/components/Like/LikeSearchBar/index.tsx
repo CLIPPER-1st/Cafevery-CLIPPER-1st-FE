@@ -1,5 +1,5 @@
-import CloseButton from '@/components/Button/CloseButton';
-import SearchBar from '@/components/Search/SearchBar';
+import CloseButton from '@/components/common/Button/CloseButton';
+import SearchBar from '@/components/common/Search/SearchBar';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { useSetRecoilState } from 'recoil';

@@ -1,4 +1,4 @@
-import SettingInfoButton from '@/components/Button/InfoButton';
+import SettingInfoButton from '@/components/Setting/InfoButton';
 import * as Styled from './style';
 import Info from '@/assets/Icons/Info.png';
 

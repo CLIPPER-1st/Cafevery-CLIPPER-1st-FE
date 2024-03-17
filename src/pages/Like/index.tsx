@@ -1,10 +1,10 @@
-import FilterButton from '@/components/Button/FilterButton';
+import FilterButton from '@/components/common/Button/FilterButton';
 import * as Styled from './style';
 import {LikeSearchBar} from '@/components/Like/LikeSearchBar';
-import PageLayout from '@/components/PageLayout';
+import PageLayout from '@/components/common/PageLayout';
 import useModal from '@/hooks/useModal';
-import FilterModal from '@/components/Modal/FilterModal';
-import { Toggle } from '@/components/Toggle';
+import FilterModal from '@/components/common/Modal/FilterModal';
+import { Toggle } from '@/components/common/Toggle';
 import LikeList from '@/components/Like/LikeList';
 import { useFetchCafeLikes } from '@/hooks/useFetchCafeLikes';
 import { useEffect } from 'react';

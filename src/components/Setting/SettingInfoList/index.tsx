@@ -1,4 +1,4 @@
-import SignoutModal from '@/components/Modal/SignoutModal';
+import SignoutModal from '@/components/Setting/SignoutModal';
 import { useLoginStatus } from '@/hooks/useLoginStatus';
 import useModal from '@/hooks/useModal';
 import SettingInfo from '../SettingInfo';
