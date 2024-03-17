@@ -9,7 +9,7 @@ import * as Styled from './style'
 import FavoritePlaceSelectButton from '@/components/Button/FavoritePlaceSelectButton';
 import { selectedPlaceNameState } from '@/atoms/input';
 import { useLocation } from 'react-router-dom';
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRegisterFavoritePlace } from '@/hooks/useRegisterFavoritePlace';
 import { isAxiosError } from 'axios';
 import { alertModalState } from '@/atoms/modalState';
@@ -17,13 +17,7 @@ import { PostRegisterFavoritePlaceRequest } from '@/interfaces/postRegisterFavor
 import { mapCenterState } from '@/atoms/location';
 import AlertModal from '@/components/Modal/AlertModal';
 import useModal from '@/hooks/useModal';
-import { fetchCafes } from '@/apis/cafeList';
-
-const placeTypes = [
-    { key: 'home', name: '🏠 집' },
-    { key: 'company', name: '🏢 회사' },
-    { key: 'school', name: '🏫 학교' },
-];
+import { placeTypes } from '@/constants/placeTypes';
 
 export default function AddFavoritePlaceMap() {
     const [alertModal, setAlertModal] = useRecoilState(alertModalState);
@@ -33,16 +27,9 @@ export default function AddFavoritePlaceMap() {
     const [selectedPlaceName, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
     const queryClient = useQueryClient();
     const { mutate }  = useRegisterFavoritePlace();
-    const [mapCenter, ] = useRecoilState(mapCenterState);
-    const mapCenterLocation = useRecoilValue(mapCenterState);
+    const mapCenter = useRecoilValue(mapCenterState);
     let timer: string | number | NodeJS.Timeout;
-    const { data } = useSuspenseQuery({
-        queryKey: ['cafeInfoList'],
-        queryFn: async () => (await fetchCafes(mapCenterLocation.latitude, mapCenterLocation.longitude)),
-        staleTime: 1000,
-        gcTime: 10000,
-    });
-    
+
     const handleSelectFavoritePlace = (name: string) => {
         setSelectedPlaceName(name);
     }
@@ -79,7 +66,7 @@ export default function AddFavoritePlaceMap() {
         <>
             <CloseMapButton onClick={() => setShowMap(!showMap)} />
             <LocationSearchBar />
-            <NaverMaps cafes={data?.data.cafes} />
+            <NaverMaps cafes={[]} />
             <Styled.Container>
                 <FavoritePlaceBar />
                 {placeTypes.map((place) => (
