@@ -38,29 +38,29 @@ export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props
     });
   };
 
-    return (
-      <>
-        <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'SmallModal'} modalColor={theme.colors.white} color={theme.colors.darkBrown} fontSize={20} {...props}>
-          <Styled.ModalInnerWrapper>
-            {`자주 가는 장소 "${name}"\n삭제 하시겠습니까?`}
-            <Styled.ButtonContainer>
-                <SmallButton onClick={handleDeleteFavoritePlace}>
-                  예
-                </SmallButton>
-                <SmallButton onClick={() => onClose()}>
-                  아니요
-                </SmallButton>
-            </Styled.ButtonContainer>
-          </Styled.ModalInnerWrapper>
-        </Modal>
-        {alertModal?.isOpen && (
-          <AlertModal 
-            isOpen={alertModal?.isOpen}
-            onClose={onClose}
-            >
-            {alertModal?.message}
-          </AlertModal>
-        )}
-      </>
+  return (
+    <>
+      <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'SmallModal'} modalColor={theme.colors.white} color={theme.colors.darkBrown} fontSize={20} {...props}>
+        <Styled.ModalInnerWrapper>
+          {`자주 가는 장소 "${name}"\n삭제 하시겠습니까?`}
+          <Styled.ButtonContainer>
+              <SmallButton onClick={handleDeleteFavoritePlace}>
+                예
+              </SmallButton>
+              <SmallButton onClick={() => onClose()}>
+                아니요
+              </SmallButton>
+          </Styled.ButtonContainer>
+        </Styled.ModalInnerWrapper>
+      </Modal>
+      {alertModal?.isOpen && (
+        <AlertModal 
+          isOpen={alertModal?.isOpen}
+          onClose={onClose}
+          >
+          {alertModal?.message}
+        </AlertModal>
+      )}
+    </>
   );
 }

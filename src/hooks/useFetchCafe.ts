@@ -5,8 +5,8 @@ export const useFetchCafeInfo = (id: number) => {
     const { data } = useSuspenseQuery({
         queryKey: ['cafeInfo', id],
         queryFn: async () => (await fetchCafeInfo(id)),
-        staleTime: 100000,
-        gcTime: 100,
+        staleTime: 600000, // 10분
+        gcTime: 300000, // 5분
     });
 
     return { data };
