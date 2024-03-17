@@ -33,10 +33,8 @@ export function NaverMaps( cafes: ICafeList ) {
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
             setShowSplash(true);
         }
-        console.log('mapCenterLocation', mapCenterLocation)
     }, [mapCenterLocation]);
 
-    console.log("mymap render")
     useEffect(() => {
         if (loaded && coordinates && mapCenterLocation.latitude === 0 &&  mapCenterLocation.longitude === 0) {
             setMapCenterLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
@@ -45,7 +43,6 @@ export function NaverMaps( cafes: ICafeList ) {
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
         }
-        console.log('mapCenterLocation', mapCenterLocation)
     }, [coordinates]);
 
     return (

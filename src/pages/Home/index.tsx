@@ -28,12 +28,11 @@ export default function Home() {
     queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
   }
 
-  useEffect(() => { // TODO: 의존성 배열 안에 mapCenterLocation을 넣으니 지도를 옮길 때마다 요청되는 것.
+  useEffect(() => {
     if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
       queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
     }
-
-  }, [mapCenterLocation]);
+  }, [loaded]);
 
   const handleMyLocationButtonClicked = () => {
     if (loaded) {
@@ -42,6 +41,7 @@ export default function Home() {
         longitude: coordinates.lng,
       });
       setSearchTerm('');
+      queryClient.invalidateQueries({queryKey: ['cafeInfoList']});
     }
   };
 

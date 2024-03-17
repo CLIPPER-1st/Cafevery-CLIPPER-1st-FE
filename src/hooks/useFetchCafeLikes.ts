@@ -8,6 +8,5 @@ export const useFetchCafeLikes = () => {
     staleTime: 100000,
     gcTime: 100,
   });
-  console.log("======useSuspenseQuery", data)
   return { data: data.data.cafes, isSuccess };
 };
