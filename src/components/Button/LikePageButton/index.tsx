@@ -5,17 +5,13 @@ import LikeClickedImg from '@/assets/Icons/LikeClicked.png'
 import useCheckUrl from '@/hooks/useCheckUrl';
 import { useNavigate } from 'react-router-dom';
 import { useLoginStatus } from '@/hooks/useLoginStatus';
-import { useRecoilState } from 'recoil';
-import { alertModalState } from '@/atoms/modalState';
-import useModal from '@/hooks/useModal';
-import AlertModal from '@/components/Modal/AlertModal';
+import useToast from '@/hooks/useToast';
 
 export default function LikePageButton(props: LikePageButtonProps) {
   const isMatched = useCheckUrl(['/likes']);
   const navigate = useNavigate();
   const {isLoggedIn} = useLoginStatus();
-  const [alertModal, setAlertModal] = useRecoilState(alertModalState);
-  const { closeModal } = useModal();
+  const { displayToast } = useToast();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let timer: string | number | NodeJS.Timeout;
 
@@ -27,29 +23,16 @@ export default function LikePageButton(props: LikePageButtonProps) {
     if(!isLoggedIn) { //TODO: isLoggedIn
       navigate('/likes')
     } else {
-      setAlertModal({
-        isOpen: true,
-        message: '로그인 후\n이용해주세요.',
-        });        
-        timer = setTimeout(() => {
-          navigate('/mypage')
-        }, 800);
+      displayToast('로그인 후 이용해주세요.');    
+      timer = setTimeout(() => {
+        navigate('/mypage')
+      }, 1000);
     }
   }
 
   return (
-    <>
-      <Button width={33.06} height={30.28} background={getImage()} onClick={() => handleClicked()}{...props}>
-        {props.children}
-      </Button>
-      {alertModal?.isOpen && (
-        <AlertModal 
-          isOpen={alertModal?.isOpen}
-          onClose={closeModal}
-        >
-          {alertModal?.message}
-        </AlertModal>
-      )}
-    </>
+    <Button width={33.06} height={30.28} background={getImage()} onClick={() => handleClicked()}{...props}>
+      {props.children}
+    </Button>
   );
 }

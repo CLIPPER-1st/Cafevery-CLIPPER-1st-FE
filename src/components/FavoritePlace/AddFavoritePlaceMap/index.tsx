@@ -12,22 +12,20 @@ import { useLocation } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRegisterFavoritePlace } from '@/hooks/useRegisterFavoritePlace';
 import { isAxiosError } from 'axios';
-import { alertModalState } from '@/atoms/modalState';
 import { PostRegisterFavoritePlaceRequest } from '@/interfaces/postRegisterFavoritePlaceRequest';
 import { mapCenterState } from '@/atoms/location';
-import AlertModal from '@/components/Modal/AlertModal';
-import useModal from '@/hooks/useModal';
 import { placeTypes } from '@/constants/placeTypes';
+import useToast from '@/hooks/useToast';
 
 export default function AddFavoritePlaceMap() {
-    const [alertModal, setAlertModal] = useRecoilState(alertModalState);
-    const { closeModal } = useModal();
+    const { displayToast } = useToast();
     const nowUrl = useLocation();
     const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
     const [selectedPlaceName, setSelectedPlaceName] = useRecoilState(selectedPlaceNameState);
     const queryClient = useQueryClient();
     const { mutate }  = useRegisterFavoritePlace();
     const mapCenter = useRecoilValue(mapCenterState);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let timer: string | number | NodeJS.Timeout;
 
     const handleSelectFavoritePlace = (name: string) => {
@@ -42,21 +40,15 @@ export default function AddFavoritePlaceMap() {
         };
         mutate(body, {
             onSuccess: async () => {
-                setAlertModal({
-                isOpen: true,
-                message: '자주 가는 장소가\n등록되었습니다.',
-                });        
+                displayToast('자주 가는 장소가 등록되었습니다.'); 
                 await queryClient.invalidateQueries({queryKey: ['userInfo']});
                 timer = setTimeout(() => {
                     setShowMap(!showMap);
-                }, 800);   
+                }, 1000);   
             },
             onError: (error) => {
                 if(isAxiosError(error)) {
-                    setAlertModal({
-                        isOpen: true,
-                        message: '등록에 실패했습니다.\n다시 시도해주세요.',
-                    });  
+                    displayToast('등록에 실패했습니다. 다시 시도해주세요.'); 
                 }
             },
         });
@@ -79,14 +71,6 @@ export default function AddFavoritePlaceMap() {
                     onClick={() => handleRegisterFavoritePlace()}
                 />
             </Styled.Container>
-            {alertModal?.isOpen && (
-                <AlertModal 
-                    isOpen={alertModal?.isOpen}
-                    onClose={closeModal}
-                    >
-                    {alertModal?.message}
-                </AlertModal>
-            )}
         </>
     )
 }

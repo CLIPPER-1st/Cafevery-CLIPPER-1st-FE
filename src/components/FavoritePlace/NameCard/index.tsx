@@ -1,10 +1,7 @@
-import { alertModalState } from '@/atoms/modalState';
 import DeleteFavoritePlaceButton from '@/components/Button/DeleteFavoritePlaceButton';
-import AlertModal from '@/components/Modal/AlertModal';
 import ReconfirmAlertModal from '@/components/Modal/ReconfirmAlertModal';
 import useModal from '@/hooks/useModal';
 import { ILocation } from '@/interfaces/userInfo';
-import { useRecoilState } from 'recoil';
 import * as Styled from './style';
 
 export default function NameCard({ id, name, latitude, longitude }: ILocation) {
@@ -12,7 +9,7 @@ export default function NameCard({ id, name, latitude, longitude }: ILocation) {
     openModal, 
     closeModal
   } = useModal();
-
+  //TODO: 이 namecard를 클릭하면 해당 위치로 이동하게끔 구현해야함
   return (
     <>
       <Styled.Container>
@@ -21,8 +18,6 @@ export default function NameCard({ id, name, latitude, longitude }: ILocation) {
           <DeleteFavoritePlaceButton onClick={() =>openModal()}/>
         </Styled.Wrapper>
       </Styled.Container>
-
-
 
       {isOpen && (
         <ReconfirmAlertModal

@@ -10,12 +10,12 @@ import { userInfoState } from '@/atoms/userInfoState';
 import { useQueryClient } from '@tanstack/react-query';
 import { useChangeNickname } from '@/hooks/useChangeNickname';
 import { isAxiosError } from 'axios';
-import { alertModalState } from '@/atoms/modalState';
+import useToast from '@/hooks/useToast';
 
 export default function ProfileNameButton(props: TextButtonProps) {
-  const [alertModal, setAlertModal] = useRecoilState(alertModalState);
+  const { displayToast } = useToast();
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  const {value: nicknameTerm, setValue: setNicknameTerm, reset} = useInput();
+  const {value: nicknameTerm, setValue: setNicknameTerm, reset} = useInput<HTMLTextAreaElement>();
   const [userInfo, ] = useRecoilState(userInfoState);
   const queryClient = useQueryClient();
   const { mutate }  = useChangeNickname();
@@ -30,24 +30,23 @@ export default function ProfileNameButton(props: TextButtonProps) {
   }
 
   const handleProfileChangeClick = () => {
-    mutate(nicknameTerm, {
-      onSuccess: async () => {
-        setShowSearchBar(!showSearchBar);
-        setAlertModal({
-          isOpen: true,
-          message: '닉네임 변경이\n완료되었습니다.',
-        });        
-        await queryClient.invalidateQueries({queryKey: ['userInfo']});
-      },
-      onError: (error) => {
-        if(isAxiosError(error)) {
-          setAlertModal({
-            isOpen: true,
-            message: '변경에 실패했습니다.\n다시 시도해주세요.',
-          });  
-        }
-      },
-    });
+    if (!nicknameTerm) {
+      displayToast(`변경할 닉네임을 입력해주세요.`);
+      return;
+    } else {
+      mutate(nicknameTerm, {
+        onSuccess: async () => {
+          setShowSearchBar(!showSearchBar);
+          displayToast('닉네임 변경이 완료되었습니다.');
+          await queryClient.invalidateQueries({queryKey: ['userInfo']});
+        },
+        onError: (error) => {
+          if(isAxiosError(error)) {
+            displayToast('변경에 실패했습니다. 다시 시도해주세요.');
+          }
+        },
+      });
+    }
   };
 
   return (
@@ -66,7 +65,7 @@ export default function ProfileNameButton(props: TextButtonProps) {
             maxLength={20}
             value={nicknameTerm}
             onChange={handleChange}
-            defaultValue={userInfo?.data?.infos?.nickname}
+            defaultValue={userInfo.data.infos.nickname}
           />
           <RegisterButton 
             position={'relative'}
