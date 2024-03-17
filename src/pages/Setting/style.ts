@@ -17,7 +17,8 @@ export const Label = styled.label`
 `;
 
 export const Line = styled.div`
-  width: 390px;
+  width: 100vw;
+  max-width: 430px;
   height: 2.5px;
   background-color: ${theme.colors.darkBrown};
   margin: 191px 0 5px 0;

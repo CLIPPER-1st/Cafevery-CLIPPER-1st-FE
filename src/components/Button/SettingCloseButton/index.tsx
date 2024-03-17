@@ -14,8 +14,8 @@ export default function SettingCloseButton(props: SettingCloseButtonProps) {
       width={30}
       height={30}
       background={CloseImg}
-      top={27}
-      right={27}
+      top={20}
+      right={20}
       position={'absolute'}
       onClick={() => handleClicked()}
       zIndex={100}
