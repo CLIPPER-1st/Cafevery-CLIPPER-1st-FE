@@ -54,27 +54,29 @@ export default function LikeList() {
             <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
           ) : (
             finalFilteredCafes?.cafes.map((like: Likes) => {
-              return (
-                <Styled.Wrapper
-                  key={like.id}
-                  onClick={() => handleCafeInfoModalOpen(like.id)}
-                >
-                  <NameCard
-                    id={like.id}
-                    name={like.name}
-                    address={like.address}
-                    business={`${convertTime(like.start_time).formattedTime} ~ ${convertTime(like.end_time).formattedTime}`}
-                    likes={like.likes}
-                    distance={calculateDistance({
-                      currentLatitude: coordinates.lat,
-                      currentLongitude: coordinates.lng,
-                      targetLatitude: like.latitude,
-                      targetLongitude: like.longitude,
-                    })}
-                    liked={like.liked}
-                  />
-                </Styled.Wrapper>
-              );
+              if (isLikes(like)) {
+                return (
+                  <Styled.Wrapper
+                    key={like.id}
+                    onClick={() => handleCafeInfoModalOpen(like.id)}
+                  >
+                    <NameCard
+                      id={like.id}
+                      name={like.name}
+                      address={like.address}
+                      business={`${convertTime(like.start_time).formattedTime} ~ ${convertTime(like.end_time).formattedTime}`}
+                      likes={like.likes}
+                      distance={calculateDistance({
+                        currentLatitude: coordinates.lat,
+                        currentLongitude: coordinates.lng,
+                        targetLatitude: like.latitude,
+                        targetLongitude: like.longitude,
+                      })}
+                      liked={like.liked}
+                    />
+                  </Styled.Wrapper>
+                );
+              }
             })
           )}
         </Styled.Container>
@@ -84,4 +86,8 @@ export default function LikeList() {
       )}
     </>
   );
+}
+
+function isLikes(obj: any): obj is Likes {
+  return 'name' in obj && typeof obj.name === 'string';
 }
