@@ -6,8 +6,11 @@ import {Suspense} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import Splash from './components/common/Splash';
 import ToastContainer from '@/components/common/ToastContainer';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 const App = () => {
+  useScrollToTop();
+
   return (
     <ErrorBoundary fallback={<Splash />}>
       <Suspense fallback={ <Splash />}>
