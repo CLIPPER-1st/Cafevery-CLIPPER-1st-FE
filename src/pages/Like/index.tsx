@@ -35,7 +35,7 @@ export default function Like() {
           <Toggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar />
-        <LikeList />
+        <LikeList data={{ cafes: data }} />
       </PageLayout>
 
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}
