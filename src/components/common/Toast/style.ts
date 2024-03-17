@@ -32,7 +32,7 @@ export const ToastContainer = styled.div`
     width: auto; // 너비를 내용에 따라 자동 조절
     max-width: 400px; // 최대 너비를 화면 너비의 90%로 제한
     min-width: 100px; // 최소 너비 설정
-    border-radius: 5px;
+    border-radius: 10px;
     animation: ${slideUpAndFade} 2s ease forwards;
     z-index: 10000;
     text-align: center;
