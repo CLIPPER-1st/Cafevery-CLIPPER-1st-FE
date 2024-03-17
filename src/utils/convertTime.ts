@@ -1,6 +1,4 @@
-export function convertTime(time: string): { convertedTime: number; formattedTime: string } {
-    console.log(`convertTime called with time: "${time}"`); // 입력값 로깅 추가
-    
+export function convertTime(time: string): { convertedTime: number; formattedTime: string } {    
     // "휴무" 값에 대한 처리를 가장 먼저 수행
     if (time === ('휴무' || '')) {
         return { convertedTime: -1, formattedTime: "휴무" };

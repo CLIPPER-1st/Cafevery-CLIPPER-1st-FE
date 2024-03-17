@@ -4,18 +4,18 @@ export const Container = styled.div`
   justify-content: center;
   z-index: 0;
   top: 180px;
-  height: 70vh;
+  height: 68vh;
   z-index: 1;
   align-items: center;
   overflow-y: auto;
   position: fixed;
 
   @media (max-height: 740px) {
-    height: 65vh;
+    height: 63vh;
   }
 
   @media (max-height: 667px) {
-    height: 60vh;
+    height: 58vh;
   }
 `;
 
