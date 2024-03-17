@@ -5,6 +5,7 @@ import theme from './theme';
 import {Suspense} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import Splash from './components/Splash';
+import ToastContainer from '@/components/common/ToastContainer';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Router />
           </BrowserRouter>
         </ThemeProvider>
+        <ToastContainer />
       </Suspense> 
     </ErrorBoundary>
   );
