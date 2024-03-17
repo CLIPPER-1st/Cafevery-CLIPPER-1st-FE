@@ -9,7 +9,6 @@ export function Toggle() {
 
   const toggle = () => {
     setIsOn(!isOn);
-    console.log(isOn)
   }
   return (
     <Styled.ToggleButtonContainer isOn={isOn} onClick={() => toggle()}>

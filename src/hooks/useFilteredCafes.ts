@@ -13,14 +13,12 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
     const myLocation = useRecoilValue(myLocationState);
     const [filteredCafes, setFilteredCafes] = useState<ICafeList | ILikesList | null>();
 
-    console.log("useFilteredCafes cafeInfoList", cafeInfoList)
     useEffect(() => {
         if (!cafeInfoList || !cafeInfoList.cafes || cafeInfoList.cafes.length === 0) return;
         if (myLocation.latitude !== 0 && myLocation.longitude!== 0 && loaded && coordinates) {
         //if(coordinates.lat !== 0 && coordinates.lng!== 0 && loaded && coordinates) {
 
         const cafes = cafeInfoList.cafes;
-        console.log("useFilteredCafes useEffect cafeInfoList", cafeInfoList)
             //if (!cafes || cafes.length === 0) return;
         
             const filtered = cafes?.filter((cafe) => {
@@ -29,7 +27,6 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
 
                 const currentTime = new Date(); // 현재 시간
                 const currentHour = currentTime.getHours(); // 현재 시
-                console.log('currentHour', currentHour)
                 const currentMinute = currentTime.getMinutes(); // 현재 분
                 const { convertedTime: convertedCurrentTime } = convertTime(`${currentHour}:${currentMinute}`);
 
@@ -59,10 +56,8 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
                 }
             })
             setFilteredCafes({ cafes: filtered });
-            console.log("filteredCafes", filteredCafes)
 
         }
-        console.log("filteredd", filteredCafes)
     }, [minValue, maxValue, filteredDistance, toggleState, cafeInfoList]);
 
     return filteredCafes;

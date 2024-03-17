@@ -2,7 +2,6 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchCafes } from '@/apis/cafeList';
 
 export const useFetchCafeList = (centerLatitude: number, centerLongitude: number) => {
-    
     const { data } = useSuspenseQuery({
         queryKey: ['cafeInfoList'],
         queryFn: async () => {
@@ -16,6 +15,5 @@ export const useFetchCafeList = (centerLatitude: number, centerLongitude: number
         gcTime: 300000, // 5분
     });
     console.log(data.data.cafes);
-
     return { data };
 };

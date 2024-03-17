@@ -32,7 +32,6 @@ export default function Home() {
     if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
       queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
     }
-    console.log('mapCenterLocation', mapCenterLocation)
 
   }, [mapCenterLocation]);
 

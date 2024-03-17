@@ -30,7 +30,6 @@ export default function ProfileNameButton(props: TextButtonProps) {
   }
 
   const handleProfileChangeClick = () => {
-    console.log(nicknameTerm)
     mutate(nicknameTerm, {
       onSuccess: async () => {
         setShowSearchBar(!showSearchBar);

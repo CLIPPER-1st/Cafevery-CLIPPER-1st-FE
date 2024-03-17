@@ -22,9 +22,9 @@ export default function LikeList() {
   const {isOpen, openModal, closeModal} = useModal();
   const [cafeId, setCafeId] = useRecoilState(selectedCafeState);
   const nowUrl = useLocation();
-  const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
+  const distance = useRecoilValue(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
-  const [showMap, ] = useRecoilState(toggleState((nowUrl.pathname)));
+  const showMap = useRecoilValue(toggleState((nowUrl.pathname)));
   const fullLikesList = useRecoilValue(likesListState({distance: 3, startTime: 0, endTime: 24, searchTerm: ''}));
   const searchTerm = useRecoilValue(searchTermState);
   const initiallyFilteredCafes = useFilteredCafes(fullLikesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);

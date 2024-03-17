@@ -21,7 +21,6 @@ export function NaverMaps( cafes: ICafeList ) {
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
-    //const [cafeInfoList, setCafeInfoList] = useRecoilState(cafeInfoListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue})); //TODO: 임시 
     const navermaps = useNavermaps();
     const [showSplash, setShowSplash] = useState(false);
     const nowUrl = useLocation();
@@ -30,13 +29,11 @@ export function NaverMaps( cafes: ICafeList ) {
     const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
     const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
 
-    console.log('NaverMaps cafe filtered data', cafes)
     useEffect(() => {
         if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
             setShowSplash(true);
         }
         console.log('mapCenterLocation', mapCenterLocation)
-
     }, [mapCenterLocation]);
 
     console.log("mymap render")
@@ -49,7 +46,6 @@ export function NaverMaps( cafes: ICafeList ) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
         }
         console.log('mapCenterLocation', mapCenterLocation)
-
     }, [coordinates]);
 
     return (
@@ -68,7 +64,7 @@ export function NaverMaps( cafes: ICafeList ) {
                             }
                         >
                             <MyMarker />
-                            {filteredCafes?.cafes.map((cafe) => (
+                            {filteredCafes.cafes.map((cafe: Cafe) => (
                                 <CafeMarker key={cafe.id} data={cafe} />
                             ))}
                         </NaverMap>
