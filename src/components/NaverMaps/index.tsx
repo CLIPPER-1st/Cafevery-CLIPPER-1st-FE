@@ -64,7 +64,7 @@ export function NaverMaps( cafes: ICafeList ) {
                             }
                         >
                             <MyMarker />
-                            {filteredCafes.cafes.map((cafe: Cafe) => (
+                            {filteredCafes?.cafes.map((cafe: Cafe) => (
                                 <CafeMarker key={cafe.id} data={cafe} />
                             ))}
                         </NaverMap>
