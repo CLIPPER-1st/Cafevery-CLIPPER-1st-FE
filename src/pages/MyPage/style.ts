@@ -12,7 +12,8 @@ export const ProfileImage = styled.img`
 `;
 
 export const Line = styled.div`
-  width: 340px;
+  width: 100vw;
+  max-width: 430px;
   height: 2.5px;
   background-color: ${theme.colors.darkBrown};
   position: relative;

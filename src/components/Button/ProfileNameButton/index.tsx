@@ -74,7 +74,10 @@ export default function ProfileNameButton(props: TextButtonProps) {
           />
         </Styled.Container>
       ) : (
-        <TextButton {...props} onClick={() => handleProfileChangeInputBarOpen()}>
+        <TextButton {...props} 
+          onClick={() => handleProfileChangeInputBarOpen()}
+          fontSize={24}
+        >
           {props.children}
         </TextButton>
       )}

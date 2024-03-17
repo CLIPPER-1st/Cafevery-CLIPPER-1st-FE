@@ -9,9 +9,8 @@ export default function SettingButton(props: SettingButtonProps) {
       width={40} 
       height={40} 
       background={SettingButtonImg} 
-      margin={"0 0 0 0"}
       {...props}
-      position={"fixed"}
+      position={"absolute"}
       top={20}
       right={20}
       zIndex={100}

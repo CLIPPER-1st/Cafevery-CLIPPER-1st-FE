@@ -36,7 +36,7 @@ export default function MyPage() {
   }
 
   const handleToggleMapVisibility = () => {
-    if (userInfo?.data?.infos?.locations?.length >= 5) {
+    if (userInfo.data.infos.locations.length >= 5) {
       openModal();
       setAlertModal({
         isOpen: true,
@@ -55,9 +55,9 @@ export default function MyPage() {
               {!showMap ? (
                 <>
                   <SettingButton onClick={() => handleNavigateToSetting()} />
-                  <Styled.ProfileImage src={userInfo?.data?.infos?.profile_image} />
+                  <Styled.ProfileImage src={userInfo.data.infos.profile_image} />
                   <ProfileNameButton onClick={() => handleChangeProfileName()}>
-                    {`${userInfo?.data?.infos?.nickname} 🖊️`}
+                    {`${userInfo.data.infos.nickname} 🖊️`}
                   </ProfileNameButton>
                   <Styled.Line />
                   <TextButton onClick={() => handleToggleMapVisibility()}>

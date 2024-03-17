@@ -8,5 +8,5 @@ export const Container = styled.div`
     transform: translateX(-48%);
     width: 350px;
     z-index: 1;
-    bottom: 90px;
+    bottom: 110px;
 `;
