@@ -17,7 +17,7 @@ export function LikeSearchBar() {
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
   const [likesSearchTerm, setLikesSearchTerm] = useRecoilState(searchTermState)
-  const [likesList, setLikesList] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue, searchTerm: likesSearchTerm}));
+  const [likeListState, setLikeListState] = useRecoilState(likesListState({distance: distance, startTime: timeFilter.minValue, endTime: timeFilter.maxValue, searchTerm: likesSearchTerm}));
   
   const handleClear = () => {
     setSearchTerm('');
@@ -27,17 +27,18 @@ export function LikeSearchBar() {
   const handleChange = (e: {target: {value: string}}) => {
     const value = e.target.value;
     setSearchTerm(value);
-    setLikesSearchTerm(value)
+    setLikesSearchTerm(value);
   };
+
 
   useEffect(() => {
     if (searchTerm === '') {
-      setLikesList(likesList);
+      setLikeListState(likeListState);
     } else {
-      const filtered = likesList.cafes.filter((like) =>
+      const filtered = likeListState.cafes.filter((like) =>
         like.name.toLowerCase().includes(searchTerm.toLowerCase()),
       );
-      setLikesList({ cafes: filtered });
+      setLikeListState({ cafes: filtered });
     }
   }, [searchTerm]);
 

@@ -7,10 +7,21 @@ import FilterModal from '@/components/Modal/FilterModal';
 import { Toggle } from '@/components/Toggle';
 import LikeList from '@/components/Like/LikeList';
 import { useFetchCafeLikes } from '@/hooks/useFetchCafeLikes';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { likesListState } from '@/atoms/likesState';
+
 
 export default function Like() {
   const {isOpen, openModal, closeModal} = useModal();
-  const data = useFetchCafeLikes();
+  const {data, isSuccess} = useFetchCafeLikes();
+  const setLikeListState = useSetRecoilState(likesListState({distance: 3, startTime: 0, endTime: 24, searchTerm: ''}));
+  
+  useEffect(() => {
+    if (isSuccess && data) {
+      setLikeListState({cafes: data});
+    }
+  }, [data, isSuccess]);
 
   const handleFilterModalOpen = () => {
     openModal();
@@ -24,7 +35,7 @@ export default function Like() {
           <Toggle />
         </Styled.ButtonsWrapper>
         <LikeSearchBar />
-        <LikeList data={{ cafes: data }} />
+        <LikeList />
       </PageLayout>
 
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}

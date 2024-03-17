@@ -63,7 +63,7 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
 
         }
         console.log("filteredd", filteredCafes)
-    }, [minValue, maxValue, filteredDistance, toggleState]);
+    }, [minValue, maxValue, filteredDistance, toggleState, cafeInfoList]);
 
     return filteredCafes;
 }

@@ -11,15 +11,18 @@ export const Container = styled.div`
   background-color: ${theme.colors.brown};
   border-radius: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 0 16px;
   color: white;
 `;
 
 export const Wrapper = styled.div`
-  align-items: right;
-  width: 32vw;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: auto;
 `;
 
 export const Address = styled.p`
