@@ -14,10 +14,10 @@ import { useLocation } from 'react-router-dom';
 import { distanceState } from '@/atoms/distanceFilter';
 import { toggleState } from '@/atoms/toggle';
 import { searchTermState } from '@/atoms/input';
-import { useEffect } from 'react';
-import { ILikesList, Likes } from '@/interfaces/likes';
+import { useEffect, useState } from 'react';
+import { Likes } from '@/interfaces/likes';
 
-export default function LikeList({ data }: { data: ILikesList }) {
+export default function LikeList() {
   const {loaded, coordinates} = useGeolocation();
   const {isOpen, openModal, closeModal} = useModal();
   const [cafeId, setCafeId] = useRecoilState(selectedCafeState);
@@ -25,15 +25,23 @@ export default function LikeList({ data }: { data: ILikesList }) {
   const [distance, ] = useRecoilState(distanceState(nowUrl.pathname));
   const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
   const [showMap, ] = useRecoilState(toggleState((nowUrl.pathname)));
-  const filteredCafes = useFilteredCafes(data, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
-  
+  const fullLikesList = useRecoilValue(likesListState({distance: 3, startTime: 0, endTime: 24, searchTerm: ''}));
+  const searchTerm = useRecoilValue(searchTermState);
+  const initiallyFilteredCafes = useFilteredCafes(fullLikesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
+  const [finalFilteredCafes, setFinalFilteredCafes] = useState(initiallyFilteredCafes); // 상태로 필터링된 카페 목록 관리
+
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);
     openModal();
   };
   
-  console.log('data', data)
-
+  useEffect(() => { // searchTerm 변경 시 또는 initiallyFilteredCafes 변경 시 텍스트 기반 필터링 적용
+    const updatedFiltered = initiallyFilteredCafes?.cafes.filter(like => 
+      like.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFinalFilteredCafes({ cafes: updatedFiltered || [] });
+  }, [searchTerm, initiallyFilteredCafes]);
+  
   if (!loaded || !coordinates) {
     return;
   }
@@ -42,10 +50,10 @@ export default function LikeList({ data }: { data: ILikesList }) {
     <>
       {coordinates.lat !== 0 && coordinates.lng !== 0 && loaded &&(
         <Styled.Container>
-          {filteredCafes?.cafes.length === 0 ? (
+          {finalFilteredCafes?.cafes.length === 0 ? (
             <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
           ) : (
-            filteredCafes?.cafes.map((like: Likes) => {
+            finalFilteredCafes?.cafes.map((like: Likes) => {
               return (
                 <Styled.Wrapper
                   key={like.id}
