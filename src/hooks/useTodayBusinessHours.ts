@@ -15,5 +15,5 @@ export function useTodayBusinessHours(businessHours: BusinessHour[]) {
     }
   }, [businessHours]);
 
-  return todayHours;
+  return {todayHours};
 }

@@ -14,7 +14,7 @@ import { SummaryCafeInfoModalProps } from '@/interfaces/modal';
 //TODO: useRecoilState에서 useFetchCafeInfo에서 반환하는 cafeInfo로 변경해야 함.
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
     const [cafeInfo,] = useRecoilState(cafeInfoState);
-    const todayHours = useTodayBusinessHours(cafeInfo.business);
+    const {todayHours} = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const { isOpen: isCafeInfoModalOpen, openModal: openCafeInfoModal, closeModal: closeCafeInfoModal } = useModal();
@@ -26,7 +26,7 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
 
     return (
         <>
-            <Modal 
+            <Modal
                 modalTitle={''} 
                 isOpen={isOpen} 
                 onClose={onClose} 

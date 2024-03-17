@@ -15,7 +15,7 @@ import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
     const [data,] = useRecoilState(cafeInfoState); // TODO: 더미
-    const todayHours = useTodayBusinessHours(data.business);
+    const {todayHours} = useTodayBusinessHours(data.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);
     const navigate = useNavigate();
