@@ -7,11 +7,11 @@ const slideUpAndFade = keyframes`
         opacity: 0;
     }
     10% {
-        bottom: 50px; // 최종 위치로 이동
+        bottom: 100px; // 최종 위치로 이동
         opacity: 1;
     }
     90% {
-        bottom: 50px; // 위치 유지
+        bottom: 100px; // 위치 유지
         opacity: 1;
     }
     100% {
