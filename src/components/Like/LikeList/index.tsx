@@ -36,7 +36,7 @@ export default function LikeList() {
   };
   
   useEffect(() => { // searchTerm 변경 시 또는 initiallyFilteredCafes 변경 시 텍스트 기반 필터링 적용
-    const updatedFiltered = initiallyFilteredCafes?.cafes.filter(like => 
+    const updatedFiltered = initiallyFilteredCafes?.cafes.filter((like: Likes) => 
       like.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFinalFilteredCafes({ cafes: updatedFiltered || [] });
@@ -61,7 +61,7 @@ export default function LikeList() {
                 >
                   <NameCard
                     id={like.id}
-                    name={like?.name}
+                    name={like.name}
                     address={like.address}
                     business={`${convertTime(like.start_time).formattedTime} ~ ${convertTime(like.end_time).formattedTime}`}
                     likes={like.likes}
@@ -84,8 +84,4 @@ export default function LikeList() {
       )}
     </>
   );
-}
-
-function isLikes(obj: any): obj is Likes {
-  return 'name' in obj && typeof obj.name === 'string';
 }
