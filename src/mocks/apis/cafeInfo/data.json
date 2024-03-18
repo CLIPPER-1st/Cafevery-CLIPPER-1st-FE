@@ -43,9 +43,9 @@
                     "end_time": "휴무"
                 }
 			],
-			"phone_number": "string",
-			"likes": "int",
-			"liked": "boolean"
+			"phone_number": "02-1234-4312",
+			"likes": 3,
+			"liked": false
 		}
 	},
 	"error": null

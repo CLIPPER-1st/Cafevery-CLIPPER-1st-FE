@@ -1,6 +1,5 @@
 import {SmallButtonProps} from '@/interfaces/button';
 import Button from '../Button';
-import CloseImg from '@/assets/Icons/Close.png'
 import theme from '@/theme';
 
 export default function SmallButton(props: SmallButtonProps) {

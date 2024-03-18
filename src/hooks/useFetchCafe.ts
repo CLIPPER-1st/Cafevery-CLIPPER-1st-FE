@@ -9,5 +9,5 @@ export const useFetchCafeInfo = (id: number) => {
         gcTime: 300000, // 5분
     });
 
-    return { data };
+    return { data: data.data.cafe };
 }

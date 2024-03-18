@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 export const useSignout = () => {
-    //const { closeModal } = useModal();
     const queryClient = useQueryClient();
     const { displayToast } = useToast();
     const navigate = useNavigate();
