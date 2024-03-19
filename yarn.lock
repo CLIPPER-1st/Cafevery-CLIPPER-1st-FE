@@ -850,6 +850,11 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
 
+"@types/geojson@*":
+  version "7946.0.14"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.14.tgz#319b63ad6df705ee2a65a73ef042c8271e696613"
+  integrity sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==
+
 "@types/google.maps@3.55.2":
   version "3.55.2"
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.55.2.tgz#6e5a1c257aeda3861a919a56fb9f369468e79e15"
@@ -874,6 +879,13 @@
   version "0.7.34"
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.34.tgz#10964ba0dee6ac4cd462e2795b6bebd407303433"
   integrity sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==
+
+"@types/navermaps@^3.7.4":
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/@types/navermaps/-/navermaps-3.7.4.tgz#84bfcfba4457f83f5b4eb7f7c6738b568e14d485"
+  integrity sha512-fAazswZgl/l/1Mw375hJcNAC244SiTA0+Y6HE8atkVAtrdawlpgpkaRMCpFX+15iDiQzTfO0MmE+y1+6NpWFuQ==
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/node@*":
   version "20.11.29"

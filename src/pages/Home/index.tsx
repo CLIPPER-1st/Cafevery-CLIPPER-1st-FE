@@ -15,7 +15,8 @@ import LocationSearchBar from '@/components/common/Search/LocationSearchBar';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useFetchCafeList } from '@/hooks/useFetchCafeList';
-import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
+import { currentModalState } from '@/atoms/modalState';
+import SummaryCafeInfoModal from '@/components/common/Modal/SummaryCafeInfoModal';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
@@ -24,8 +25,8 @@ export default function Home() {
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
   const queryClient = useQueryClient();
   const { data } = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
-  const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
-  console.log('cafeInfo', cafeInfo)
+  const [currentModal, setCurrentModal] = useRecoilState(currentModalState);
+  
   const handleFetchCafeList = () => {
     queryClient.invalidateQueries({ queryKey: ['cafeInfoList'] });
   }
@@ -70,6 +71,13 @@ export default function Home() {
           <NaverMaps cafes={data.data.cafes} />
         </PageLayout>
       {isOpen && <FilterModal isOpen={isOpen} onClose={closeModal} />}
+      {currentModal && (
+        <SummaryCafeInfoModal
+          isOpen={true}
+          onClose={() => setCurrentModal(null)}
+          id={currentModal}
+        />
+      )}
     </>
   );
 }

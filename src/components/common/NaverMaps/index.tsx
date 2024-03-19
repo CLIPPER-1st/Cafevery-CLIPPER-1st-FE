@@ -1,5 +1,5 @@
 import { NavermapsProvider } from 'react-naver-maps';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { NaverMap, useNavermaps } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
@@ -15,6 +15,7 @@ import { timeFilterState } from '@/atoms/timeFilter';
 import { distanceState } from '@/atoms/distanceFilter';
 import { useLocation } from 'react-router-dom';
 import { toggleState } from '@/atoms/toggle';
+import { showSplashState } from '@/atoms/showSplashState';
 
 export function NaverMaps( cafes: ICafeList ) {
     const { loaded, coordinates } = useGeolocation();
@@ -22,7 +23,7 @@ export function NaverMaps( cafes: ICafeList ) {
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
     const navermaps = useNavermaps();
-    const [showSplash, setShowSplash] = useState(false);
+    const [showSplash, setShowSplash] = useRecoilState(showSplashState);
     const nowUrl = useLocation();
     const distance = useRecoilValue(distanceState(nowUrl.pathname));
     const showMap = useRecoilValue(toggleState((nowUrl.pathname)));
@@ -62,11 +63,14 @@ export function NaverMaps( cafes: ICafeList ) {
                         >
                             <MyMarker />
                             {filteredCafes?.cafes.map((cafe: Cafe) => (
-                                <CafeMarker key={cafe.id} data={cafe} />
+                                <CafeMarker 
+                                    key={cafe.id} 
+                                    data={cafe}
+                                />
                             ))}
                         </NaverMap>
                     )}
-                </MapDiv>            
+                </MapDiv>
             </NavermapsProvider>
         </>
     )

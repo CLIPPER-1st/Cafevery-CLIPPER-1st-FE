@@ -28,8 +28,9 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
     useEffect(() => {
         if(cafeInfo && !isLoading) {
             setCafeInfo(cafeInfo);
+            console.log('cafeInfo', cafeInfo)
         }
-    },[isLoading])
+    },[isLoading, cafeInfo, setCafeInfo]); // 의존성 배열을 명확히 지정하여 불필요한 리렌더링을 방지합니다.
 
     return (
         <>
@@ -59,7 +60,7 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
                 </Styled.ModalWrapper>
             </Modal>
 
-            {isOpen && (
+            {isCafeInfoModalOpen && (
                 <CafeInfoModal 
                     isOpen={isCafeInfoModalOpen}
                     onClose={closeCafeInfoModal}
