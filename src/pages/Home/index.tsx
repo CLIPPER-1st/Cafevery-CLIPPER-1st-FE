@@ -44,7 +44,6 @@ export default function Home() {
         longitude: coordinates.lng,
       });
       setSearchTerm('');
-      queryClient.invalidateQueries({queryKey: ['cafeInfoList']});
     }
   };
 
