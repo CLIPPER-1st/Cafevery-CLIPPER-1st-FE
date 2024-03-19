@@ -80,7 +80,7 @@ export default function LikeList() {
         </Styled.Container>
       )}
       {isOpen && (
-        <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={cafeId} />
+        <CafeInfoModal isOpen={isOpen} onClose={closeModal} />
       )}
     </>
   );
