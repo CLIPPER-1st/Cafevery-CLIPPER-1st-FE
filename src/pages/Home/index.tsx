@@ -15,6 +15,7 @@ import LocationSearchBar from '@/components/common/Search/LocationSearchBar';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useFetchCafeList } from '@/hooks/useFetchCafeList';
+import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function Home() {
   const {loaded, coordinates} = useGeolocation();
@@ -23,7 +24,8 @@ export default function Home() {
   const [mapCenterLocation, setMapCenterLocation] = useRecoilState(mapCenterState);
   const queryClient = useQueryClient();
   const { data } = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
-
+  const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
+  console.log('cafeInfo', cafeInfo);
   const handleFetchCafeList = () => {
     queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
   }
