@@ -11,9 +11,10 @@ import { useRecoilState } from 'recoil';
 import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { CafeInfoModalProps } from '@/interfaces/modal';
+import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
-    const [data,] = useRecoilState(cafeInfoState);
+    const {data} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
     const {todayHours} = useTodayBusinessHours(data.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);

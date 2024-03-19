@@ -9,13 +9,9 @@ import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { SummaryCafeInfoModalProps } from '@/interfaces/modal';
 import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
-import { useSetRecoilState } from 'recoil';
-import { cafeInfoState } from '@/atoms/cafeInfoState';
-import { useEffect } from 'react';
 
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
-    const {data: cafeInfo, isLoading} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
-    const setCafeInfo = useSetRecoilState(cafeInfoState);
+    const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
     const {todayHours} = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
@@ -24,13 +20,6 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
     const handleOpenCafeInfoModal = () => {
         openCafeInfoModal();
     }
-
-    useEffect(() => {
-        if(cafeInfo && !isLoading) {
-            setCafeInfo(cafeInfo);
-            console.log('cafeInfo', cafeInfo)
-        }
-    },[isLoading, cafeInfo, setCafeInfo]); // 의존성 배열을 명확히 지정하여 불필요한 리렌더링을 방지합니다.
 
     return (
         <>
@@ -64,6 +53,7 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
                 <CafeInfoModal 
                     isOpen={isCafeInfoModalOpen}
                     onClose={closeCafeInfoModal}
+                    id={id}
                 />
             )}
         </>

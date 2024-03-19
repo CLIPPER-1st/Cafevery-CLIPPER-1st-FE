@@ -45,9 +45,7 @@ export default function Likebutton(props: LikeButtonProps) {
           queryClient.setQueryData(['cafeInfo', props.id], updateData())
 
           const prevLikes: ILikesList = queryClient.getQueryData(['cafeLikeList']);
-          console.log('prevLikes', prevLikes)
           const updatedCafes = prevLikes.cafes.filter(cafe => cafe.id !== props.id);
-          console.log('updatedCafes', updatedCafes)
           const updateLikesData = () => {
             if(prevLikes) {
               return {
