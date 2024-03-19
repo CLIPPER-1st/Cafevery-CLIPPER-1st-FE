@@ -8,7 +8,7 @@ export const fetchCafeLikes = async () => {
 
 export const putLikeCafe = async (cafeId: number) => {
   try {
-    const response = await instance.put(`/cafes/${cafeId}`);
+    const response = await instance.put(`/cafes/${cafeId}`, {});
     return response;
   } catch (error) {
     if (isAxiosError(error)) {
