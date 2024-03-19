@@ -5,15 +5,16 @@ import theme from '@/theme';
 export const CafeAddress = styled.div`
     width: 100%;
     height: 16px;
-    font-size: 12px;
+    font-size: 10px;
     margin: 6px 0 6px 0;
     color: ${theme.colors.lightBrown};
 `;
 
 export const SectionTitle = styled.div`
     width: 100%;
-    height: 24px;
-    font-size: 24px;
+    height: 22px;
+    font-size: 22px;
+    line-height: 1;
     margin: 0 0 6px 0;
 `;
 

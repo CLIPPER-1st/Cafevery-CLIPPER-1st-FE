@@ -11,10 +11,9 @@ import { useRecoilState } from 'recoil';
 import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { CafeInfoModalProps } from '@/interfaces/modal';
-import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
-export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
-    const [data,] = useRecoilState(cafeInfoState); // TODO: 더미
+export default function CafeInfoModal({ onClose, isOpen }: CafeInfoModalProps) {
+    const [data,] = useRecoilState(cafeInfoState);
     const {todayHours} = useTodayBusinessHours(data.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);
@@ -25,7 +24,6 @@ export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProp
         setMapCenterLocation({ latitude: latitude, longitude: longitude });
         onClose();
     }
-    //const { data } = useFetchCafeInfo(id); //TODO: 이걸로 적용해야함
 
     return (
         <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>

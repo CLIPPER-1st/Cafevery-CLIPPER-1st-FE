@@ -10,7 +10,7 @@ export const ModalWrapper = styled.div`
 export const CafeAddress = styled.div`
     width: 100%;
     height: 16px;
-    font-size: 12px;
+    font-size: 11px;
     margin: 6px 0 6px 0;
     color: ${theme.colors.lightBrown};
 `;

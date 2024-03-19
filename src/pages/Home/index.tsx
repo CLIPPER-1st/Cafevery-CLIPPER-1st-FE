@@ -25,7 +25,7 @@ export default function Home() {
   const queryClient = useQueryClient();
   const { data } = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
   const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
-  console.log('cafeInfo', cafeInfo);
+  console.log('cafeInfo', cafeInfo)
   const handleFetchCafeList = () => {
     queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
   }

@@ -9,9 +9,13 @@ import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { SummaryCafeInfoModalProps } from '@/interfaces/modal';
 import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
+import { useSetRecoilState } from 'recoil';
+import { cafeInfoState } from '@/atoms/cafeInfoState';
+import { useEffect } from 'react';
 
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
-    const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
+    const {data: cafeInfo, isLoading} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
+    const setCafeInfo = useSetRecoilState(cafeInfoState);
     const {todayHours} = useTodayBusinessHours(cafeInfo.cafe.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.cafe.latitude, cafeInfo.cafe.longitude);
@@ -20,6 +24,12 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
     const handleOpenCafeInfoModal = () => {
         openCafeInfoModal();
     }
+
+    useEffect(() => {
+        if(cafeInfo && !isLoading) {
+            setCafeInfo(cafeInfo.cafe);
+        }
+    },[isLoading])
 
     return (
         <>
@@ -53,7 +63,6 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
                 <CafeInfoModal 
                     isOpen={isCafeInfoModalOpen}
                     onClose={closeCafeInfoModal}
-                    id={cafeInfo.cafe.id}
                 />
             )}
         </>
