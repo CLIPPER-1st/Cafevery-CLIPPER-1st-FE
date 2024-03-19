@@ -12,7 +12,7 @@ import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { CafeInfoModalProps } from '@/interfaces/modal';
 
-export default function CafeInfoModal({ onClose, isOpen }: CafeInfoModalProps) {
+export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
     const [data,] = useRecoilState(cafeInfoState);
     const {todayHours} = useTodayBusinessHours(data.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);

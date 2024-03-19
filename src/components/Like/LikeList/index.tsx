@@ -35,12 +35,14 @@ export default function LikeList() {
     openModal();
   };
   
-  useEffect(() => { // searchTerm 변경 시 또는 initiallyFilteredCafes 변경 시 텍스트 기반 필터링 적용
+  useEffect(() => {
+    // searchTerm이 문자열인지 확인하고, 아닐 경우 빈 문자열을 사용
+    const searchTermStr = typeof searchTerm === 'string' ? searchTerm : '';
     const updatedFiltered = initiallyFilteredCafes?.cafes.filter((like: Likes) => 
-      like.name.toLowerCase().includes(searchTerm.toLowerCase())
+      like.name.toLowerCase().includes(searchTermStr.toLowerCase())
     );
     setFinalFilteredCafes({ cafes: updatedFiltered || [] });
-  }, [searchTerm, initiallyFilteredCafes]);
+  }, [searchTerm, initiallyFilteredCafes]);  
   
   if (!loaded || !coordinates) {
     return;
@@ -80,7 +82,7 @@ export default function LikeList() {
         </Styled.Container>
       )}
       {isOpen && (
-        <CafeInfoModal isOpen={isOpen} onClose={closeModal} />
+        <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={cafeId} />
       )}
     </>
   );

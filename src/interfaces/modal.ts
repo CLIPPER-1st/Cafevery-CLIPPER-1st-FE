@@ -26,7 +26,9 @@ export interface ModalProps {
   export interface FilterModalProps extends Partial<ModalProps> {
   }
 
-  export interface CafeInfoModalProps extends Partial<ModalProps> {}
+  export interface CafeInfoModalProps extends Partial<ModalProps> {
+    id: number;
+  }
 
   export interface AlertModalProps extends Partial<ModalProps> {}
 
