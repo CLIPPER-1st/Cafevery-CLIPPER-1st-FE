@@ -3,7 +3,7 @@ import {instance} from './axios';
 
 export const fetchCafeLikes = async () => {
   const response = await instance.get('/cafes/likes');
-  return response;
+  return response.data;
 };
 
 export const putLikeCafe = async (cafeId: number) => {

@@ -7,6 +7,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
 import { CafeInfo } from '@/interfaces/cafeInfo';
+import { ILikesList } from '@/interfaces/likes';
 
 export default function Likebutton(props: LikeButtonProps) {
   const { mutate }  = usePutLikeCafe();
@@ -23,6 +24,7 @@ export default function Likebutton(props: LikeButtonProps) {
       mutate(props.id, {
         onSuccess: async () => {
           queryClient.invalidateQueries({ queryKey: ['cafeInfo', props.id] });
+          queryClient.invalidateQueries({ queryKey: ['cafeLikeList'] });
         },
         onError: (error) => {
           if(isAxiosError(error)) {
@@ -41,6 +43,20 @@ export default function Likebutton(props: LikeButtonProps) {
             }
           }
           queryClient.setQueryData(['cafeInfo', props.id], updateData())
+
+          const prevLikes: ILikesList = queryClient.getQueryData(['cafeLikeList']);
+          console.log('prevLikes', prevLikes)
+          const updatedCafes = prevLikes.cafes.filter(cafe => cafe.id !== props.id);
+          console.log('updatedCafes', updatedCafes)
+          const updateLikesData = () => {
+            if(prevLikes) {
+              return {
+                ...prevLikes,
+                cafes: updatedCafes,
+              };
+            }
+          }
+          queryClient.setQueryData(['cafeLikeList'], updateLikesData())
         }
       });
   };

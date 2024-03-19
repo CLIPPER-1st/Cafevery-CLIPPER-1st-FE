@@ -8,5 +8,5 @@ export const useFetchCafeLikes = () => {
     staleTime: 100000,
     gcTime: 100,
   });
-  return { data: data.data.cafes, isSuccess };
+  return { data: data.cafes, isSuccess };
 };
