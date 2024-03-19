@@ -27,7 +27,7 @@ export default function Home() {
   const {data: cafeInfo} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
   console.log('cafeInfo', cafeInfo)
   const handleFetchCafeList = () => {
-    queryClient.fetchQuery({ queryKey: ['cafeInfoList'] });
+    queryClient.invalidateQueries({ queryKey: ['cafeInfoList'] });
   }
 
   useEffect(() => {
