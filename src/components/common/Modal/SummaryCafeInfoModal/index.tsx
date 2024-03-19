@@ -16,9 +16,9 @@ import { useEffect } from 'react';
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
     const {data: cafeInfo, isLoading} = useFetchCafeInfo(1); //TODO: 1이 아니라 id로 변경해야 함.
     const setCafeInfo = useSetRecoilState(cafeInfoState);
-    const {todayHours} = useTodayBusinessHours(cafeInfo.cafe.business);
+    const {todayHours} = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
-    const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.cafe.latitude, cafeInfo.cafe.longitude);
+    const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const { isOpen: isCafeInfoModalOpen, openModal: openCafeInfoModal, closeModal: closeCafeInfoModal } = useModal();
 
     const handleOpenCafeInfoModal = () => {
@@ -27,7 +27,7 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
 
     useEffect(() => {
         if(cafeInfo && !isLoading) {
-            setCafeInfo(cafeInfo.cafe);
+            setCafeInfo(cafeInfo);
         }
     },[isLoading])
 
@@ -46,15 +46,15 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
                     <Styled.Row>
                         <Styled.CafeThumb />
                         <Styled.Column>
-                            <Styled.SectionTitle>{cafeInfo.cafe.name}</Styled.SectionTitle>
+                            <Styled.SectionTitle>{cafeInfo.name}</Styled.SectionTitle>
                             <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
                         </Styled.Column>
                     </Styled.Row>
                     <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
                     <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
-                    <Styled.CafeInfo>{`🤍 ${cafeInfo.cafe.likes}`}</Styled.CafeInfo>
+                    <Styled.CafeInfo>{`🤍 ${cafeInfo.likes}`}</Styled.CafeInfo>
                     <Styled.LikeButtonWrapper>
-                        <Likebutton id={cafeInfo.cafe.id} liked={cafeInfo.cafe.liked} />
+                        <Likebutton id={cafeInfo.id} liked={cafeInfo.liked} />
                     </Styled.LikeButtonWrapper>
                 </Styled.ModalWrapper>
             </Modal>
