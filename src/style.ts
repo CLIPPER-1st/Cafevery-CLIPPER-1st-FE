@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #fefee7;
+    background-color: #f8f0e5;
   }
 
   #content {

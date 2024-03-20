@@ -10,7 +10,6 @@ export const Layout = styled.div`
   min-height: 850px;
   //overflow-y: hidden;
   overflow-x: hidden;
-  //font-family: 'Pretendard';
 `;
 
 export const Wrapper = styled.div`
@@ -19,7 +18,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //font-family: 'Pretendard';
   position: relative;
 `;
 
