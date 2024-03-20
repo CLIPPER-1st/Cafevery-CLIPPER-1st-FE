@@ -10,18 +10,20 @@ import { useFetchCafeLikes } from '@/hooks/useFetchCafeLikes';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { likesListState } from '@/atoms/likesState';
-
+import { showSplashState } from '@/atoms/showSplashState';
 
 export default function Like() {
   const {isOpen, openModal, closeModal} = useModal();
-  const {data, isSuccess} = useFetchCafeLikes();
+  const {data, isLoading} = useFetchCafeLikes();
   const setLikeListState = useSetRecoilState(likesListState({distance: 3, startTime: 0, endTime: 24, searchTerm: ''}));
-  
+  const setShowSplash = useSetRecoilState(showSplashState);
+
   useEffect(() => {
-    if (isSuccess && data) {
+    if (!isLoading && data) {
+      setShowSplash(true);
       setLikeListState({cafes: data});
     }
-  }, [data, isSuccess]);
+  }, [data, isLoading]);
 
   const handleFilterModalOpen = () => {
     openModal();

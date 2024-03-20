@@ -9,7 +9,14 @@ export const Layout = styled.div`
   display: flex;
   justify-content: center;
   overflow-x: hidden;
+  position: fixed; /* 이 부분을 fixed로 변경 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; /* Splash가 다른 컴포넌트 위에 오도록 z-index 설정 */
 `;
+
 
 const slideOutRight = keyframes`
   from {
@@ -25,14 +32,13 @@ const slideOutRight = keyframes`
 export const Wrapper = styled.div<WrapperProps>`
   max-width: 430px;
   max-height: 932px;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: relative; /* 이것은 그대로 유지 */
   background: linear-gradient(10deg, #FED2A1 0%, #A97953 100%);
-  z-index: 100;
 
   ${({ animateOut }) =>
     animateOut &&

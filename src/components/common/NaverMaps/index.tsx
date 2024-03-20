@@ -1,5 +1,5 @@
 import { NavermapsProvider } from 'react-naver-maps';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NaverMap, useNavermaps } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
@@ -16,6 +16,7 @@ import { distanceState } from '@/atoms/distanceFilter';
 import { useLocation } from 'react-router-dom';
 import { toggleState } from '@/atoms/toggle';
 import { showSplashState } from '@/atoms/showSplashState';
+import { isMapLoadedState } from '@/atoms/mapState';
 
 export function NaverMaps( cafes: ICafeList ) {
     const { loaded, coordinates } = useGeolocation();
@@ -29,28 +30,32 @@ export function NaverMaps( cafes: ICafeList ) {
     const showMap = useRecoilValue(toggleState((nowUrl.pathname)));
     const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
     const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
+    const [isMapLoaded, setIsMapLoaded] = useRecoilState(isMapLoadedState); // 수정됨
 
     useEffect(() => {
-        if (mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0) {
-            setShowSplash(true);
-        }
-    }, [mapCenterLocation]);
-
-    useEffect(() => {
-        if (loaded && coordinates && mapCenterLocation.latitude === 0 &&  mapCenterLocation.longitude === 0) {
+        if (loaded && coordinates && mapCenterLocation.latitude === 0 && mapCenterLocation.longitude === 0) {
             setMapCenterLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
+            setIsMapLoaded(true); // 지도 로딩 완료
+            setShowSplash(true);
         }
 
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
             setMapCenterLocation({ latitude: mapCenter.latitude, longitude: mapCenter.longitude });
+            setIsMapLoaded(true); // 지도 로딩 완료
         }
-    }, [coordinates]);
+    }, [coordinates, loaded, mapCenter, mapCenterLocation, setMapCenterLocation]);
+
 
     return (
         <>
+            {(!isMapLoaded || showSplash) && (
+                <Splash
+                    showSplash={showSplash}
+                    onAnimationEnd={() => setShowSplash(false)} // 애니메이션 종료 시 상태 업데이트
+                />
+            )}
             <NavermapsProvider ncpClientId={import.meta.env.VITE_APP_NAVER_CLIENT_ID} >
                 <MapDiv style={{ width: '430px', height: '932px'}}>
-                    <Splash showSplash={showSplash} />
                     {mapCenterLocation.latitude !== 0 && mapCenterLocation.longitude !== 0 && (
                         <NaverMap
                             defaultZoom={18}

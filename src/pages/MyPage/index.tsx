@@ -13,6 +13,8 @@ import { useLoginStatus } from '@/hooks/useLoginStatus';
 import UnloginMypage from '@/components/MyPage/UnloginMypage';
 import useToast from '@/hooks/useToast';
 import { useFetchUserInfo } from '@/hooks/useFetchUserInfo';
+import { useEffect } from 'react';
+import { showSplashState } from '@/atoms/showSplashState';
 
 export default function MyPage() {
   const { displayToast } = useToast();
@@ -20,11 +22,10 @@ export default function MyPage() {
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  const {data} = useFetchUserInfo();
+  const { data, isLoading } = useFetchUserInfo();
   const { isLoggedIn } = useLoginStatus();
   const setUserInfo = useSetRecoilState(userInfoState);
-
-  setUserInfo(data);
+  const setShowSplash = useSetRecoilState(showSplashState);
 
   const handleChangeProfileName = () => {
     setShowSearchBar(!showSearchBar);
@@ -42,14 +43,21 @@ export default function MyPage() {
     }
   }
 
+  useEffect(() => {
+    if(!isLoading) {
+      setShowSplash(true);
+      setUserInfo(data);
+    }
+  }, [isLoading, data, setUserInfo, setShowSplash]);
+
   return (
     <PageLayout>
-      {!isLoggedIn ? ( //TODO: isLoggedIn
+      {(!isLoggedIn && !isLoading) ? ( //TODO: isLoggedIn
         <>
           {!showMap ? (
             <>
               <SettingButton onClick={() => handleNavigateToSetting()} />
-              <Styled.ProfileImage src={data.infos.profile_image} />
+              <Styled.ProfileImage src={data?.infos?.profile_image} />
               <ProfileNameButton onClick={() => handleChangeProfileName()}>
                 {`${data.infos.nickname} 🖊️`}
               </ProfileNameButton>

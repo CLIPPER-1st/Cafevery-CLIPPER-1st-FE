@@ -7,12 +7,21 @@ import { ErrorBoundary } from "react-error-boundary";
 import Splash from './components/common/Splash';
 import ToastContainer from '@/components/common/ToastContainer';
 import useScrollToTop from '@/hooks/useScrollToTop';
+import { useRecoilState } from 'recoil';
+import { showSplashState } from '@/atoms/showSplashState';
 
 const App = () => {
   useScrollToTop();
+  const [showSplash ,setShowSplash] = useRecoilState(showSplashState);
 
   return (
     <ErrorBoundary fallback={<Splash />}>
+      {showSplash && (
+        <Splash
+          showSplash={showSplash}
+          onAnimationEnd={() => setShowSplash(false)} // 애니메이션 종료 시 상태 업데이트
+        />
+      )}
       <Suspense fallback={<Splash />}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
