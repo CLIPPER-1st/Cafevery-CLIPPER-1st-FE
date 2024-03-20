@@ -16,12 +16,6 @@ const App = () => {
 
   return (
     <ErrorBoundary fallback={<Splash />}>
-      {showSplash && (
-        <Splash
-          showSplash={showSplash}
-          onAnimationEnd={() => setShowSplash(false)} // 애니메이션 종료 시 상태 업데이트
-        />
-      )}
       <Suspense fallback={<Splash />}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>

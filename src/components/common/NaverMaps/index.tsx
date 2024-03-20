@@ -1,5 +1,5 @@
 import { NavermapsProvider } from 'react-naver-maps';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { NaverMap, useNavermaps } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';

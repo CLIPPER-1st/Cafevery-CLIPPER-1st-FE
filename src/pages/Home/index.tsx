@@ -26,7 +26,7 @@ export default function Home() {
   const queryClient = useQueryClient();
   const { data } = useFetchCafeList(mapCenterLocation.latitude, mapCenterLocation.longitude);
   const [currentModal, setCurrentModal] = useRecoilState(currentModalState);
-  
+
   const handleFetchCafeList = () => {
     queryClient.invalidateQueries({ queryKey: ['cafeInfoList'] });
   }

@@ -15,6 +15,7 @@ import useToast from '@/hooks/useToast';
 import { useFetchUserInfo } from '@/hooks/useFetchUserInfo';
 import { useEffect } from 'react';
 import { showSplashState } from '@/atoms/showSplashState';
+import Splash from '@/components/common/Splash';
 
 export default function MyPage() {
   const { displayToast } = useToast();
@@ -25,7 +26,7 @@ export default function MyPage() {
   const { data, isLoading } = useFetchUserInfo();
   const { isLoggedIn } = useLoginStatus();
   const setUserInfo = useSetRecoilState(userInfoState);
-  const setShowSplash = useSetRecoilState(showSplashState);
+  const [showSplash ,setShowSplash] = useRecoilState(showSplashState);
 
   const handleChangeProfileName = () => {
     setShowSearchBar(!showSearchBar);
@@ -52,6 +53,12 @@ export default function MyPage() {
 
   return (
     <PageLayout>
+      {showSplash && (
+        <Splash
+          showSplash={showSplash}
+          onAnimationEnd={() => setShowSplash(false)} // 애니메이션 종료 시 상태 업데이트
+        />
+      )}
       {(!isLoggedIn && !isLoading) ? ( //TODO: isLoggedIn
         <>
           {!showMap ? (
