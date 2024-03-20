@@ -7,12 +7,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import Splash from './components/common/Splash';
 import ToastContainer from '@/components/common/ToastContainer';
 import useScrollToTop from '@/hooks/useScrollToTop';
-import { useRecoilState } from 'recoil';
-import { showSplashState } from '@/atoms/showSplashState';
 
 const App = () => {
   useScrollToTop();
-  const [showSplash ,setShowSplash] = useRecoilState(showSplashState);
 
   return (
     <ErrorBoundary fallback={<Splash />}>
