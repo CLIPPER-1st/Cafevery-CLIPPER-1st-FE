@@ -7,6 +7,7 @@ import { putLikeHandler } from './apis/putLike';
 import { userInfoHandler } from './apis/getUserInfo';
 import { postFavoriteLocationHandler } from './apis/postFavoriteLocation';
 import { deleteFavoriteLocationHandler } from './apis/deleteFavoriteLocation';
+import { postLogoutHandler } from './apis/postLogout';
 
 export const handlers = [
     ...cafeInfoHandler, 
@@ -18,4 +19,5 @@ export const handlers = [
     ...getSettingUserInfoHandler,
     ...postFavoriteLocationHandler,
     ...deleteFavoriteLocationHandler,
+    ...postLogoutHandler,
 ];

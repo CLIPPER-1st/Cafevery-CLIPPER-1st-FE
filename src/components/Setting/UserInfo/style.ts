@@ -24,4 +24,5 @@ export const Logout = styled.label`
   font-size: 16px;
   position: absolute;
   color: #a97953;
+  cursor: pointer;
 `;

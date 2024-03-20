@@ -19,7 +19,7 @@ export default function ReconfirmAlertModal({onClose, isOpen, name, id, ...props
       onSuccess: async () => {
         onClose();
         displayToast('삭제되었습니다.');
-        await queryClient.invalidateQueries({queryKey: ['userInfo']});
+        queryClient.invalidateQueries({queryKey: ['userInfo']});
       },
       onError: (error) => {
         if(isAxiosError(error)) {
