@@ -16,7 +16,7 @@
         "longitude": 126.9892802,
         "start_time": "07:30",
         "end_time": "21:00",
-        "liked": false
+        "liked": true
       },
       {
         "id": 3,
@@ -40,7 +40,7 @@
         "longitude": 126.9896802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false
+        "liked": true
       },
       {
         "id": 6,
@@ -56,7 +56,7 @@
         "longitude": 126.9898802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false
+        "liked": true
         },
       {
         "id": 8,
@@ -64,7 +64,7 @@
         "longitude": 126.9899802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false
+        "liked": true
       },
       {
         "id": 9,
@@ -72,7 +72,7 @@
         "longitude": 126.9890802,
         "start_time": "08:00",
         "end_time": "23:00",
-        "liked": false
+        "liked": true
       }
     ]
   },
