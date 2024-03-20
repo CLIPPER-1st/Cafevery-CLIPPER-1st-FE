@@ -7,15 +7,10 @@ import {useLoginStatus} from '@/hooks/useLoginStatus';
 import { useFetchSettingUserInfo } from '@/hooks/useFetchSettingUserInfo';
 import { useLogout } from '@/hooks/useLogout';
 
-const data = { //TODO: 지워야 함. dummy
-  nickname: 'Cafevery',
-  provider: '카카오 로그인 회원',
-};
-
 export default function Setting() {
   const {isLoggedIn} = useLoginStatus();
   const {mutate} = useLogout();
-  //const { data } = useFetchSettingUserInfo(); //TODO: 주석 해제 해야함.
+  const { data } = useFetchSettingUserInfo();
 
   const handleLogout = () => {
     mutate();

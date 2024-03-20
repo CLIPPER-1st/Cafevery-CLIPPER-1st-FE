@@ -8,5 +8,5 @@ export const useFetchSettingUserInfo = () => {
         staleTime: 600000, // 10분
         gcTime: 300000, // 5분
     });
-    return data;
+    return { data };
 }

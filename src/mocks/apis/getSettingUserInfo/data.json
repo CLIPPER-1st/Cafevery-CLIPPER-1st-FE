@@ -1,0 +1,8 @@
+{
+	"success": true,
+	"data": {
+		"nickname": "나는 카페베리",
+		"provider": "구글 로그인 회원"
+	},
+	"error": null
+}
