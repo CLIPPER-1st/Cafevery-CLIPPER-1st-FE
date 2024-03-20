@@ -83,7 +83,6 @@ export default function ProfileNameButton(props: TextButtonProps) {
             maxLength={20}
             value={nicknameTerm}
             onChange={handleChange}
-            defaultValue={userInfo.infos.nickname}
           />
           <RegisterButton
             position={'relative'}
