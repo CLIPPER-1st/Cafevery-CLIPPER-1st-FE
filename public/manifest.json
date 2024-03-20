@@ -3,8 +3,8 @@
   "short_name": "Cafevery",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#FEFEE7",
+  "background_color": "#f8f0e5",
+  "theme_color": "#f8f0e5",
   "description": "Cafe Every",
   "categories": ["food", "drink", "lifestyle"],
   "icons": [
