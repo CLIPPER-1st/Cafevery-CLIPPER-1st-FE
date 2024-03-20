@@ -6,6 +6,7 @@ import { patchNicknameHandler } from './apis/patchNickname';
 import { putLikeHandler } from './apis/putLike';
 import { userInfoHandler } from './apis/getUserInfo';
 import { postFavoriteLocationHandler } from './apis/postFavoriteLocation';
+import { deleteFavoriteLocationHandler } from './apis/deleteFavoriteLocation';
 
 export const handlers = [
     ...cafeInfoHandler, 
@@ -16,4 +17,5 @@ export const handlers = [
     ...patchNicknameHandler,
     ...getSettingUserInfoHandler,
     ...postFavoriteLocationHandler,
+    ...deleteFavoriteLocationHandler,
 ];
