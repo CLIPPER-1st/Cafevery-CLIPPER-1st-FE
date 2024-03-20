@@ -24,13 +24,13 @@ export const useLogout = () => {
             // 로그아웃 실패 시 처리
             if (isAxiosError(error)) {
                 displayToast('로그아웃에 실패했어요.');
-                Cookies.remove('accessToken', { path: '/', domain: 'cafevery.site' });
-                Cookies.remove('refreshToken', { path: '/', domain: 'cafevery.site' });            
+                //Cookies.remove('accessToken', { path: '/', domain: 'cafevery.site' });
+                //Cookies.remove('refreshToken', { path: '/', domain: 'cafevery.site' });            
             }
             // 기타 에러 처리
             displayToast('로그아웃에 실패했어요.');
-            Cookies.remove('accessToken', { path: '/', domain: 'cafevery.site' });
-            Cookies.remove('refreshToken', { path: '/', domain: 'cafevery.site' });            
+            //Cookies.remove('accessToken', { path: '/', domain: 'cafevery.site' });
+            //Cookies.remove('refreshToken', { path: '/', domain: 'cafevery.site' });            
         },
     });
 };
