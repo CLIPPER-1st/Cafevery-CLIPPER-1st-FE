@@ -13,6 +13,7 @@ export interface ButtonProps {
   type?: string;
   socialType?: string;
   backgroundColor?: string;
+  backgroundSize?: string;
   borderRadius?: string;
   color?: string;
   fontSize?: number;

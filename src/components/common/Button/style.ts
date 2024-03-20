@@ -4,7 +4,7 @@ import { ButtonProps } from '@/interfaces/button';
 export const Button = styled.button<ButtonProps>`
   background: ${(props) => props.background && `url(${props.background})`};
   background-color: ${(props) => props.backgroundColor};
-  background-size: cover;
+  background-size: ${(props) => (props.backgroundSize ? `${props.backgroundSize}` : 'cover')};
   display: flex;
   justify-content: center;
   align-items: center;
