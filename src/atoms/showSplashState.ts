@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
 export const showSplashState = atom<boolean>({
-    key: 'searchTermState',
+    key: 'showSplashState',
     default: false,
 });

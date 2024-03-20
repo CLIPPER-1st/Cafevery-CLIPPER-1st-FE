@@ -74,7 +74,7 @@ export default function Home() {
         <SummaryCafeInfoModal
           isOpen={true}
           onClose={() => setCurrentModal(null)}
-          id={currentModal}
+          id={1} //TODO: currentModal로 바꿔야함
         />
       )}
     </>

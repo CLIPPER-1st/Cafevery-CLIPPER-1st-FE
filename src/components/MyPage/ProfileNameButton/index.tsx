@@ -6,7 +6,6 @@ import SearchBar from '@/components/common/Search/SearchBar';
 import useInput from '@/hooks/useInput';
 import RegisterButton from '@/components/MyPage/RegisterButton';
 import * as Styled from './style'
-import { userInfoState } from '@/atoms/userInfoState';
 import { useQueryClient } from '@tanstack/react-query';
 import { useChangeNickname } from '@/hooks/useChangeNickname';
 import { isAxiosError } from 'axios';
@@ -18,7 +17,6 @@ export default function ProfileNameButton(props: TextButtonProps) {
   const { displayToast } = useToast();
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
   const {value: nicknameTerm, setValue: setNicknameTerm, reset} = useInput<HTMLTextAreaElement>();
-  const [userInfo, ] = useRecoilState(userInfoState);
   const queryClient = useQueryClient();
   const { mutate }  = useChangeNickname();
 
