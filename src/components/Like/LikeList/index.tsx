@@ -14,8 +14,9 @@ import { useLocation } from 'react-router-dom';
 import { distanceState } from '@/atoms/distanceFilter';
 import { toggleState } from '@/atoms/toggle';
 import { searchTermState } from '@/atoms/input';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Likes } from '@/interfaces/likes';
+import { finalFilteredCafeListState } from '@/atoms/cafeInfoListState';
 
 export default function LikeList() {
   const {loaded, coordinates} = useGeolocation();
@@ -28,7 +29,7 @@ export default function LikeList() {
   const fullLikesList = useRecoilValue(likesListState({distance: 3, startTime: 0, endTime: 24, searchTerm: ''}));
   const searchTerm = useRecoilValue(searchTermState);
   const initiallyFilteredCafes = useFilteredCafes(fullLikesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
-  const [finalFilteredCafes, setFinalFilteredCafes] = useState(initiallyFilteredCafes); // 상태로 필터링된 카페 목록 관리
+  const [finalFilteredCafes, setFinalFilteredCafes] = useRecoilState(finalFilteredCafeListState); // 상태로 필터링된 카페 목록 관리
 
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);
