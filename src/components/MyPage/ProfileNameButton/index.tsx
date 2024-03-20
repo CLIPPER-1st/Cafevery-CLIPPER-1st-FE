@@ -12,6 +12,7 @@ import { useChangeNickname } from '@/hooks/useChangeNickname';
 import { isAxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
 import CloseNameButton from '@/components/MyPage/CloseNameButton';
+import { UserInfoState } from '@/interfaces/userInfo';
 
 export default function ProfileNameButton(props: TextButtonProps) {
   const { displayToast } = useToast();
@@ -39,13 +40,29 @@ export default function ProfileNameButton(props: TextButtonProps) {
         onSuccess: async () => {
           setShowSearchBar(!showSearchBar);
           displayToast('닉네임 변경이 완료되었습니다.');
-          await queryClient.invalidateQueries({queryKey: ['userInfo']});
+          queryClient.invalidateQueries({queryKey: ['userInfo']});
+          reset();
         },
         onError: (error) => {
           if(isAxiosError(error)) {
             displayToast('변경에 실패했습니다. 다시 시도해주세요.');
           }
         },
+        onSettled: () => {
+          const prev: UserInfoState = queryClient.getQueryData(['userInfo']);
+          const updateData = () => {
+            if(prev) {
+              return {
+                ...prev,
+                infos: {
+                  ...prev.infos,
+                  nickname: nicknameTerm,
+                },
+              };
+            }
+          }
+          queryClient.setQueryData(['userInfo'], updateData());
+        }
       });
     }
   };

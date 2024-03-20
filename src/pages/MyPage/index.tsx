@@ -20,7 +20,7 @@ export default function MyPage() {
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  const {data} = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
+  const {data} = useFetchUserInfo();
   const { isLoggedIn } = useLoginStatus();
   const setUserInfo = useSetRecoilState(userInfoState);
 
