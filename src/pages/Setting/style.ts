@@ -10,7 +10,7 @@ export const Wrapper = styled.div``;
 export const Label = styled.label`
   left: 27px;
   font-size: 24px;
-  color: #32281f;
+  color: ${theme.colors.darkBrown};
   position: absolute;
   top: 127px;
   left: 27px;

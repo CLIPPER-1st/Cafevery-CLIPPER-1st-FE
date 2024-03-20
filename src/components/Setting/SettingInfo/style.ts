@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   margin: 20px 0 20px 0;
+  cursor: pointer;
 `;
 
 export const Icon = styled.img`
@@ -13,6 +14,7 @@ export const Icon = styled.img`
   margin-right: 9px;
   position: relative;
   left: 27px;
+  cursor: pointer;
 `;
 
 export const Label = styled.label`
@@ -20,4 +22,5 @@ export const Label = styled.label`
   position: relative;
   left: 27px;
   color: ${theme.colors.darkBrown};
+  cursor: pointer;
 `;
