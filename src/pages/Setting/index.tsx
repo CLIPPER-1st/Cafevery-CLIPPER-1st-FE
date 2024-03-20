@@ -1,4 +1,4 @@
-import SettingCloseButton from '@/components/MyPage/SettingCloseButton';
+import SettingCloseButton from '@/components/Setting/SettingCloseButton';
 import PageLayout from '@/components/common/PageLayout';
 import * as Styled from './style';
 import SettingInfoList from '@/components/Setting/SettingInfoList';

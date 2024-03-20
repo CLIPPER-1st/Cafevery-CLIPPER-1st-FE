@@ -6,7 +6,7 @@ export const Container = styled.div`
     position: fixed;
     left: 50%;
     transform: translateX(-48%);
-    width: 350px;
+    width: 330px;
     z-index: 1;
     bottom: 110px;
 `;

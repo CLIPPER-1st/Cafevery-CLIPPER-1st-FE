@@ -1,0 +1,36 @@
+{
+	"success": true,
+	"data": {
+		"infos": {
+			"profile_image": "https://cdn-icons-png.flaticon.com/512/2815/2815428.png",
+			"nickname": "나는 카베프리",
+			"locations": [
+				{
+					"id": 1,
+					"name": "충무로 부근",
+                    "latitude": 37.501022,
+                    "longitude": 127.039603
+				},
+                {
+					"id": 2,
+					"name": "논현 부근",
+                    "latitude": 37.499123,
+                    "longitude": 127.028
+				},
+                {
+					"id": 3,
+					"name": "삼성 부근",
+                    "latitude": 37.500345,
+                    "longitude": 127.036789
+				},
+                {
+					"id": 4,
+					"name": "대치 부근",
+                    "latitude": 37.488123,
+                    "longitude": 127.012345
+				}
+			]
+		}
+	},
+	"error": null
+}

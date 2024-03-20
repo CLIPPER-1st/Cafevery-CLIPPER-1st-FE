@@ -8,7 +8,7 @@ export function FavoritePlaceList() {
   
   return (
       <Styled.Container>
-          {userInfo.data.infos.locations.map((location) => (
+          {userInfo.infos.locations.map((location) => (
               <NameCard 
                 key={location.id} 
                 name={location.name}

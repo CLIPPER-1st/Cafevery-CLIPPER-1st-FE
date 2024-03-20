@@ -11,6 +11,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useChangeNickname } from '@/hooks/useChangeNickname';
 import { isAxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
+import CloseNameButton from '@/components/MyPage/CloseNameButton';
 
 export default function ProfileNameButton(props: TextButtonProps) {
   const { displayToast } = useToast();
@@ -65,11 +66,15 @@ export default function ProfileNameButton(props: TextButtonProps) {
             maxLength={20}
             value={nicknameTerm}
             onChange={handleChange}
-            defaultValue={userInfo.data.infos.nickname}
+            defaultValue={userInfo.infos.nickname}
           />
-          <RegisterButton 
+          <RegisterButton
             position={'relative'}
             onClick={() => handleProfileChangeClick()}
+          />
+          <CloseNameButton
+            position={'relative'}
+            onClick={() => handleProfileChangeInputBarOpen()}
           />
         </Styled.Container>
       ) : (

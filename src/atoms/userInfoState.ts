@@ -5,7 +5,6 @@ import DefaultProfileImg from '@/assets/Images/default.png'
 export const userInfoState = atom<UserInfoState>({
     key: 'userInfoState',
     default: { 
-        data: { 
             infos: {
                 profile_image: `${DefaultProfileImg}`,
                 nickname: 'cafevery',
@@ -37,5 +36,4 @@ export const userInfoState = atom<UserInfoState>({
                 ]
             }
         },
-    },
 });

@@ -5,8 +5,8 @@ export const useFetchSettingUserInfo = () => {
     const { data } = useSuspenseQuery({
         queryKey: ['settingUserInfo'],
         queryFn: async () => (await fetchSettingUserInfo()),
-        staleTime: 100000,
-        gcTime: 100,
+        staleTime: 600000, // 10분
+        gcTime: 300000, // 5분
     });
     return data;
 }

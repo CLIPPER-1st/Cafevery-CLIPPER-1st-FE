@@ -71,3 +71,5 @@ export interface SmallButtonProps extends Partial<ButtonProps> {}
 
 export interface SocialButtonProps extends Partial<ButtonProps> {}
 
+export interface CloseNameButtonProps extends Partial<ButtonProps> {}
+

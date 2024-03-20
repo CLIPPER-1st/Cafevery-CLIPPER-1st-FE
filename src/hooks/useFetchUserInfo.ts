@@ -1,21 +1,14 @@
-import { useSetRecoilState } from 'recoil';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchUserInfo } from '@/apis/userInfo';
-import { userInfoState } from '@/atoms/userInfoState';
 
 export const useFetchUserInfo = () => {
-    const setUserInfo = useSetRecoilState(userInfoState);
 
     const { data } = useSuspenseQuery({
         queryKey: ['userInfo'],
         queryFn: async () => (await fetchUserInfo()),
-        staleTime: 100000,
-        gcTime: 100,
+        staleTime: 600000, // 10분
+        gcTime: 300000, // 5분
     });
-    setUserInfo((prevUserInfo) => ({
-        ...prevUserInfo,
-        data: { infos: data }
-    }));
     
-    return data;
+    return {data};
 }

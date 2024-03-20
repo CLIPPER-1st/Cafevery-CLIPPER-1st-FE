@@ -8,7 +8,7 @@ export default function CloseMapButton(props: CloseMapButtonProps) {
     <Button 
       width={50} 
       height={50} 
-      background={CloseMapButtonImg}
+      background={CloseMapButtonImg} 
       {...props}
       position={"absolute"}
       top={20}

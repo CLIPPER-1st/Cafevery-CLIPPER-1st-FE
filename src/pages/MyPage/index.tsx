@@ -3,7 +3,7 @@ import * as Styled from './style';
 import TextButton from '@/components/common/Button/TextButton';
 import { FavoritePlaceList } from '@/components/MyPage/FavoritePlace/FavoritePlaceList';
 import { showSearchBarState, toggleState } from '@/atoms/toggle';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import AddFavoritePlaceMap from '@/components/MyPage/FavoritePlace/AddFavoritePlaceMap';
 import SettingButton from '@/components/common/Button/SettingButton';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,16 +12,19 @@ import ProfileNameButton from '@/components/MyPage/ProfileNameButton';
 import { useLoginStatus } from '@/hooks/useLoginStatus';
 import UnloginMypage from '@/components/MyPage/UnloginMypage';
 import useToast from '@/hooks/useToast';
+import { useFetchUserInfo } from '@/hooks/useFetchUserInfo';
 
 export default function MyPage() {
   const { displayToast } = useToast();
   const nowUrl = useLocation();
   const [showMap, setShowMap] = useRecoilState(toggleState((nowUrl.pathname)));
   const navigate = useNavigate();
-  const [userInfo, ] = useRecoilState(userInfoState); //TODO: 임시
   const [showSearchBar, setShowSearchBar] = useRecoilState(showSearchBarState);
-  //const userInfo = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
+  const {data} = useFetchUserInfo(); //TODO: 이걸로 바꿔야함.
   const { isLoggedIn } = useLoginStatus();
+  const setUserInfo = useSetRecoilState(userInfoState);
+
+  setUserInfo(data);
 
   const handleChangeProfileName = () => {
     setShowSearchBar(!showSearchBar);
@@ -32,7 +35,7 @@ export default function MyPage() {
   }
 
   const handleToggleMapVisibility = () => {
-    if (userInfo.data.infos.locations.length >= 5) {
+    if (data.infos.locations.length >= 5) {
       displayToast('5개까지 등록 가능해요.');
     } else {
       setShowMap(!showMap);
@@ -46,9 +49,9 @@ export default function MyPage() {
           {!showMap ? (
             <>
               <SettingButton onClick={() => handleNavigateToSetting()} />
-              <Styled.ProfileImage src={userInfo.data.infos.profile_image} />
+              <Styled.ProfileImage src={data.infos.profile_image} />
               <ProfileNameButton onClick={() => handleChangeProfileName()}>
-                {`${userInfo.data.infos.nickname} 🖊️`}
+                {`${data.infos.nickname} 🖊️`}
               </ProfileNameButton>
               <Styled.Line />
               <TextButton onClick={() => handleToggleMapVisibility()}>

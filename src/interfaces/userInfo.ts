@@ -12,7 +12,5 @@ export interface UserInfo {
 }
 
 export interface UserInfoState {
-    data: {
-        infos: UserInfo;
-    };
+    infos: UserInfo;
 }

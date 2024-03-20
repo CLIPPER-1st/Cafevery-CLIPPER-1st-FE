@@ -11,9 +11,10 @@ export default function SettingCloseButton(props: SettingCloseButtonProps) {
 
   return (
     <Button
-      width={30}
-      height={30}
+      width={35}
+      height={35}
       background={CloseImg}
+      backgroundSize='35px 35px'
       top={20}
       right={20}
       position={'absolute'}
