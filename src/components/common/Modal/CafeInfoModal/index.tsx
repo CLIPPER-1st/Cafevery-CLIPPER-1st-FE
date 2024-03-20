@@ -7,7 +7,7 @@ import { useNaverMapsReverseGeocoding } from '@/hooks/useNaverMapsReverseGeocodi
 import { useTodayBusinessHours } from '@/hooks/useTodayBusinessHours';
 import theme from '@/theme';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import Modal from '@/components/common/Modal'
 import * as Styled from './style';
 import { CafeInfoModalProps } from '@/interfaces/modal';
@@ -19,7 +19,7 @@ export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProp
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);
     const navigate = useNavigate();
-    const [, setMapCenterLocation] = useRecoilState(mapCenterState);
+    const setMapCenterLocation = useSetRecoilState(mapCenterState);
     const handleGoToCafeLocation = (latitude: number, longitude: number) => {
         navigate('/');
         setMapCenterLocation({ latitude: latitude, longitude: longitude });

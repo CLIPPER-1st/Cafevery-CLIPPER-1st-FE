@@ -5,7 +5,7 @@ import * as Styled from './style';
 
 export function FavoritePlaceList() {
   const [userInfo, ] = useRecoilState(userInfoState);
-  
+
   return (
       <Styled.Container>
           {userInfo.infos.locations.map((location) => (
