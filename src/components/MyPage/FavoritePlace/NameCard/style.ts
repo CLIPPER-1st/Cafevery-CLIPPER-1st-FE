@@ -12,6 +12,7 @@ export const Container = styled.div`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   padding: 2px 15px 2px 15px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`

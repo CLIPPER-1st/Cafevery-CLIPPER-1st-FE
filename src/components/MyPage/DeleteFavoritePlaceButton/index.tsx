@@ -8,6 +8,7 @@ export default function DeleteFavoritePlaceButton(props: DeleteFavoritePlaceButt
       width={22}
       height={22}
       background={CloseImg}
+      zIndex={1}
       {...props}
     >
       {props.children}

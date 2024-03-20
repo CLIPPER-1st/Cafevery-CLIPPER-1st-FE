@@ -24,7 +24,10 @@ export default function NameCard({ id, name, latitude, longitude }: ILocation) {
       <Styled.Container onClick={() => handleGoToCafeLocation()}>
         <Styled.Wrapper>
           <Styled.Name>{name}</Styled.Name>
-          <DeleteFavoritePlaceButton onClick={() =>openModal()}/>
+          <DeleteFavoritePlaceButton onClick={(event) => {
+            event.stopPropagation();
+            openModal();
+          }}/>        
         </Styled.Wrapper>
       </Styled.Container>
 
