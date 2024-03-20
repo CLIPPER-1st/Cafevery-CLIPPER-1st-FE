@@ -2,9 +2,9 @@ import { rest } from 'msw';
 import { data } from './data.json';
 
 export const patchNicknameHandler = [
-  rest.patch('/users/nickname', (req, res, ctx) => {
-    // 요청 바디에서 nickname 추출
-    const { nickname } = req.body as { nickname: string };
+  rest.patch('/users/nickname', async (req, res, ctx) => {
+    // 요청 바디에서 비동기적으로 nickname 추출
+    const { nickname } = await req.json();
 
     // nickname 검증
     if (typeof nickname === 'string') {

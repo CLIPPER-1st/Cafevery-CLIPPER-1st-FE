@@ -15,7 +15,7 @@ export function FavoritePlaceBar({
     setSelectedPlaceName('');
   };
   
-  const handleInputChange = (e: { target: { value: any; }; }) => {
+  const handleInputChange = (e: { target: { value: string; }; }) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 8) {
       setSelectedPlaceName(inputValue);

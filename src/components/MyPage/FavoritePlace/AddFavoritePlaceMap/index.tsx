@@ -25,14 +25,16 @@ export default function AddFavoritePlaceMap() {
     const queryClient = useQueryClient();
     const { mutate }  = useRegisterFavoritePlace();
     const mapCenter = useRecoilValue(mapCenterState);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let timer: string | number | NodeJS.Timeout;
 
     const handleSelectFavoritePlace = (name: string) => {
         setSelectedPlaceName(name);
     }
 
     const handleRegisterFavoritePlace = () => {
+        if(!selectedPlaceName) {
+            displayToast(`자주 가는 장소명을 입력해주세요.`);
+            return;
+        }
         const body: PostRegisterFavoritePlaceRequest = {
             name: selectedPlaceName,
             latitude: mapCenter.latitude,
@@ -42,9 +44,7 @@ export default function AddFavoritePlaceMap() {
             onSuccess: async () => {
                 displayToast('자주 가는 장소가 등록되었습니다.'); 
                 await queryClient.invalidateQueries({queryKey: ['userInfo']});
-                timer = setTimeout(() => {
-                    setShowMap(!showMap);
-                }, 1000);   
+                setShowMap(!showMap);
             },
             onError: (error) => {
                 if(isAxiosError(error)) {
