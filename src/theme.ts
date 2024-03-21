@@ -21,7 +21,7 @@ declare module 'styled-components' {
 const colors = {
   white: '#ffffff',
   black: '#000000',
-  textMain: '#FEFFE7',
+  textMain: '#f8f0e5',
   brown: '#32281F',
   lightBrown: '#A97953',
   darkBrown: '#32281F',

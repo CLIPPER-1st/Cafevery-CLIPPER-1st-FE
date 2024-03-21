@@ -1,6 +1,7 @@
 import MyMarkerImg from '@/assets/Markers/MyMarker.png';
 import { CircleProps } from "@/interfaces/distanceFilter";
 import { styled } from "styled-components";
+import theme from '@/theme';
 
 export const Circle = styled.div<CircleProps>`
     background: rgba(169, 121, 83, 0.35);
@@ -24,7 +25,7 @@ export const DistanceFilter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FEFFE7;
+    background-color: ${theme.colors.textMain};
     width: 270px;
     height: 180px;
     position: relative;
