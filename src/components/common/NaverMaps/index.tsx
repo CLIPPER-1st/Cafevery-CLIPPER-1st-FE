@@ -67,8 +67,8 @@ export function NaverMaps( cafes: ICafeList ) {
                             }
                         >
                             <MyMarker 
-                                latitude={coordinates?.lat}
-                                longitude={coordinates?.lng}
+                                latitude={coordinates.lat}
+                                longitude={coordinates.lng}
                             />
                             {filteredCafes?.cafes.map((cafe: Cafe) => (
                                 <CafeMarker 
