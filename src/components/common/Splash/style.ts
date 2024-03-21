@@ -38,7 +38,7 @@ export const Wrapper = styled.div<WrapperProps>`
   flex-direction: column;
   align-items: center;
   position: relative; /* 이것은 그대로 유지 */
-  background: linear-gradient(10deg, #FED2A1 0%, #A97953 100%);
+  background: linear-gradient(10deg, #e6d5ce 0%, #815f51 100%);
 
   ${({ animateOut }) =>
     animateOut &&

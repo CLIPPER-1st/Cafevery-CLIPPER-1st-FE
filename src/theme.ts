@@ -23,7 +23,7 @@ const colors = {
   black: '#000000',
   textMain: '#f8f0e5',
   brown: '#32281F',
-  lightBrown: '#A97953',
+  lightBrown: '#815f51',
   darkBrown: '#32281F',
   gray: '#8B8B8B'
 };
