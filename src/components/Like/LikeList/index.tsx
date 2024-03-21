@@ -6,7 +6,7 @@ import useGeolocation from '@/hooks/useGeolocation';
 import useModal from '@/hooks/useModal';
 import CafeInfoModal from '@/components/common/Modal/CafeInfoModal';
 import EmptyMessage from '../EmptyMessage';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import {likesListState, selectedCafeState} from '@/atoms/likesState';
 import { timeFilterState } from '@/atoms/timeFilter';
 import { useFilteredCafes } from '@/hooks/useFilteredCafes';
@@ -17,7 +17,7 @@ import { searchTermState } from '@/atoms/input';
 import { useEffect } from 'react';
 import { Likes } from '@/interfaces/likes';
 import { finalFilteredCafeListState } from '@/atoms/cafeInfoListState';
-import { showSplashState } from '@/atoms/showSplashState';
+import LoadingUI from '@/components/common/LoadingUI';
 
 export default function LikeList() {
   const {loaded, coordinates} = useGeolocation();
@@ -31,7 +31,6 @@ export default function LikeList() {
   const searchTerm = useRecoilValue(searchTermState);
   const initiallyFilteredCafes = useFilteredCafes(fullLikesList, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
   const [finalFilteredCafes, setFinalFilteredCafes] = useRecoilState(finalFilteredCafeListState); // 상태로 필터링된 카페 목록 관리
-  const setShowSplash = useSetRecoilState(showSplashState);
 
   const handleCafeInfoModalOpen = (id: number) => {
     setCafeId(id);
@@ -47,15 +46,9 @@ export default function LikeList() {
     setFinalFilteredCafes({ cafes: updatedFiltered || [] });
   }, [searchTerm, initiallyFilteredCafes]);
 
-  useEffect(() => {
-    if(finalFilteredCafes.cafes.length !== 0 ) {
-      setShowSplash(true);
-    }
-  }, [finalFilteredCafes]);  
-
   return (
     <>
-      {coordinates.lat !== 0 && coordinates.lng !== 0 && loaded &&(
+      {coordinates.lat !== 0 && coordinates.lng !== 0 && loaded ? (
         <Styled.Container>
           {finalFilteredCafes.cafes.length === 0 ? (
             <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
@@ -85,7 +78,9 @@ export default function LikeList() {
             })
           )}
         </Styled.Container>
-      )}
+      ):
+        <LoadingUI />
+      }
       {isOpen && (
         <CafeInfoModal isOpen={isOpen} onClose={closeModal} id={cafeId} />
       )}
