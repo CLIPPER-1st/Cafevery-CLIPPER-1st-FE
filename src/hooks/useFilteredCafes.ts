@@ -12,10 +12,12 @@ export function useFilteredCafes(cafeInfoList: ICafeList | ILikesList | null, mi
 
     useEffect(() => {
         if (!cafeInfoList || !cafeInfoList.cafes || cafeInfoList.cafes.length === 0) return;
+        if (loaded && coordinates?.lat === undefined || coordinates?.lng === undefined) return;
+        
         if (coordinates.lat !== 0 && coordinates.lng!== 0 && loaded && coordinates) {
         //if(coordinates.lat !== 0 && coordinates.lng!== 0 && loaded && coordinates) {
 
-        const cafes = cafeInfoList.cafes;
+            const cafes = cafeInfoList.cafes;
             //if (!cafes || cafes.length === 0) return;
         
             const filtered = cafes?.filter((cafe) => {

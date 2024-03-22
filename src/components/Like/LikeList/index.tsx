@@ -48,7 +48,7 @@ export default function LikeList() {
 
   return (
     <>
-      {coordinates.lat !== 0 && coordinates.lng !== 0 && loaded ? (
+      {coordinates.lat && coordinates.lng && loaded ? (
         <Styled.Container>
           {finalFilteredCafes.cafes.length === 0 ? (
             <EmptyMessage message={'좋아요를 누른 카페가 없습니다.'} />
