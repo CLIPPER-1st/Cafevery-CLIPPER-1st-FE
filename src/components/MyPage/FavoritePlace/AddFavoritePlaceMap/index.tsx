@@ -1,7 +1,7 @@
 import { toggleState } from '@/atoms/toggle';
 import CloseMapButton from '@/components/MyPage/CloseMapButton'
 import RegisterButton from '@/components/MyPage/RegisterButton';
-import { NaverMaps } from '@/components/common/NaverMaps';
+import NaverMaps from '@/components/common/NaverMaps';
 import LocationSearchBar from '@/components/common/Search/LocationSearchBar'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FavoritePlaceBar } from '../FavoritePlaceBar';

@@ -1,6 +1,6 @@
 export interface ILocation {
-    latitude: number;
-    longitude: number;
+    latitude: number | undefined;
+    longitude: number | undefined;
 }
 
 export interface LocationType {

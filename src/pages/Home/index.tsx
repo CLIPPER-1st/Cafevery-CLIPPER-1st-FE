@@ -1,4 +1,4 @@
-import {NaverMaps} from '@/components/common/NaverMaps';
+import NaverMaps from '@/components/common/NaverMaps';
 import PageLayout from '@/components/common/PageLayout';
 import GoToMyLocationButton from '@/components/Home/GoToMyLocationButton';
 import GetCafeLocationButton from '@/components/Home/GetCafeLocationButton';

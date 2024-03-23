@@ -5,6 +5,7 @@ const accessToken = Cookies.get('accessToken');
 
 export const instance = axios.create({
   //baseURL: import.meta.env.VITE_APP_SERVER_URL,
+  //baseURL: "http://localhost:5173",
   baseURL: "http://localhost:5173",
   withCredentials: true,
   headers: {

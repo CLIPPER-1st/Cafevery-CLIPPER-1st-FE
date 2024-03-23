@@ -6,7 +6,7 @@ import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Home/Marker/CafeMarker';
 import MyMarker from '@/components/Home/Marker/MyMarker';
 import useMapCenter from '@/hooks/useMapCenter';
-import { mapCenterState } from '@/atoms/location';
+import { mapCenterState, myLocationState } from '@/atoms/location';
 import { Cafe, ICafeList } from '@/interfaces/cafeInfo';
 import Splash from '@/components/common/Splash';
 import { Container as MapDiv } from 'react-naver-maps'
@@ -18,7 +18,7 @@ import { toggleState } from '@/atoms/toggle';
 import { showSplashState } from '@/atoms/showSplashState';
 import { isMapLoadedState } from '@/atoms/mapState';
 
-export function NaverMaps( cafes: ICafeList ) {
+export default function NaverMaps( cafes: ICafeList ) {
     const { loaded, coordinates } = useGeolocation();
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
@@ -31,12 +31,15 @@ export function NaverMaps( cafes: ICafeList ) {
     const timeFilter = useRecoilValue(timeFilterState(nowUrl.pathname));
     const filteredCafes = useFilteredCafes(cafes, timeFilter.minValue, timeFilter.maxValue, distance, showMap);
     const [isMapLoaded, setIsMapLoaded] = useRecoilState(isMapLoadedState); // 수정됨
+    const [myLocation, setMyLocation] = useRecoilState(myLocationState);
 
     useEffect(() => {
         if (loaded && coordinates && mapCenterLocation.latitude === 0 && mapCenterLocation.longitude === 0) {
             setMapCenterLocation({ latitude: coordinates.lat, longitude: coordinates.lng });
             setIsMapLoaded(true); // 지도 로딩 완료
             setShowSplash(true);
+            setMyLocation({ latitude: coordinates.lat, longitude: coordinates.lng});
+
         }
 
         if(mapCenter && coordinates && mapCenterLocation.latitude !== mapCenter.latitude && mapCenterLocation.longitude !== mapCenter.longitude) {
@@ -66,10 +69,12 @@ export function NaverMaps( cafes: ICafeList ) {
                                 mapCenterLocation.longitude)
                             }
                         >
-                            <MyMarker 
-                                latitude={coordinates.lat}
-                                longitude={coordinates.lng}
-                            />
+                            {(coordinates.lat !== undefined && coordinates.lng !==undefined) && (
+                                <MyMarker 
+                                    latitude={myLocation.latitude}
+                                    longitude={myLocation.longitude}
+                                />
+                            )}
                             {filteredCafes?.cafes.map((cafe: Cafe) => (
                                 <CafeMarker 
                                     key={cafe.id} 
