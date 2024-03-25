@@ -13,14 +13,12 @@ const App = () => {
 
   return (
     <ErrorBoundary fallback={<Splash />}>
-      <Suspense fallback={<Splash />}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
             <Router />
           </BrowserRouter>
         </ThemeProvider>
         <ToastContainer />
-      </Suspense> 
     </ErrorBoundary>
   );
 };

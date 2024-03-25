@@ -13,7 +13,7 @@ import { CafeInfoModalProps } from '@/interfaces/modal';
 import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
-    const {data} = useFetchCafeInfo(1); //TODO: id로 바꿔야함
+    const {data} = useFetchCafeInfo(id); //TODO: id로 바꿔야함
     const {todayHours} = useTodayBusinessHours(data.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
     const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);

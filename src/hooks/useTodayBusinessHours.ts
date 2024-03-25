@@ -6,6 +6,7 @@ export function useTodayBusinessHours(businessHours: BusinessHour[]) {
   const [todayHours, setTodayHours] = useState<BusinessHour>({ start_time: '', end_time: '' , days:''});
 
   useEffect(() => {
+    if(!businessHours) return;
     const todayRaw = new Date().toLocaleDateString('ko-KR', { weekday: 'long' });
     const today = todayRaw.replace('요일', '');
 

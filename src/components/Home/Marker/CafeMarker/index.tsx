@@ -7,9 +7,8 @@ import { currentModalState } from '@/atoms/modalState';
 import { mapCenterState } from '@/atoms/location';
 
 export default function CafeMarker({ data }: { data: Cafe }) {
-    const navermaps = useNavermaps();
     const setMapCenterLocation = useSetRecoilState(mapCenterState)
-
+    const navermaps = useNavermaps();
     const markerImage = data.liked ? LikedCafeMarkerImg : CafeMarkerImg;
 
     const handleMarkerClick = useRecoilCallback(({ set }) => () => {
@@ -19,14 +18,13 @@ export default function CafeMarker({ data }: { data: Cafe }) {
     
     return (
         <>          
-            {navermaps && (  
+            {(  
                 <Marker
                     key={data.id}
                     onClick={() => handleMarkerClick()}
                     position={new navermaps.LatLng(data.latitude, data.longitude)}
                     icon={{
                         content: `<div style="width: 40px; height: 40px;"><img src="${markerImage}" style="width: 40px; height: 40px;" /></div>`,
-                        anchor: new navermaps.Point(20, 40),
                     }}
                 />
             )}

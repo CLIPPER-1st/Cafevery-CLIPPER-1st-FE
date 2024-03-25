@@ -1,6 +1,6 @@
 import { NavermapsProvider } from 'react-naver-maps';
 import { useEffect, useRef } from 'react';
-import { NaverMap, useNavermaps } from 'react-naver-maps';
+import { NaverMap } from 'react-naver-maps';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useGeolocation from '@/hooks/useGeolocation';
 import CafeMarker from '@/components/Home/Marker/CafeMarker';
@@ -23,7 +23,6 @@ export default function NaverMaps( cafes: ICafeList ) {
     const mapRef = useRef(null);
     const mapCenter = useMapCenter(mapRef.current);
     const [mapCenterLocation, setMapCenterLocation ] = useRecoilState(mapCenterState)
-    const navermaps = useNavermaps();
     const [showSplash, setShowSplash] = useRecoilState(showSplashState);
     const nowUrl = useLocation();
     const distance = useRecoilValue(distanceState(nowUrl.pathname));
@@ -65,11 +64,11 @@ export default function NaverMaps( cafes: ICafeList ) {
                             minZoom={12}
                             maxZoom={19}
                             ref={mapRef}
-                            center={new navermaps.LatLng(mapCenterLocation.latitude, 
-                                mapCenterLocation.longitude)
+                            center={{lat: mapCenterLocation.latitude, 
+                                lng: mapCenterLocation.longitude}
                             }
                         >
-                            {(coordinates.lat !== undefined && coordinates.lng !==undefined) && (
+                            {(coordinates.lat !== undefined && coordinates.lng !== undefined) && (
                                 <MyMarker 
                                     latitude={myLocation.latitude}
                                     longitude={myLocation.longitude}
@@ -88,3 +87,4 @@ export default function NaverMaps( cafes: ICafeList ) {
         </>
     )
 }
+

@@ -23,7 +23,7 @@ export default function Likebutton(props: LikeButtonProps) {
     getImage()
       mutate(props.id, {
         onSuccess: async () => {
-          queryClient.invalidateQueries({ queryKey: ['cafeInfo', props.id] });
+          queryClient.invalidateQueries({ queryKey: ['cafeInfo'] });
           queryClient.invalidateQueries({ queryKey: ['cafeLikeList'] });
         },
         onError: (error) => {
@@ -32,7 +32,7 @@ export default function Likebutton(props: LikeButtonProps) {
           }
         },
         onSettled: () => {
-          const prev: CafeInfo = queryClient.getQueryData(['cafeInfo', props.id]);
+          const prev: CafeInfo = queryClient.getQueryData(['cafeInfo']);
           const updateData = () => {
             if(prev) {
               return {
@@ -42,7 +42,7 @@ export default function Likebutton(props: LikeButtonProps) {
               };
             }
           }
-          queryClient.setQueryData(['cafeInfo', props.id], updateData())
+          queryClient.setQueryData(['cafeInfo'], updateData())
 
           const prevLikes: ILikesList = queryClient.getQueryData(['cafeLikeList']);
           const updatedCafes = prevLikes.cafes.filter(cafe => cafe.id !== props.id);

@@ -11,10 +11,10 @@ import { SummaryCafeInfoModalProps } from '@/interfaces/modal';
 import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCafeInfoModalProps) {
-    const {data: cafeInfo} = useFetchCafeInfo(id);
-    const {todayHours} = useTodayBusinessHours(cafeInfo.business);
+    const { cafeInfo } = useFetchCafeInfo(id);
+    const {todayHours} = useTodayBusinessHours(cafeInfo?.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
-    const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
+    const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo?.latitude, cafeInfo?.longitude);
     const { isOpen: isCafeInfoModalOpen, openModal: openCafeInfoModal, closeModal: closeCafeInfoModal } = useModal();
 
     const handleOpenCafeInfoModal = () => {
@@ -36,15 +36,15 @@ export default function SummaryCafeInfoModal({ onClose, isOpen, id }: SummaryCaf
                     <Styled.Row>
                         <Styled.CafeThumb />
                         <Styled.Column>
-                            <Styled.SectionTitle>{cafeInfo.name}</Styled.SectionTitle>
+                            <Styled.SectionTitle>{cafeInfo?.name}</Styled.SectionTitle>
                             <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
                         </Styled.Column>
                     </Styled.Row>
                     <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
                     <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
-                    <Styled.CafeInfo>{`🤍 ${cafeInfo.likes}`}</Styled.CafeInfo>
+                    <Styled.CafeInfo>{`🤍 ${cafeInfo?.likes}`}</Styled.CafeInfo>
                     <Styled.LikeButtonWrapper>
-                        <Likebutton id={cafeInfo.id} liked={cafeInfo.liked} />
+                        <Likebutton id={cafeInfo?.id} liked={cafeInfo?.liked} />
                     </Styled.LikeButtonWrapper>
                 </Styled.ModalWrapper>
             </Modal>
