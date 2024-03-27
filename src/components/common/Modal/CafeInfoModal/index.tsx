@@ -13,10 +13,10 @@ import { CafeInfoModalProps } from '@/interfaces/modal';
 import { useFetchCafeInfo } from '@/hooks/useFetchCafe';
 
 export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProps) {
-    const {data} = useFetchCafeInfo(id); //TODO: id로 바꿔야함
-    const {todayHours} = useTodayBusinessHours(data.business);
+    const {cafeInfo} = useFetchCafeInfo(id); //TODO: id로 바꿔야함
+    const {todayHours} = useTodayBusinessHours(cafeInfo.business);
     const businessStatus = useBusinessStatus(todayHours.start_time, todayHours.end_time);
-    const cafeAddress = useNaverMapsReverseGeocoding(data.latitude, data.longitude);
+    const cafeAddress = useNaverMapsReverseGeocoding(cafeInfo.latitude, cafeInfo.longitude);
     const navigate = useNavigate();
     const setMapCenterLocation = useSetRecoilState(mapCenterState);
     const handleGoToCafeLocation = (latitude: number, longitude: number) => {
@@ -29,22 +29,22 @@ export default function CafeInfoModal({ onClose, isOpen, id }: CafeInfoModalProp
         <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'Modal'} modalColor={theme.colors.brown} color={theme.colors.textMain} fontSize={20}>
             <Styled.CafeThumb />
             <Styled.CafeAddress>{cafeAddress}</Styled.CafeAddress>
-            <Styled.SectionTitle>{data.name}</Styled.SectionTitle>
+            <Styled.SectionTitle>{cafeInfo.name}</Styled.SectionTitle>
             <Styled.CafeInBusiness>{businessStatus}</Styled.CafeInBusiness>
             <Styled.CafeInfo>{`${todayHours.start_time} - ${todayHours.end_time}`}</Styled.CafeInfo>
-            <Styled.CafeInfo>{`☎️ ${data.phone_number}`}</Styled.CafeInfo>
-            <Styled.CafeInfo>{`🤍 ${data.likes}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`☎️ ${cafeInfo.phone_number}`}</Styled.CafeInfo>
+            <Styled.CafeInfo>{`🤍 ${cafeInfo.likes}`}</Styled.CafeInfo>
             <Styled.LikeButtonWrapper>
-                <Likebutton id={data.id} liked={data.liked} />
+                <Likebutton id={cafeInfo.id} liked={cafeInfo.liked} />
             </Styled.LikeButtonWrapper>
             <Styled.Line />
             <Styled.SectionTitle>{"운영 시간"}</Styled.SectionTitle>
             <Styled.CafeBusinessHoursWrapper>
-            {data.business.map(({ days, start_time, end_time }, index) => (
+            {cafeInfo.business.map(({ days, start_time, end_time }, index) => (
                 <Styled.CafeInfo key={index}>{`${days}: ${start_time} - ${end_time}`}</Styled.CafeInfo>
             ))}
             </Styled.CafeBusinessHoursWrapper>
-            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(data.latitude, data.longitude)}/>
+            <GoToCafeLocationButton onClick={() => handleGoToCafeLocation(cafeInfo.latitude, cafeInfo.longitude)}/>
         </Modal>
     );
 }
