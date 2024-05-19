@@ -3,16 +3,9 @@ import NonLiked from '@/assets/Icons/NonLiked.png';
 import Button from '@/components/common/Button/Button';
 import { usePutLikeCafe } from '@/hooks/usePutLikeCafe';
 import {LikeButtonProps} from '@/interfaces/button';
-import { useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
-import useToast from '@/hooks/useToast';
-import { CafeInfo } from '@/interfaces/cafeInfo';
-import { ILikesList } from '@/interfaces/likes';
 
 export default function Likebutton(props: LikeButtonProps) {
-  const { mutate }  = usePutLikeCafe();
-  const queryClient = useQueryClient();
-  const { displayToast } = useToast();
+  const { mutate }  = usePutLikeCafe(props);
 
   const getImage = () => {
     return props.liked ? Liked : NonLiked;
@@ -21,42 +14,8 @@ export default function Likebutton(props: LikeButtonProps) {
   const handleLike = (e: { stopPropagation: () => void; }) => {
     e.stopPropagation();
     getImage()
-      mutate(props.id, {
-        onSuccess: async () => {
-          queryClient.invalidateQueries({ queryKey: ['cafeInfo'] });
-          queryClient.invalidateQueries({ queryKey: ['cafeLikeList'] });
-        },
-        onError: (error) => {
-          if(isAxiosError(error)) {
-            displayToast('좋아요에 실패했어요. 다시 시도해주세요.');
-          }
-        },
-        onSettled: () => {
-          const prev: CafeInfo = queryClient.getQueryData(['cafeInfo']);
-          const updateData = () => {
-            if(prev) {
-              return {
-                ...prev,
-                likes: props.liked ? (prev.likes) - 1 : (prev.likes) + 1,
-                liked: !props.liked,
-              };
-            }
-          }
-          queryClient.setQueryData(['cafeInfo'], updateData())
-
-          const prevLikes: ILikesList = queryClient.getQueryData(['cafeLikeList']);
-          const updatedCafes = prevLikes.cafes.filter(cafe => cafe.id !== props.id);
-          const updateLikesData = () => {
-            if(prevLikes) {
-              return {
-                ...prevLikes,
-                cafes: updatedCafes,
-              };
-            }
-          }
-          queryClient.setQueryData(['cafeLikeList'], updateLikesData())
-        }
-      });
+    console.log('handleLike',props);
+    mutate(props.id);
   };
 
   return (
